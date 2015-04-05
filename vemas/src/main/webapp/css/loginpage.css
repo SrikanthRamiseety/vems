@@ -1,0 +1,170 @@
+#login_form {
+	
+}
+
+#login {
+	width: 57%;
+	margin-left: 22%;
+	margin-bottom: 100px;
+}
+
+em {
+	color: red;
+}
+
+#invalid {
+	margin-top: -8%;
+	width: 59%;
+	margin-left: 21%;
+}
+
+}
+.alert-danger {
+	color: red;
+	font-size: 12px;
+	background-color: #D2BEBE;
+	border-color: #EBCCD1;
+}
+
+#invalid_div {
+	margin-bottom: 3%;
+	margin-top: -4%;
+}
+
+/* Tooltips helpers */
+.form-group .tooltip {
+	float: left;
+	top: 7px;
+	left: -5px;
+	position: relative;
+	z-index: 2;
+}
+
+.form-group .tooltip:hover {
+	z-index: 3;
+}
+
+.form-group .tooltip>span {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+	color: #FFF;
+	cursor: help;
+	background-color: #00AEEF;
+	position: relative;
+	border-radius: 10px;
+}
+
+.form-group .tooltip .content {
+	opacity: 0;
+	width: 200px;
+	background-color: #333;
+	color: #FFF;
+	font-size: 0.9em;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	padding: 8px;
+	border-radius: 6px;
+	pointer-events: none;
+	transition: 0.2s cubic-bezier(0.1, 0.1, 0.25, 2);
+	-webkit-transition: 0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2);
+	-moz-transition: 0.3s cubic-bezier(0.1, 0.2, 0.5, 2.2);
+}
+
+.form-group .tooltip p {
+	padding: 0;
+}
+
+.form-group .tooltip.down .content {
+	left: auto;
+	right: 0;
+	top: 30px;
+}
+
+.form-group .tooltip:hover .content {
+	opacity: 1;
+	left: 36px;
+}
+
+.form-group .tooltip .content b {
+	height: 0;
+	width: 0;
+	border-color: #333 #333 transparent transparent;
+	border-style: solid;
+	border-width: 9px 7px;
+	position: absolute;
+	left: -14px;
+	top: 8px;
+}
+
+.form-group .tooltip.down .content b {
+	left: auto;
+	right: 6px;
+	top: -10px;
+	border-width: 5px;
+	border-color: transparent #333 #333 transparent;
+}
+
+.form-group .alert {
+	float: right;
+	margin-left: 67%;
+	margin-top: 4px;
+	padding: 3px 10px;
+	color: #FFF;
+	border-radius: 3px 4px 4px 3px;
+	background-color: #CE5454;
+	max-width: 209px;
+	white-space: pre;
+	position: absolute;
+	left: -15px;
+	opacity: 0;
+	z-index: 1;
+	transition: 0.15s ease-out;
+}
+
+.form-group .alert::after {
+	content: '';
+	display: block;
+	height: 0;
+	width: 0;
+	border-color: transparent #CE5454 transparent transparent;
+	border-style: solid;
+	border-width: 11px 7px;
+	position: absolute;
+	left: -13px;
+	top: 1px;
+}
+
+.form-group.bad .alert {
+	left: 0;
+	opacity: 1;
+}
+
+#login_id, #cancel {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-moz-user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 51px;
+}
+
+#mandatory {
+	float: right;
+	margin-bottom: -2%;
+	font-size: 11px;
+	margin-top: 10px;
+}
