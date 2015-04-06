@@ -24,7 +24,7 @@
 					</a>
 				</div>
 				<div class="navbar-header col-sm-6 col-md-6 col-xs-8 col-lg-6">
-					<a class="navbar-brand title" href="#">
+					<a class="navbar-brand title" href="loginpage.jsp">
 						<center><h1 id="title">Vendor Management System</h1></center>
 					</a>
 				</div>
