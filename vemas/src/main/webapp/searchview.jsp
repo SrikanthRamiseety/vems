@@ -132,7 +132,7 @@ table.collapse.in {
 								<td><c:out value="${i.getVendorCategory() }"></c:out></td>
 								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
-								<td><c:out value="${i.getVendorLandlineNumber()}"></c:out></td>
+								<td><c:out value="${i.getVendorMobileNumber()}"></c:out></td>
 								<td><c:out value="${i.getVendorWebsite()}"></c:out></td>
 
 

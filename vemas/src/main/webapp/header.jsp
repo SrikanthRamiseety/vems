@@ -23,9 +23,9 @@
 						src="images/About_Spaneos.png" id="logo">
 					</a>
 				</div>
-				<div class="navbar-header col-sm-6 col-md-6 col-xs-6 col-lg-6">
+				<div class="navbar-header col-sm-6 col-md-6 col-xs-8 col-lg-6">
 					<a class="navbar-brand title" href="#">
-						<h2 id="title">Vendor Management System</h2>
+						<center><h1 id="title">Vendor Management System</h1></center>
 					</a>
 				</div>
 				<c:if test="${loggedIn eq true }">

@@ -1,13 +1,13 @@
 .header {
 	min-height: 90px;
 	height: auto;
-	background: black;
+	background: rgb(21, 29, 178);
 	margin-right: auto;
 }
 
 #title {
-	margin-top: 2%;
-	margin-left: 11%;
+	margin-top: -2%;
+	margin-left: -12%;
 }
 
 .title {
@@ -25,7 +25,7 @@
 	font-size: small;
 	height: 3%;
 	margin-left: 32%;
-	color: #E3A539;
+	color:  white;
 }
 
 #user_welcome_msg, #welcome_msg {
@@ -33,7 +33,7 @@
 }
 
 .footer-navbar {
-	background: black;
+	background: rgb(21, 29, 178);
 	margin-bottom: auto;
 	margin-right: auto;
 	/* width: 120%;
@@ -46,8 +46,8 @@
 	margin-top: -7%;
 }
 
-h2 {
-	color: #E3A539;
+h1 {
+	color: white;
 }
 
 .row {
