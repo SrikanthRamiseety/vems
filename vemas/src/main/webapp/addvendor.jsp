@@ -8,6 +8,12 @@
 <title>Add New Vendor</title>
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<style type="text/css">
+#disply{
+background-image: url("images/12.jpg ");
+}
+ 
+</style>
 <script type="text/javascript">
 	function conformcancel() {
 		if ($("input").val() != null) {
@@ -36,16 +42,16 @@
 <link rel="stylesheet" href="css/addvendor.css" type="text/css" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body>
+<body id="disply" >
 	<%@include file="header.jsp"%>
+ 
 	<ol class="breadcrumb" id="bd">
 		<li><a href="landingpage.jsp">Home</a></li>
 
 		<li class="active">Add Vendor</li>
 	</ol>
 
-
-	<div class="container">
+	<div class="container"  >
 		<div class="row">
 			<c:if test="${addedsuccessfully eq false }">
 				<div class="alert alert-success" align="center" id="alert">
@@ -289,6 +295,7 @@
 			</div>
 		</div>
 	</div>
+	 
 
 	<%@include file="footer.jsp"%>
 	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>

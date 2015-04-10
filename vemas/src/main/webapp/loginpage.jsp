@@ -17,10 +17,10 @@
 
 <body>
 	<%@ include file="header.jsp"%>
+	<div id="display">
 	<br>
 	<br>
 	
-	<div id="display">
 		<div class="panel panel-primary" id="login">
 			<div class="panel-heading">
 				<h4 class="">Login</h4>
@@ -85,10 +85,7 @@
 						<button type="button" id="forgotpwd" class="btn btn-link">Forgot
 							Password</button>
 					</div>
-					<div class="col-sm-offset-4 col-md-4">
-						<a href="signup.jsp" type="button" class="btn btn-link">Sign
-							Up</a>
-					</div>
+					 
 				</form>
 				<br>
 				<div class="row">

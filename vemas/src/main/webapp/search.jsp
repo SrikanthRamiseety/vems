@@ -45,7 +45,9 @@
 	max-height: 300px;
 	overflow: auto;
 } */
- 
+ #div {
+ background-image: url("images/18.jpg");
+ }
 </style>
 </head>
 <body>
@@ -65,7 +67,9 @@
 			<div class="col-md-7">
 			 <form> 
 					<div class="form-group">
-					<label class=" control-label"><button  id="vender"type="button" class="btn btn-primary glyphicon glyphicon-search">Search</button></label>
+					<label class=" control-label">
+					<button  id="vender"type="button" class="btn btn-primary glyphicon glyphicon-search">Search</button>
+					</label>
 					<div class="col-sm-8">
 						<input type="text" id="search" name="search"  
 							class="form-control" placeholder="Enter the Vendor Name">
@@ -75,7 +79,6 @@
 			</div>
 			<div class="col-md-2"></div>
 
-		</div>
 		<hr>
 		 
 		<div id="show" class="continar">
@@ -85,6 +88,7 @@
 		</div>
 
 
+		</div>
 
 	</div>
 	<%@ include file="footer.jsp"%>

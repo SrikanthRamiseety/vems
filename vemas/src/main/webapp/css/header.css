@@ -1,7 +1,7 @@
 .header {
 	min-height: 90px;
 	height: auto;
-	background: rgb(21, 29, 178);
+	background:none;
 	margin-right: auto;
 }
 
@@ -25,15 +25,18 @@
 	font-size: small;
 	height: 3%;
 	margin-left: 32%;
-	color:  white;
+	color:rgb(158, 218, 246);
+	font-variant:small-caps;
+	font-weight: 200;
+	font-stretch: condensed;
 }
 
 #user_welcome_msg, #welcome_msg {
-	color: white;
+	color:rgb(158, 218, 246);
 }
 
 .footer-navbar {
-	background: rgb(21, 29, 178);
+	background: none;
 	margin-bottom: auto;
 	margin-right: auto;
 	/* width: 120%;
@@ -47,7 +50,10 @@
 }
 
 h1 {
-	color: white;
+	color:rgb(158, 218, 246);
+	font-variant:small-caps;
+	font-weight: 200;
+	font-stretch: condensed;
 }
 
 .row {
