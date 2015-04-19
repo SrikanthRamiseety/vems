@@ -2,9 +2,12 @@ package com.spaneos.vemas.service;
 
 import java.util.List;
 
+import com.spaneos.vemas.pojo.Bank;
+import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
+import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.SQLQueries;
 
 public interface VendorServiceInf extends SQLQueries {
@@ -42,6 +45,23 @@ public interface VendorServiceInf extends SQLQueries {
 	boolean addContactToVendor(Contact contact, List<Contact> vendorContacts);
 
 	public boolean authenticateUser(String userName, String password);
-	
+
+	public boolean admin(String email, String password);
+
 	public User getUserByEmail(String email);
+
+	public boolean addVendortype(VendorType vendortype);
+
+	public List<VendorType> getAllVendorTypes();
+
+	public boolean addBills(Billes billes);
+
+	public List<Billes> getAllBilles();
+
+	public List<User> getAllUsers();
+
+	public boolean addBank(Bank bank);
+
+	public List<Bank> getAllBAnkDetalies();
+
 }

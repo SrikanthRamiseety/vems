@@ -3,9 +3,12 @@ package com.spaneos.vemas.service;
 import java.util.List;
 
 import com.spaneos.vemas.dao.VendorDAOImp;
+import com.spaneos.vemas.pojo.Bank;
+import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
+import com.spaneos.vemas.pojo.VendorType;
 
 public class VendorServiceImp implements VendorServiceInf {
 	private static VendorServiceImp vendorServiceImp = null;
@@ -178,7 +181,7 @@ public class VendorServiceImp implements VendorServiceInf {
 		}
 
 		return new User(fname, lname, mname, email, password, seqQuestion,
-				answer, mobile, 0);
+				answer, mobile, 0,false);
 	}
 
 	@Override
@@ -219,6 +222,60 @@ public class VendorServiceImp implements VendorServiceInf {
 			return true;
 
 		return false;
+	}
+
+	@Override
+	public boolean admin(String email, String password) {
+		
+		
+
+		if ("rani@gmail.com".equalsIgnoreCase(email)
+				&& "Rani123456".equals(password))
+			return true;
+
+		return false;
+
+	}
+
+	@Override
+	public boolean addVendortype(VendorType vendortype) {
+		
+		return  vendorDaoImp.addVendortype(vendortype);
+	}
+
+	@Override
+	public List<VendorType> getAllVendorTypes() {
+		
+		return vendorDaoImp.getAllVendorTypes();
+	}
+
+	@Override
+	public boolean addBills(Billes billes) {
+		
+		return vendorDaoImp.addBills(billes);
+	}
+
+	@Override
+	public List<Billes> getAllBilles() {
+		
+		return vendorDaoImp.getAllBilles();
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		
+		return vendorDaoImp.getAllUsers();
+	}
+
+	@Override
+	public boolean addBank(Bank bank) {
+		
+		return vendorDaoImp.addBank(bank);
+	}
+
+	@Override
+	public List<Bank> getAllBAnkDetalies() {
+ 		return null;
 	}
 
 }

@@ -1,18 +1,34 @@
 package com.spaneos.vemas.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+	
+
+
+import com.spaneos.vemas.pojo.Bank;
+import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
+import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.DaoUtil;
 
 public class VendorDAOImp implements VendorDaoInf {
+	private static final int BUFFER_SIZE = 4096;
 	static VendorDAOImp vendorDAOImp = null;
 	private Connection con;
 	private Statement stmt;
@@ -97,6 +113,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(6, user.getSelectquestion());
 			pstmt.setString(7, user.getAnswer());
 			pstmt.setString(8, user.getMobile());
+			pstmt.setBoolean(9, user.Isadmin());
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
 				return true;
@@ -325,6 +342,7 @@ public class VendorDAOImp implements VendorDaoInf {
 				user.setAnswer(rs.getString("ANSWER"));
 				user.setMobile(rs.getString("MOBILE"));
 				user.setUserId(rs.getInt("USERID"));
+				user.setIsadmin(rs.getBoolean("ISADMIN"));
 			}
 			return user;
 		}
@@ -364,6 +382,183 @@ public class VendorDAOImp implements VendorDaoInf {
 			daoUtil.close(con, stmt, pstmt, rs);
 		}
 
+		return null;
+	}
+
+	@Override
+	public boolean isadmin(int id) {
+		boolean isadmin = false;
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement("select ISADMIN from USER where USERID=?");
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				User user=new User();
+			isadmin=	user.setIsadmin(rs.getBoolean("ISADMIN"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+ 		return  isadmin;
+	}
+
+	@Override
+	public boolean addVendortype(VendorType vendortype) {
+		try {
+			con =daoUtil.getConnection();
+			pstmt=con.prepareStatement(ADD_VENDORTYPE);
+			pstmt.setString(1, vendortype.getVendorCategory());
+			pstmt.setString(2, vendortype.getVendorType());
+			int i=pstmt.executeUpdate();
+			if(i>0){
+				return true;
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
+		}
+		return false;
+	}
+
+	@Override
+	public List<VendorType> getAllVendorTypes() {
+		List<VendorType> vendorTypes=new ArrayList<VendorType>();
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement(GET_VENDORTYPE);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				VendorType type=new VendorType(rs.getString("VENDORCATEGORY"), rs.getString("VENDORTYPE"));
+				vendorTypes.add(type);
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		return vendorTypes;
+	}
+
+	@Override
+	public boolean addBills(Billes billes) {
+		try {
+			String filepath="C:/Users/Srikanth.Lakshman/Downloads/images/"+billes.getImagepath();
+			System.out.println(filepath);
+			InputStream inputStream=new FileInputStream(new File(filepath));
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement("insert into BILLES(BILLID,VENDORNAME,AMOUNT,NAME,MOBILE,PHOTO) values(?,?,?,?,?,?)");
+			pstmt.setString(1, billes.getBillNo());
+			pstmt.setString(2,billes.getShopName());
+		
+			pstmt.setString(3, billes.getAmount());
+			pstmt.setString(4, billes.getName());
+			pstmt.setString(5,billes.getMobile());
+		    pstmt.setBinaryStream(6, inputStream);
+		   
+
+				 
+			
+		int i=	pstmt.executeUpdate();
+		if(i>0){
+			return true;
+		}
+		} catch (SQLException | FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
+		}
+
+		return false;
+	}
+
+	@Override
+	public List<Billes> getAllBilles() {
+		List<Billes> billes=new ArrayList<Billes>();
+		String filepath="C:/Users/Srikanth.Lakshman/Downloads/";
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement("select * from BILLES");
+			rs=pstmt.executeQuery();
+ 			int i = 0;
+			while(rs.next()){
+				Billes bill=new Billes();
+				bill.setBillNo(rs.getString("BILLID"));
+				bill.setShopName(rs.getString("VENDORNAME"));
+				 
+				bill.setAmount(rs.getString("AMOUNT"));
+				bill.setName(rs.getString("NAME"));
+				bill.setMobile(rs.getString("MOBILE"));
+ 				InputStream in = rs.getBinaryStream(1);
+ 				
+				
+ 				FileOutputStream f = new FileOutputStream(new File("test"+i+".jpg"));
+ 				
+				i++;
+				int c = 0;
+				while ((c = in.read()) > -1) {
+					f.write(c);
+				}
+				bill.setF(f);
+
+				billes.add(bill);
+					
+
+}
+		
+		} catch ( Exception e) {
+			
+			e.printStackTrace();
+		}
+		finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
+		}
+
+		
+		return billes;
+	}
+
+	@Override
+	public boolean addBank(Bank bank) {
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement(ADD_BANK);
+			pstmt.setString(1,bank.getVendorName() );
+			pstmt.setString(2,bank.getBankName() );
+			pstmt.setString(3,bank.getAcno() );
+			pstmt.setString(4,bank.getAcName() );
+			pstmt.setString(5,bank.getIcfcode() );
+			pstmt.setString(6,bank.getOtherbankname() );
+			pstmt.setString(7,bank.getA_cno() );
+			pstmt.setString(8,bank.getA_cName() );
+			pstmt.setString(9,bank.getIcf_code() );
+		int i=	pstmt.executeUpdate();
+		if(i>0){
+			return true;
+		}
+			
+			
+		} catch (SQLException e) {
+ 			e.printStackTrace();
+		}
+		
+ 		return false;
+	}
+
+	@Override
+	public List<Bank> getAllBAnkDetalies() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

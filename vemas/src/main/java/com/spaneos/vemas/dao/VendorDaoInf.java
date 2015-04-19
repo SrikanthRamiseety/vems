@@ -2,9 +2,12 @@ package com.spaneos.vemas.dao;
 
 import java.util.List;
 
+import com.spaneos.vemas.pojo.Bank;
+import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
+import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.SQLQueries;
 
 public interface VendorDaoInf extends SQLQueries {
@@ -23,10 +26,23 @@ public interface VendorDaoInf extends SQLQueries {
 	List<Vendor> getVendorsByVendorname(String name);
 
 	List<User> getPasswordByEmail(String email);
-	
+
 	public Vendor getVendorsByVendorMobile(String mobile);
-	
+
 	public List<User> getAllUsers();
-	
+
 	public User getUserByEmail(String email);
+
+	public boolean isadmin(int id);
+
+	public boolean addVendortype(VendorType vendortype);
+
+	public List<VendorType> getAllVendorTypes();
+
+	public boolean addBills(Billes billes);
+
+	public List<Billes> getAllBilles();
+	public boolean addBank(Bank bank);
+	public List<Bank> getAllBAnkDetalies();
+
 }

@@ -75,27 +75,19 @@ background-image: url("images/12.jpg ");
 							</label>
 							<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 
-								<c:if test="${vendor eq null }">
-									<select class="required form-control" name="vendorType"
-										id="vendortype">
-										<option selected="selected" value="">Select Vendor
-											Type</option>
-										<option value="Service"><b>S</b>ervice
-										</option>
-										<option value="Supply"><b>S</b>upply
-										</option>
-									</select>
+								<c:if test="${tlist eq null }">
+									 <h4>No Vendor type is added</h4>
 								</c:if>
-								<c:if test="${vendor ne null }">
+								<c:if test="${tlist ne null }">
 									<select class="required form-control" name="vendorType"
 										id="vendortype">
-										<option selected="selected"><c:out
-												value="${vendor.vendorType }"></c:out>
-										</option>
-										<option value="Service"><b>S</b>ervice
-										</option>
-										<option value="Supply"><b>S</b>upply
-										</option>
+										 
+										<c:forEach items="${tlist}" var="i">
+										 
+										<option value="${i.getVendorCategory()}"> <c:out value="${i.getVendorCategory()}"></c:out>
+										 
+										</c:forEach>
+										 
 									</select>
 								</c:if>
 
@@ -117,23 +109,16 @@ background-image: url("images/12.jpg ");
 							<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 								<select class="required form-control" name="vendorCategory"
 									id="vendorcategory">
-									<c:if test="${vendor eq null }">
-										<option selected="selected" value="">Select Vendor
-											Category</option>
-										<option value="Computers">Computer</option>
-										<option value="Furniture">Furniture</option>
-										<option value="AC">AC</option>
-										<option value="Projector">Projector</option>
-										<option value="Servers">Servers</option>
+									<c:if test="${tlist eq null }">
+										  <h4>No Vendor type is added</h4>
 									</c:if>
-									<c:if test="${vendor ne null }">
-										<option selected="selected">
-											<c:out value="${vendor.vendorCategory }"></c:out></option>
-										<option value="Computers">Computer</option>
-										<option value="Furniture">Furniture</option>
-										<option value="AC">AC</option>
-										<option value="Projector">Projector</option>
-										<option value="Servers">Servers</option>
+									<c:if test="${tlist ne null }">
+										 
+											<c:forEach items="${tlist}" var="i">
+										 
+										<option value="${i.getVendorType()}"> <c:out value="${i.getVendorType()}"></c:out>
+										 
+										</c:forEach>
 									</c:if>
 								</select>
 							</div>

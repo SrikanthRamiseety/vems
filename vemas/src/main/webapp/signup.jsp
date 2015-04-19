@@ -22,15 +22,17 @@
 		return x.trim();
 	}
 </script>
+<style type="text/css">
+#body{
+background-image: url("images/17.jpg");
+}
+
+</style>
 </head>
-<body>
+<body id="body">
 	<%@include file="header.jsp"%>
 	<br>
-	<ol class="breadcrumb" id="bd">
-		<li><a href="loginpage.jsp">Login</a></li>
-		<li class="active">Sign Up</li>
-	</ol>
-	<br>
+ 	<br>
 	<div id="sform">
 		<div class="row">
 

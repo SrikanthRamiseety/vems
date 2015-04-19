@@ -59,26 +59,26 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item blue">
-                            <a href="a_type.vms"  >
+                            <a href="type.vms"  >
                                 <i class="fa fa-magic"></i>
                                 <p>Add Vendor</p>
                             </a>
                         </div>
                         
                         <div class="menu-item green">
-                            <a href="addvendortype.jsp"  >
+                            <a href="#portfolio-modal"  >
                                 <i class="fa fa-file-photo-o"></i>
                                 <p>Add Vendor type</p>
                             </a>
                         </div>
                         
-                        <div class="menu-item light-red">
+<!--                         <div class="menu-item light-red">
                             <a href="search.jsp"  >
-                                <i class="fa fa-search"></i>
+                                <i class="fa fa-user"></i>
                                 <p>Search vendor</p>
                             </a>
                         </div>
-                        
+ -->                        
                     </div>
                     
                     <div class="col-md-6">
@@ -112,24 +112,25 @@
                         <!-- Start Carousel Section -->
                         
                         <div class="row">
-                            <div class="col-md-6">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8">
                                 <div class="menu-item color responsive">
-                                    <a href="signup.jsp">
-                                        <i class="fa fa-user"></i>
-                                        <p>Add New USER</p>
+                                    <a href="search.jsp">
+                                        <i class="fa fa-search"></i>
+                                        <p>Search Vendor</p>
                                     </a>
                                 </div>
                             </div>
                             
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="menu-item light-orange responsive-2">
-                                    <a href="">
-                           <i class="fa fa-refresh fa-spin"></i>
-                                        <p>Reporting</p>
+                                    <a href="#team-modal" data-toggle="modal">
+                                        <i class="fa fa-users"></i>
+                                        <p>Team</p>
                                     </a>
                                 </div>
                             </div>
-                            
+ -->                            
                         </div>
                         
                     </div>
@@ -137,27 +138,26 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="viewuser.vms">
-                                <i class="fa fa-users"></i>
+                            <a href="#contact-modal" data-toggle="modal">
+                                <i class="fa fa-envelope-o"></i>
                                 <p>Contact</p>
                             </a>
                         </div>
                         
                         <div class="menu-item color">
-                            <a href="billesview.vms" >
-                                <i class=" fa fa-money"></i>
-                                <p>Bills</p>
+                            <a href="billes.jsp">
+                                <i class="fa fa-comment-o"></i>
+                                <p>Billes</p>
                             </a>
                         </div>
                         
-                        <div class="menu-item blue">
-                            <a href="addBank.jsp">
-                                <i class="fa  fa-road
-"></i>
-                                <p>Bank Detilas</p>
+<!--                         <div class="menu-item blue">
+                            <a href="http:www.youtub.com/todaynews" data-toggle="modal">
+                                <i class="fa fa-mortar-board"></i>
+                                <p>Latest News</p>
                             </a>
                         </div>
-                        
+ -->                        
                     </div>
                 </div>
             </div>

@@ -10,14 +10,18 @@ public class User {
 	private String answer;
 	private String mobile;
 	private int userId;
+	private boolean isadmin;
 
 	public User() {
 
 	}
 
+	 
+	
+
 	public User(String firstname, String lastname, String middlename,
 			String email, String password, String selectquestion,
-			String answer, String mobile, int userId) {
+			String answer, String mobile, int userId, boolean isadmin) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -28,6 +32,18 @@ public class User {
 		this.answer = answer;
 		this.mobile = mobile;
 		this.userId = userId;
+		this.isadmin = isadmin;
+	}
+
+
+
+
+	public boolean Isadmin() {
+		return isadmin;
+	}
+
+	public boolean setIsadmin(boolean isadmin) {
+		return this.isadmin = isadmin;
 	}
 
 	public int getUserId() {
