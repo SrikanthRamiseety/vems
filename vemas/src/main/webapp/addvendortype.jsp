@@ -10,7 +10,7 @@
 
 <style type="text/css">
 #body{
-background-image: url("images/25.jpg");
+background-image: url("../../images/25.jpg");
 }
 
 </style>
@@ -20,7 +20,7 @@ background-image: url("images/25.jpg");
 
 	src="http://docs/docs/jquery_json/jquery-1.11.1.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
  
 <script type="text/javascript" src="js/pwdstrength.js"></script>
 <script type="text/javascript">
@@ -30,7 +30,7 @@ background-image: url("images/25.jpg");
 </script>
 </head>
 <body id="body">
-	<%@include file="header.jsp"%>
+	<%@include file="../../header.jsp"%>
 	<br>
 	<ol class="breadcrumb" id="bd">
 		<li><a href="landingpage.jsp">Home</a></li>
@@ -48,7 +48,7 @@ background-image: url("images/25.jpg");
 						</div>
 					</div>
 					<div class="panel-body">
-						<form action="addvendortype.vms" method="post" novalidate
+						<form action="../../opt/addtype" method="post" novalidate
 							class="form-horizontal">
 
 							<div class="item form-group">

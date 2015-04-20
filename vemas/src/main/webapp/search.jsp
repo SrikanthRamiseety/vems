@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Search</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
 <script type="text/javascript"
 	src="http://docs/docs/jquery_json/jquery-1.11.1.js"></script>
 <script type="text/javascript"
@@ -18,7 +18,7 @@
 		$("#vender").click(function() {
 		var value=	$("#search").val();
 			 
-			$.post("search.vms?pagenumber=1&search="+value+"&page=first",
+			$.post("../../opt/searchview?pagenumber=1&search="+value+"&page=first",
 					show);
 			function show(data) {
 				$("#show").html("");
@@ -46,13 +46,13 @@
 	overflow: auto;
 } */
  #div {
- background-image: url("images/18.jpg");
+ background-image: url("../../images/18.jpg");
  }
 </style>
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="../../header.jsp"%>
 
 
 	<hr>
@@ -91,6 +91,6 @@
 		</div>
 
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../../footer.jsp"%>
 </body>
 </html>

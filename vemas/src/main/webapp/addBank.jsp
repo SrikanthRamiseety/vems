@@ -10,13 +10,13 @@
 
 
 <script type="text/javascript"
-	src="js/jquery-2.1.1.min.js"></script>
+	src="../js/jquery-2.1.1.min.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link href="css/signupform1.css" rel="stylesheet">
-<link href="css/signupform.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link href="../css/signupform1.css" rel="stylesheet">
+<link href="../css/signupform.css" rel="stylesheet">
 
-<script type="text/javascript" src="js/pwdstrength.js"></script>
+<script type="text/javascript" src="../js/pwdstrength.js"></script>
 <script type="text/javascript">
 	function trimSpaces(x) {
 		return x.trim();
@@ -38,7 +38,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="../header_l.jsp"%>
 	<br>
 	<ol class="breadcrumb" id="bd">
 		<li><a href="landingpage.jsp">Home</a></li>
@@ -259,10 +259,10 @@ $(function(){
 	<br>
 	<br>
 	<%@include file="footer.jsp"%>
-	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="../js/jquery-1.11.0.min.js"></script>
 
-	<script src="js/validator.js"></script>
-	<script src="js/signuploader.js"></script>
+	<script src="../js/validator.js"></script>
+	<script src="../js/signuploader.js"></script>
 	<!--sign up loader  -->
 </body>
 </html>

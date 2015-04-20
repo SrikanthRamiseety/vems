@@ -13,31 +13,31 @@
 	
 </script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/landingpage.css">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/landingpage.css">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
 		
 		<!-- Custom CSS -->
-        <link href="css/animate.css" rel="stylesheet">
+        <link href="../css/animate.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-
+<link href="../fonts" type="" rel="text/css">
 
         <!-- Template js -->
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/jquery.appear.js"></script>
-        <script src="js/contact_me.js"></script>
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/modernizr.custom.js"></script>
-        <script src="js/script.js"></script>
+        <script src="../js/jquery-2.1.1.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../js/jquery.appear.js"></script>
+        <script src="../js/contact_me.js"></script>
+        <script src="../js/jqBootstrapValidation.js"></script>
+        <script src="../js/modernizr.custom.js"></script>
+        <script src="../js/script.js"></script>
 
 <style type="text/css">
 #search {
@@ -48,7 +48,7 @@
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header_l.jsp"%>
 	<ol class="breadcrumb">
 		<li class="active">Home</li>
 	</ol>
@@ -59,21 +59,21 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item blue">
-                            <a href="a_type.vms"  >
+                            <a href="admin/a_type_a"  >
                                 <i class="fa fa-magic"></i>
                                 <p>Add Vendor</p>
                             </a>
                         </div>
                         
                         <div class="menu-item green">
-                            <a href="addvendortype.jsp"  >
+                            <a href="admin/typevendor"  >
                                 <i class="fa fa-file-photo-o"></i>
                                 <p>Add Vendor type</p>
                             </a>
                         </div>
                         
                         <div class="menu-item light-red">
-                            <a href="search.jsp"  >
+                            <a href="admin/v_search"  >
                                 <i class="fa fa-search"></i>
                                 <p>Search vendor</p>
                             </a>
@@ -96,13 +96,13 @@
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img src="images/4.jpg" class="img-responsive" alt="">
+                                        <img src="../images/4.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="images/5.jpg" class="img-responsive" alt="">
+                                        <img src="../images/5.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="images/6.jpg" class="img-responsive" alt="">
+                                        <img src="../images/6.jpg" class="img-responsive" alt="">
                                     </div>
 
                                 </div>
@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="menu-item color responsive">
-                                    <a href="signup.jsp">
+                                    <a href="admin/signup">
                                         <i class="fa fa-user"></i>
                                         <p>Add New USER</p>
                                     </a>
@@ -123,7 +123,7 @@
                             
                             <div class="col-md-6">
                                 <div class="menu-item light-orange responsive-2">
-                                    <a href="">
+                                    <a href="admin/reporting">
                            <i class="fa fa-refresh fa-spin"></i>
                                         <p>Reporting</p>
                                     </a>
@@ -137,21 +137,21 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="viewuser.vms">
+                            <a href="admin/viewuser">
                                 <i class="fa fa-users"></i>
                                 <p>Contact</p>
                             </a>
                         </div>
                         
                         <div class="menu-item color">
-                            <a href="billesview.vms" >
+                            <a href="admin/billesview" >
                                 <i class=" fa fa-money"></i>
                                 <p>Bills</p>
                             </a>
                         </div>
                         
                         <div class="menu-item blue">
-                            <a href="addBank.jsp">
+                            <a href="addBank">
                                 <i class="fa  fa-road
 "></i>
                                 <p>Bank Detilas</p>
@@ -164,6 +164,6 @@
         </div>
 	<br>
 	<br>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

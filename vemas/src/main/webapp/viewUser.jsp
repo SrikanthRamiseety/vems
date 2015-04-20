@@ -9,9 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function() {
 			var page=$("#previous").val();
 		if(page == 0){
@@ -43,7 +43,7 @@
 		});
 	});
 </script>
-<style type="text/css">
+ --><style type="text/css">
 #pagination {
 	color: #337AB7;
 	background-color: transparent;
@@ -98,7 +98,7 @@ table.collapse.in {
 </script>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<%@include file="../header_l.jsp"%>
 
 	<c:if test="${(userslist eq null) or (fn:length(userslist) eq 0) }">
 		<h2>Sorry! No Billes Uploaded..</h2>
@@ -163,6 +163,6 @@ table.collapse.in {
 
 
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../../footer.jsp" %>
 </body>
 </html>
