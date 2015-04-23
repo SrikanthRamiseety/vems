@@ -119,39 +119,7 @@ public class VMS extends HttpServlet {
 				response.sendRedirect("error.jsp");
 			}
 
-		} else if (uri.endsWith("billes.vms")) {
-			Billes billes = new Billes();
-			billes.setBillNo(req.getParameter("billno"));
-			billes.setShopName(req.getParameter("shopname"));
-			System.out.println(req.getParameter("filename"));
-			billes.setAmount(req.getParameter("amount"));
-			billes.setName(req.getParameter("name"));
-			billes.setMobile(req.getParameter("mobile"));
-			System.out.println((req.getParameter("date")));
-			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-			String date = req.getParameter("date");
-
-			try {
-
-				Date date1 = formatter.parse(date);
-				System.out.println(date1);
-				System.out.println(formatter.format(date1));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-
-			File file = new File(req.getParameter("filename"));
-			String path = file.getAbsolutePath();
-
-			billes.setImagepath(file);
-
-			if (vendorServiceImp.addBills(billes)) {
-				response.sendRedirect("landingpageOfEmplyee.jsp");
-
-			} else {
-				response.sendRedirect("error.jsp");
-			}
-		} else if (uri.endsWith("bank.vms")) {
+		}  else if (uri.endsWith("bank.vms")) {
 			Bank bank = new Bank();
 			bank.setAcno(req.getParameter("acn"));
 			bank.setAcName(req.getParameter("acname"));

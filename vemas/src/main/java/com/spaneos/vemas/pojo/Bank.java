@@ -10,6 +10,7 @@ public class Bank {
 	private String Acno;
 	private String AcName;
 	private String icfcode;
+	
 	public String getVendorName() {
 		return vendorName;
 	}

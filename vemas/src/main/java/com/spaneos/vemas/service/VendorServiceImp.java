@@ -275,7 +275,7 @@ public class VendorServiceImp implements VendorServiceInf {
 
 	@Override
 	public List<Bank> getAllBAnkDetalies() {
- 		return null;
+ 		return vendorDaoImp.getAllBAnkDetalies();
 	}
 
 }

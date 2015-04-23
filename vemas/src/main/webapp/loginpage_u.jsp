@@ -34,7 +34,7 @@
 	border: 1px solid #000;
 }
 </style>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
@@ -54,13 +54,14 @@
       
 </head>
 <body onload='document.loginForm.username.focus();'>
-<%@ include file="header_v.jsp" %>
-<br>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				 
+				<div id="login-box">
+
+					<h2>Login with Username and Password</h2>
 
 					<c:if test="${not empty error}">
 						<div class="error">${error}</div>
@@ -80,7 +81,6 @@
 
 								<table>
 									<tr>
-									
 										<td>User:</td>
 										<td><input type='text' name='username'></td>
 									</tr>
@@ -88,7 +88,6 @@
 										<td>Password:</td>
 										<td><input type='password' name='password' /></td>
 									</tr>
-									<br>
 									<tr>
 										<td colspan='2'><input name="submit" type="submit"
 											value="submit" /></td>
@@ -104,6 +103,6 @@
 				</div>
 			</div>
 		</div>
-	 
+	</div>
 </body>
 </html>

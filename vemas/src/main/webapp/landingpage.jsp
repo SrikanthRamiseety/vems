@@ -123,7 +123,7 @@
                             
                             <div class="col-md-6">
                                 <div class="menu-item light-orange responsive-2">
-                                    <a href="admin/reporting">
+                                    <a href="../reporting.jsp">
                            <i class="fa fa-refresh fa-spin"></i>
                                         <p>Reporting</p>
                                     </a>

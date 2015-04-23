@@ -9,7 +9,7 @@
 <!-- <link rel="stylesheet" href="css/fv.css" type="text/css" /> -->
 <style type="text/css">
 #body{
-background-image: url("images/26.jpg");
+background-image: url("../images/26.jpg");
 }
 
 
@@ -18,9 +18,9 @@ background-image: url("images/26.jpg");
 <script type="text/javascript"
 	src="http://docs/docs/jquery_json/jquery-1.11.1.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link href="css/signupform1.css" rel="stylesheet">
-<link href="css/signupform.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link href="../css/signupform1.css" rel="stylesheet">
+<link href="../css/signupform.css" rel="stylesheet">
 
 <script type="text/javascript" src="js/pwdstrength.js"></script>
 <script type="text/javascript">
@@ -30,7 +30,7 @@ background-image: url("images/26.jpg");
 </script>
 </head>
 <body id="body">
-	<%@include file="header.jsp"%>
+	<%@include file="../header_l.jsp"%>
 	<br>
 	<ol class="breadcrumb" id="bd">
 		<li><a href="landingpage.jsp">Home</a></li>
@@ -48,7 +48,7 @@ background-image: url("images/26.jpg");
 						</div>
 					</div>
 					<div class="panel-body">
-						<form action="billes.vms" method="post" novalidate
+						<form action="billadd.vms" method="post" novalidate
 							class="form-horizontal" >
 
 							<div class="item form-group">

@@ -8,9 +8,9 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
-
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -95,7 +95,60 @@ public class VendorManagementServlet extends HttpServlet {
  
  
 		
-		}  
+		}else if(uri.endsWith("type.vms")){
+			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
+		 	request.setAttribute("tlist", list3);
+			request.getRequestDispatcher("../addvendor_u.jsp").forward(request,
+					response);
+		}else if (uri.endsWith("search_v")) {
+			request.getRequestDispatcher("../search_u.jsp").forward(request, response);
+		}else if(uri.endsWith("typevendor.vms")){
+			request.getRequestDispatcher("../addvendortype_u.jsp").forward(request,
+					response);
+		}else if(uri.endsWith("billes.vms")){
+			request.getRequestDispatcher("../billes.jsp").forward(request, response);
+			
+		}else if (uri.endsWith("billadd.vms")) {
+			Billes billes = new Billes();
+			billes.setBillNo(request.getParameter("billno"));
+			billes.setShopName(request.getParameter("shopname"));
+			System.out.println(request.getParameter("filename"));
+			billes.setAmount(request.getParameter("amount"));
+			billes.setName(request. getParameter("name"));
+			billes.setMobile(request.getParameter("mobile"));
+			System.out.println((request.getParameter("date")));
+			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+			String date = request.getParameter("date");
+
+			try {
+
+				Date date1 = formatter.parse(date);
+				System.out.println(date1);
+				System.out.println(formatter.format(date1));
+				Calendar cal = Calendar.getInstance();
+				  billes.setDate(formatter.format(cal.getTime()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			File file = new File(request.getParameter("filename"));
+			String path = file.getAbsolutePath();
+
+			billes.setImagepath(file);
+
+			if (vendorServiceImp.addBills(billes)) {
+				response.sendRedirect("../landingpageOfEmplyee.jsp");
+
+			} else {
+				response.sendRedirect("error.jsp");
+			}
+		}else if(uri.endsWith("viewUsers")){
+			List<User> users = vendorServiceImp.getAllUsers();
+			ServletContext context = request.getServletContext();
+
+			context.setAttribute("userslist", users);
+			response.sendRedirect("../viewUser.jsp");
+		}
 		
 
 	}

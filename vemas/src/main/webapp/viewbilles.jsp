@@ -43,7 +43,8 @@
 		});
 	});
 </script>
- --><style type="text/css">
+ -->
+<style type="text/css">
 #pagination {
 	color: #337AB7;
 	background-color: transparent;
@@ -56,8 +57,6 @@
 .clickable {
 	border: 1px;
 }
-
- 
 
 #view {
 	overflow: auto;
@@ -89,93 +88,102 @@ table.collapse.in {
 .active {
 	color: aqua;
 }
-#body{
-background-image: url("images/100.jpg");
 
+#body {
+	background-image: url("images/100.jpg");
 }
 </style>
 
 <script type="text/javascript">
 	$(function() {
-	//	$(".tbl-row").hide();
+		//	$(".tbl-row").hide();
 	});
 </script>
 </head>
 <body id="body">
 	<%@include file="header_v.jsp"%>
-<div class="container">
-<div class="row">
-<div class="col-md-1"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1"></div>
 
-<div class="col-md-10">
-	<c:if test="${(billeslist eq null) or (fn:length(billeslist) eq 0) }">
-		<h2>Sorry! No Billes Uploaded..</h2>
-	</c:if>
-	<c:if test="${(billeslist ne null) or (fn:length(billeslist) ne 0) }">
-		<input type="hidden" id="hidden" name="hidden"
-			value="${vender.size() }">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h4>Billes</h4>
+			<div class="col-md-10">
+				<c:if
+					test="${(billeslist eq null) or (fn:length(billeslist) eq 0) }">
+					<h2>Sorry! No Billes Uploaded..</h2>
+				</c:if>
+				<c:if
+					test="${(billeslist ne null) or (fn:length(billeslist) ne 0) }">
+					<input type="hidden" id="hidden" name="hidden"
+						value="${vender.size() }">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h4>Billes</h4>
 
+						</div>
+						<div class="panel-body" id="vendor-table">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+
+
+
+
+
+										<th>Date</th>
+										<th>BillNo</th>
+										<th>VendorName</th>
+										<th>amount</th>
+										<th>Name</th>
+										<th>Mobile</th>
+										<th>Images</th>
+
+									</tr>
+								</thead>
+								<tbody>
+
+									<c:forEach items="${billeslist }" var="i">
+										<tr>
+                                            <td><c:out value="${i.getDate()}"></c:out></td>
+											<td><c:out value="${i.getBillNo()}"></c:out></td>
+											<td><c:out value="${i.getShopName()}"></c:out></td>
+											<td><c:out value="${i.getAmount()}"></c:out></td>
+											<td><c:out value="${i.getName()}"></c:out></td>
+											<td><c:out value="${i.getMobile()}"></c:out></td>
+											<td><img alt=""
+												src='<c:out value="${i.getF()}.jpg"></c:out>'></td>
+
+
+
+										</tr>
+
+
+
+
+
+
+									</c:forEach>
+
+
+								</tbody>
+
+
+
+
+
+
+
+
+							</table>
+						</div>
+					</div>
+				</c:if>
 			</div>
-			<div class="panel-body" id="vendor-table">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>BillNo</th>
-							<th>ShopName</th>
-							 <th>amount</th>
-							<th>Name</th>
-							<th>Mobile</th>
-							<th>Images</th>
-
-						</tr>
-					</thead>
-					<tbody>
-
-						<c:forEach items="${billeslist }" var="i">
-							<tr>
-								
-								<td><c:out value="${i.getBillNo()}"></c:out></td>
-								<td><c:out value="${i.getShopName()}"></c:out></td>
-								 <td><c:out value="${i.getAmount()}"></c:out></td>
-								<td><c:out value="${i.getName()}"></c:out></td>
-								<td><c:out value="${i.getMobile()}"></c:out></td>
- 							    <td> <img alt="" src='<c:out value="${i.getF()}"></c:out>'></td>
-								
-								
-
-							</tr>
-
-							 
-							 									
-									
-
-
-								</c:forEach>
-
-
-							</tbody>
-
-
-						 
-
-					
-
-
-
-				</table>
-			</div>
-				</div>
-	</c:if>
-</div>
-</div>
-</div>
+		</div>
+	</div>
 
 
 
 
-<%@ include file="footer.jsp" %>
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

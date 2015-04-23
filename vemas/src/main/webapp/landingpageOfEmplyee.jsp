@@ -13,28 +13,28 @@
 	
 </script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/landingpage.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/landingpage.css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
 		
 		<!-- Custom CSS -->
-        <link href="css/animate.css" rel="stylesheet">
+        <link href="../css/animate.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 
         <!-- Template js -->
-        <script src="js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/jquery.appear.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="../js/jquery-2.1.1.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../js/jquery.appear.js"></script>
+        <script src="../js/contact_me.js"></script>
         <script src="js/jqBootstrapValidation.js"></script>
         <script src="js/modernizr.custom.js"></script>
         <script src="js/script.js"></script>
@@ -48,7 +48,7 @@
 </head>
 <body>
 
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header_l.jsp"%>
 	<ol class="breadcrumb">
 		<li class="active">Home</li>
 	</ol>
@@ -66,7 +66,7 @@
                         </div>
                         
                         <div class="menu-item green">
-                            <a href="#portfolio-modal"  >
+                            <a href="typevendor.vms"  >
                                 <i class="fa fa-file-photo-o"></i>
                                 <p>Add Vendor type</p>
                             </a>
@@ -96,13 +96,13 @@
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img src="images/4.jpg" class="img-responsive" alt="">
+                                        <img src="../images/4.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="images/5.jpg" class="img-responsive" alt="">
+                                        <img src="../images/5.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="images/6.jpg" class="img-responsive" alt="">
+                                        <img src="../images/6.jpg" class="img-responsive" alt="">
                                     </div>
 
                                 </div>
@@ -115,7 +115,7 @@
                         <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="menu-item color responsive">
-                                    <a href="search.jsp">
+                                    <a href="search_v">
                                         <i class="fa fa-search"></i>
                                         <p>Search Vendor</p>
                                     </a>
@@ -138,14 +138,14 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="#contact-modal" data-toggle="modal">
+                            <a href="viewUsers">
                                 <i class="fa fa-envelope-o"></i>
                                 <p>Contact</p>
                             </a>
                         </div>
                         
                         <div class="menu-item color">
-                            <a href="billes.jsp">
+                            <a href="billes.vms">
                                 <i class="fa fa-comment-o"></i>
                                 <p>Billes</p>
                             </a>

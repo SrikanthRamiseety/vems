@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,9 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-	
-
 
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
@@ -454,7 +448,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			System.out.println(filepath);
 			InputStream inputStream=new FileInputStream(new File(filepath));
 			con=daoUtil.getConnection();
-			pstmt=con.prepareStatement("insert into BILLES(BILLID,VENDORNAME,AMOUNT,NAME,MOBILE,PHOTO) values(?,?,?,?,?,?)");
+			pstmt=con.prepareStatement("insert into BILLES(BILLID,VENDORNAME,AMOUNT,NAME,MOBILE,PHOTO,DATE) values(?,?,?,?,?,?,?)");
 			pstmt.setString(1, billes.getBillNo());
 			pstmt.setString(2,billes.getShopName());
 		
@@ -462,6 +456,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(4, billes.getName());
 			pstmt.setString(5,billes.getMobile());
 		    pstmt.setBinaryStream(6, inputStream);
+		    pstmt.setString(7, billes.getDate());
 		   
 
 				 
@@ -499,9 +494,10 @@ public class VendorDAOImp implements VendorDaoInf {
 				bill.setAmount(rs.getString("AMOUNT"));
 				bill.setName(rs.getString("NAME"));
 				bill.setMobile(rs.getString("MOBILE"));
+				bill.setDate(rs.getString("DATE"));
  				InputStream in = rs.getBinaryStream(1);
  				
-				
+			
  				FileOutputStream f = new FileOutputStream(new File("test"+i+".jpg"));
  				
 				i++;
@@ -513,7 +509,7 @@ public class VendorDAOImp implements VendorDaoInf {
 
 				billes.add(bill);
 					
-
+System.out.println(billes);
 }
 		
 		} catch ( Exception e) {
@@ -558,8 +554,32 @@ public class VendorDAOImp implements VendorDaoInf {
 
 	@Override
 	public List<Bank> getAllBAnkDetalies() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Bank> list=new ArrayList<Bank>();
+		con=daoUtil.getConnection();
+		try {
+			pstmt=con.prepareStatement(GETALL_BANKDETALIES);
+			rs=pstmt.executeQuery();
+			 
+			while(rs.next()){
+				Bank bank=new Bank();
+				bank.setVendorName(rs.getString("VANDORNAME"));
+				bank.setBankName(rs.getString("BANKNAME"));
+				bank.setAcName(rs.getString("ACCOUNTNAME"));
+				bank.setAcno(rs.getString("ACCOUNTNUMBER"));
+				bank.setIcfcode(rs.getString("ISCFCODE"));
+				bank.setOtherbankname(rs.getString("BANKNAME_1"));
+				bank.setA_cno(rs.getString("ACCOUNTNUMBER_1"));
+				bank.setA_cName(rs.getString("ACCOUNTNAME_1"));
+			 
+				bank.setIcf_code(rs.getString("ISCFCODE_1"));
+				list.add(bank);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

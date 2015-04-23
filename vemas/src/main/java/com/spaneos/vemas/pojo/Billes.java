@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 public class Billes {
+	
 	private String billNo;
 	private String shopName;
 	private String amount;
@@ -12,16 +13,16 @@ public class Billes {
 	private String mobile;
 	private   File imagepath;
 	private FileOutputStream f;
-	private Date date;
+	private String date;
 	
 	
 	
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -80,6 +81,16 @@ public class Billes {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+
+	@Override
+	public String toString() {
+		return "Billes [billNo=" + billNo + ", shopName=" + shopName
+				+ ", amount=" + amount + ", name=" + name + ", mobile="
+				+ mobile + ", imagepath=" + imagepath + ", f=" + f + ", date="
+				+ date + "]";
+	}
+
+	 
 
  
  	 
