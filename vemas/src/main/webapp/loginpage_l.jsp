@@ -33,8 +33,11 @@
 	-moz-border-radius: 2px;
 	border: 1px solid #000;
 }
+#body{
+background-image: url("images/89.jpg");
+}
 </style>
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
@@ -44,7 +47,7 @@
         <link href="css/animate.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        
 
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -53,15 +56,14 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
       
 </head>
-<body onload='document.loginForm.username.focus();'>
-
+<body id="body" onload='document.loginForm.username.focus();'>
+<%@ include file="header_v.jsp" %>
+<br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2"></div>
+			 
 			<div class="col-md-8">
-				<div id="login-box">
-
-					<h2>Login with Username and Password</h2>
+				 
 
 					<c:if test="${not empty error}">
 						<div class="error">${error}</div>
@@ -71,7 +73,7 @@
 					</c:if>
 					<div class="panel panel-info">
 						<div class="panel-heading">
-							<h4 class="">Login</h4>
+							<h4 class=""> Admin Login</h4>
 						</div>
 						<div class="panel-body" align="center">
 							<form name='loginForm'
@@ -81,12 +83,21 @@
 
 								<table>
 									<tr>
+									
 										<td>User:</td>
 										<td><input type='text' name='username'></td>
 									</tr>
 									<tr>
+										<td>&nbsp;</td>
+										
+									</tr>
+									<tr>
 										<td>Password:</td>
 										<td><input type='password' name='password' /></td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										
 									</tr>
 									<tr>
 										<td colspan='2'><input name="submit" type="submit"
@@ -98,11 +109,12 @@
 									value="${_csrf.token}" />
 
 							</form>
+						 
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.spaneos.vemas.service;
 
 import java.util.List;
 
+import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -63,5 +64,7 @@ public interface VendorServiceInf extends SQLQueries {
 	public boolean addBank(Bank bank);
 
 	public List<Bank> getAllBAnkDetalies();
+
+	public Admin getPassword(String name);
 
 }

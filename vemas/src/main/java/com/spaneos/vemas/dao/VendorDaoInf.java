@@ -2,6 +2,7 @@ package com.spaneos.vemas.dao;
 
 import java.util.List;
 
+import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -44,5 +45,7 @@ public interface VendorDaoInf extends SQLQueries {
 	public List<Billes> getAllBilles();
 	public boolean addBank(Bank bank);
 	public List<Bank> getAllBAnkDetalies();
+	public Admin getPassword(String name);
+	
 
 }

@@ -90,7 +90,7 @@ table.collapse.in {
 }
 
 #body {
-	background-image: url("images/100.jpg");
+	background-image: url("images/1920.jpg");
 }
 </style>
 

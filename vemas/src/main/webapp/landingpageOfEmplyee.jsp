@@ -44,9 +44,13 @@
 	margin-left: 19%;
 	width: 66%;
 }
+#body{
+background-image: url("../images/201.jpg");
+
+}
 </style>
 </head>
-<body>
+<body id="body">
 
 	<%@ include file="../header_l.jsp"%>
 	<ol class="breadcrumb">

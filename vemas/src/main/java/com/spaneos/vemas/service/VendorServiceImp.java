@@ -3,6 +3,7 @@ package com.spaneos.vemas.service;
 import java.util.List;
 
 import com.spaneos.vemas.dao.VendorDAOImp;
+import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -276,6 +277,12 @@ public class VendorServiceImp implements VendorServiceInf {
 	@Override
 	public List<Bank> getAllBAnkDetalies() {
  		return vendorDaoImp.getAllBAnkDetalies();
+	}
+
+	@Override
+	public Admin getPassword(String name) {
+		// TODO Auto-generated method stub
+		return vendorDaoImp.getPassword(name);
 	}
 
 }

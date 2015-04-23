@@ -33,11 +33,6 @@
 	-moz-border-radius: 2px;
 	border: 1px solid #000;
 }
-#body{
-
-
-background-image: url("images/90.jpg");
-}
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -49,17 +44,16 @@ background-image: url("images/90.jpg");
         <link href="css/animate.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-       
+        <link href="css/style.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-         
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href="fonts" type="" rel="text/css">
   <script src="js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
       
 </head>
-<body id="body" onload='document.loginForm.username.focus();'>
+<body onload='document.loginForm.username.focus();'>
 <%@ include file="header_v.jsp" %>
 <br>
 	<div class="container">
@@ -80,7 +74,7 @@ background-image: url("images/90.jpg");
 						</div>
 						<div class="panel-body" align="center">
 							<form name='loginForm'
-								action="<c:url value='/j_spring_security_check' />"
+								action="admin/landingpage_vendor"
 								 class="from form-horizontal" novalidate
 					role="form" method="post">
 
@@ -89,25 +83,15 @@ background-image: url("images/90.jpg");
 									
 										<td>User:</td>
 										<td><input type='text' name='username'></td>
-										</tr>
-										<tr>
-										<td>&nbsp;</td>
-										
 									</tr>
 									<tr>
 										<td>Password:</td>
 										<td><input type='password' name='password' /></td>
 									</tr>
+									<br>
 									<tr>
-										<td>&nbsp;</td>
-										
-									</tr>
-									&nbsp;
- 									<tr>
- 									
- 									
-										<td colspan='7'><input name="submit" type="submit"
-											value="submit" /></td></center>
+										<td colspan='2'><input name="submit" type="submit"
+											value="submit" /></td>
 									</tr>
 								</table>
 
@@ -115,7 +99,7 @@ background-image: url("images/90.jpg");
 									value="${_csrf.token}" />
 
 							</form>
-						If you are Admin, please &nbsp;	<a href="admin/landingpage_vendor"> login </a> &nbsp;here
+							 
 						</div>
 					</div>
 				</div>

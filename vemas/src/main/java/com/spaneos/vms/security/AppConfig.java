@@ -26,6 +26,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/admin/**").addResourceLocations("/admin/");
 		registry.addResourceHandler("/user/**").addResourceLocations("/user/");
 		registry.addResourceHandler("/common/**").addResourceLocations("/common/");
+		registry.addResourceHandler("/**").addResourceLocations("/");
 
 	}
 

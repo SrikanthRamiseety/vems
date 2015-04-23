@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -580,6 +581,25 @@ System.out.println(billes);
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public Admin getPassword(String name) {
+		 con=daoUtil.getConnection();
+		 Admin admin=new Admin();
+		 try {
+			pstmt=con.prepareStatement("select password,enable from users where username=?");
+			pstmt.setString(1, name);
+		rs=pstmt.executeQuery();
+		while(rs.next()){
+			admin.setPassword(rs.getString("password"));
+			admin.setAdmin(rs.getBoolean("enable"));
+		}
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return admin;
 	}
 
 }

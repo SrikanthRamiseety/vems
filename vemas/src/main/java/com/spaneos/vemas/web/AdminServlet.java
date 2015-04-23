@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.User;
@@ -75,69 +76,66 @@ public class AdminServlet extends HttpServlet {
 
 			context.setAttribute("billeslist", billes);
 			resp.sendRedirect("../../viewbilles.jsp");
-		} 
-		else if (uri.endsWith("landingpage_vendor")) {
+		} else if (uri.endsWith("landingpage_vendor")) {
+
 			req.getRequestDispatcher("../landingpage.jsp").forward(req, resp);
-		}
-		else if(uri.endsWith("addBank")){
+
+		} else if (uri.endsWith("addBank")) {
 			req.getRequestDispatcher("../addBank.jsp").forward(req, resp);
-		}else if(uri.endsWith("date")){
+		} else if (uri.endsWith("date")) {
 			System.out.println("date");
 			req.getRequestDispatcher("../date.jsp").forward(req, resp);
-		}else if(uri.endsWith("loginpage.jsp")){
-			resp.sendRedirect("admin/loginpage.jsp");
-			
-		}else if(uri.endsWith("date_s")){
-		String date=	req.getParameter("date");
-	System.out.println("date==="+date);
-		List<Billes> bl=new ArrayList<Billes>();
-		
-				List<Billes> blist=vendorServiceImp.getAllBilles();	
-				System.out.println(""+blist);
-				SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-				try {
 
-					Date date1 = formatter.parse(date);
-				 
-					System.out.println(formatter.format(date1));
-					Calendar cal = Calendar.getInstance();
-					String date11=formatter.format(cal.getTime());
-					System.out.println("....."+date11);
-					for(Billes b:blist){
-						 
-						Date date12 = formatter.parse(b.getDate());
-						Calendar date34=cal.getInstance();
-						String date45=formatter.format(cal.getTime());
-						System.out.println(date45);
-						
-						if(date45.equals(date11)){
-							bl.add(b);
-						}
-						 
+		} else if (uri.endsWith("date_s")) {
+			String date = req.getParameter("date");
+			System.out.println("date===" + date);
+			List<Billes> bl = new ArrayList<Billes>();
+
+			List<Billes> blist = vendorServiceImp.getAllBilles();
+			System.out.println("" + blist);
+			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+			try {
+
+				Date date1 = formatter.parse(date);
+
+				System.out.println(formatter.format(date1));
+				Calendar cal = Calendar.getInstance();
+				String date11 = formatter.format(cal.getTime());
+				System.out.println("....." + date11);
+				for (Billes b : blist) {
+
+					Date date12 = formatter.parse(b.getDate());
+					Calendar date34 = cal.getInstance();
+					String date45 = formatter.format(cal.getTime());
+					System.out.println(date45);
+
+					if (date45.equals(date11)) {
+						bl.add(b);
 					}
-					req.setAttribute("bill",bl);
-				} catch (ParseException e) {
-					e.printStackTrace();
+
 				}
-				req.getRequestDispatcher("../viewdate.jsp").forward(req, resp);
-			 
-			
-		}else if(uri.endsWith("vendor_s")){
+				req.setAttribute("bill", bl);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			req.getRequestDispatcher("../viewdate.jsp").forward(req, resp);
+
+		} else if (uri.endsWith("vendor_s")) {
 			req.getRequestDispatcher("../search_a.jsp").forward(req, resp);
-		}else if(uri.endsWith("searchview_a.vms")){
-			String search=req.getParameter("search");
+		} else if (uri.endsWith("searchview_a.vms")) {
+			String search = req.getParameter("search");
 			System.out.println(search);
-			List<Billes> blist=vendorServiceImp.getAllBilles();	
-			List<Billes> bl=new ArrayList<Billes>();
-			for(Billes b:blist){
-				if(b.getShopName().equalsIgnoreCase(search)){
+			List<Billes> blist = vendorServiceImp.getAllBilles();
+			List<Billes> bl = new ArrayList<Billes>();
+			for (Billes b : blist) {
+				if (b.getShopName().equalsIgnoreCase(search)) {
 					bl.add(b);
 				}
 			}
-			req.setAttribute("bl",bl);
+			req.setAttribute("bl", bl);
 			req.getRequestDispatcher("../view_s.jsp").forward(req, resp);
-		}else if(uri.endsWith("bankview.vms")){
-			List<Bank> blist=vendorServiceImp.getAllBAnkDetalies();
+		} else if (uri.endsWith("bankview.vms")) {
+			List<Bank> blist = vendorServiceImp.getAllBAnkDetalies();
 			req.setAttribute("banklist", blist);
 			req.getRequestDispatcher("../searchview_b.jsp").forward(req, resp);
 		}
