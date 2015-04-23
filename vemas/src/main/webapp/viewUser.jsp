@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- <script type="text/javascript">
 	$(function() {
@@ -89,6 +89,9 @@ table.collapse.in {
 .active {
 	color: aqua;
 }
+#body{
+background-image: url("images/124.jpg");
+}
 </style>
 
 <script type="text/javascript">
@@ -97,8 +100,8 @@ table.collapse.in {
 	});
 </script>
 </head>
-<body>
-	<%@include file="../header_l.jsp"%>
+<body id="body">
+	<%@include file="header_v.jsp"%>
 
 	<c:if test="${(userslist eq null) or (fn:length(userslist) eq 0) }">
 		<h2>Sorry! No Billes Uploaded..</h2>

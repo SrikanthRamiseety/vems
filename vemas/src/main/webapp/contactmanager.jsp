@@ -8,19 +8,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Contact Information</title>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/addcontact.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/addcontact.css">
 <script type="text/javascript"
-	src="http://docs/docs/References/08_Bootstrap/tutorial%20and%20libs/dist/js/bootstrap.min.js"></script>
+	src=js/bootstrap.min.js"></script>
 	<style type="text/css">
 	#disply{
-	background-image: url("images/17.jpg");
+	background-image: url("../images/17.jpg");
 	}
 	</style>
 </head>
 <body>
 <div id ="disply">
-	<%@ include file="header.jsp"%>
+	<%@ include file="../header_l.jsp"%>
 	<ol class="breadcrumb" id="breadcrumb">
 		<li><a href="landingpage.jsp"> Home </a></li>
 		<li class="active">Add Contact</li>
@@ -39,10 +39,10 @@
 	</div>
 	<%@ include file="footer.jsp"%>
 </div>
-	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="js/validator.js"></script>
-	<script type="text/javascript" src="js/loader.js"></script>
-	<script type="text/javascript" src="js/addcontact.js"></script>
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/validator.js"></script>
+	<script type="text/javascript" src="../js/loader.js"></script>
+	<script type="text/javascript" src="../js/addcontact.js"></script>
 	
 </body>
 </html>

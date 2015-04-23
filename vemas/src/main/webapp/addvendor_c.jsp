@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add New Vendor</title>
-<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="../../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script>
 <style type="text/css">
 #disply{
-background-image: url("../../images/12.jpg ");
+background-image: url("../images/12.jpg ");
 }
  
 </style>
@@ -39,11 +39,11 @@ background-image: url("../../images/12.jpg ");
 		return x.trim();
 	}
 </script>
-<link rel="stylesheet" href="../../css/addvendor.css" type="text/css" />
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/addvendor.css" type="text/css" />
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body id="disply" >
-	<%@include file="../header.jsp"%>
+	<%@include file="header_l.jsp"%>
  
 	<ol class="breadcrumb" id="bd">
 		<li><a href="landingpage.jsp">Home</a></li>
@@ -66,7 +66,7 @@ background-image: url("../../images/12.jpg ");
 				</div>
   
 				<div class="panel-body">
-					<form action="../../common/addvendor.opt" method="post"
+					<form action="../common/addvendor.opt" method="post"
 						class="form form-horizontal" role="form" novalidate>
 
 						<div class="item form-group" id="sel">
@@ -284,8 +284,8 @@ background-image: url("../../images/12.jpg ");
 
 	<%@include file="../../footer.jsp"%>
 	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="../../js/validator.js"></script>
-	<script type="text/javascript" src="../../js/loader.js"></script>
+	<script type="text/javascript" src="../js/validator.js"></script>
+	<script type="text/javascript" src="../js/loader.js"></script>
 
 </body>
 </html>

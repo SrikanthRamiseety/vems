@@ -56,7 +56,7 @@ $(function(){
 						</div>
 					</div>
 					<div class="panel-body">
-						<form action="bank.vms" method="post" novalidate
+						<form action="../common/bank.vms" method="post" novalidate
 							class="form-horizontal">
 
 							<div class="item form-group">

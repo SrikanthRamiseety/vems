@@ -36,7 +36,7 @@ import com.spaneos.vemas.service.VendorServiceInf;
 /**
  * Servlet implementation class VendorManagementServlet
  */
-@WebServlet("*.user")
+@WebServlet("/user/*")
 public class VendorManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VendorServiceImp vendorServiceImp = VendorServiceImp.getInstance();
@@ -60,8 +60,8 @@ public class VendorManagementServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 
 
- if(uri.endsWith("landingpageOfEmplyee.user")){
-			request.getRequestDispatcher("landingpageOfEmplyee.jsp").forward(request, response);
+ if(uri.endsWith("landingpageOfEmplyee")){
+			request.getRequestDispatcher("../landingpageOfEmplyee.jsp").forward(request, response);
 		}
   else if (uri.endsWith("forgotpwd.vms")) {
 			String email = request.getParameter("email");

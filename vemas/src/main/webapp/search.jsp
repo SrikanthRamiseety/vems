@@ -18,7 +18,7 @@
 		$("#vender").click(function() {
 		var value=	$("#search").val();
 			 
-			$.post("../../opt/searchview?pagenumber=1&search="+value+"&page=first",
+			$.post("../../common/searchview.vms?pagenumber=1&search="+value+"&page=first",
 					show);
 			function show(data) {
 				$("#show").html("");

@@ -32,7 +32,7 @@
 		$(".page").click(function() {
 			var pagenumber=$(this).val();
 			
-			$.post("search.vms?pagenumber=" + $(this).val()+"&page=notfirst", show);
+			$.post("../../common/searchview.vms?pagenumber=" + $(this).val()+"&page=notfirst", show);
 			
 			function show(data) {
 				$("#show").html(data);

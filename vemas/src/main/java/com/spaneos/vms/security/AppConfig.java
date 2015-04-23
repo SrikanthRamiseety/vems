@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "com.spaneos.vems.*" })
+@ComponentScan({ "com.spaneos.vemas.*" })
 @Import({ SecurityConfig.class })
 public class AppConfig extends WebMvcConfigurerAdapter {
 
@@ -20,6 +20,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
 		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+
 	}
 
 	@Bean(name = "dataSource")

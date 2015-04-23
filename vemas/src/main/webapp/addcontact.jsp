@@ -13,7 +13,7 @@
 </head>
 <body>
 	<c:if test="${editContact ne null }">
-		<form action="updatecontact.vms" class="from form-horizontal"
+		<form action="../common/updatecontact.vms" class="from form-horizontal"
 			novalidate role="form" method="post">
 			<div class="panel panel-primary" id="body">
 				<div class="panel-heading">
@@ -23,7 +23,7 @@
 				</div>
 	</c:if>
 	<c:if test="${editContact eq null }">
-		<form action="addcontact.vms" class="form form-horizontal" novalidate
+		<form action="../common/add_contact.vms" class="form form-horizontal" novalidate
 			role="form" method="post">
 			<div class="panel panel-primary" id="body">
 				<div class="panel-heading">
@@ -237,6 +237,6 @@
 	</div>
 	</form>
 
-	<script type="text/javascript" src="js/loader.js"></script>
+	<script type="text/javascript" src="../js/loader.js"></script>
 </body>
 </html>

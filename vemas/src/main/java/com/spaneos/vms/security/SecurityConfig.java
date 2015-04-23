@@ -34,22 +34,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin/*")
 
-		.access("hasRole('ROLE_ADMIN')").and().formLogin()
-				.loginPage("/loginpage.jsp").failureUrl("/login?error")
+		http.authorizeRequests().antMatchers("/admin/*")
+				.access("hasRole('ROLE_ADMIN')").and().formLogin()
+				.loginPage("/loginpage.jsp").failureUrl("/loginpage.jsp")
 				.loginProcessingUrl("/j_spring_security_check")
 				.usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/admin/landingpage_vendor").and().logout()
 				.logoutSuccessUrl("/").and().exceptionHandling()
 				.accessDeniedPage("/403").and().csrf();
-	/*http.authorizeRequests().antMatchers("/*.user")
+		http.csrf().disable();
+ 
+		/*http.authorizeRequests().antMatchers("/user/*")
 				.access("hasRole('ROLE_USER')").and().formLogin()
-				.loginPage("/loginpage.jsp").failureUrl("/login?error")
+				.loginPage("/loginpage.jsp").failureUrl("/loginpage.jsp")
 				.usernameParameter("/j_spring_security_check")
 				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/landingpageOfEmplyee.user").and().logout()
+				.defaultSuccessUrl("/user/landingpageOfEmplyee").and().logout()
 				.logoutSuccessUrl("/").and().exceptionHandling()
-				.accessDeniedPage("/403").and().csrf();	}
-*/}
-		}
+				.accessDeniedPage("/403").and().csrf();
+		http.csrf().disable();
+*/
+	}
+}

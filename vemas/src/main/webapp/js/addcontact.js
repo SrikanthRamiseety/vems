@@ -2,7 +2,7 @@ $(function() {
 
 	$(".edit").click(function() {
 		var email = $(this).attr("id");
-		$.post("editcontact.vms?email=" + email, show);
+		$.post("common/editcontact.vms?email=" + email, show);
 		function show(data) {
 			$("#addcontactform").html(data);
 		}
@@ -26,11 +26,11 @@ $(function() {
 
 	$("#saveexit").click(function() {
 		$.ajax({
-			url : "saveall.vms",
+			url : "common/saveall.vms",
 			type : "post",
 			success : function(response) {
 				alert("Your data has been saved successfully.")
-				window.location.href = "addvendor.jsp";
+				window.location.href = "addvendor.vms";
 			}
 		});
 	});
@@ -51,7 +51,7 @@ $(function() {
 
 							$
 									.ajax({
-										url : "deletecontacts.vms?ids=" + ids,
+										url : "common/deletecontacts.vms?ids=" + ids,
 										type : "post",
 										success : function(response) {
 											window.location.href = "contactmanager.jsp";

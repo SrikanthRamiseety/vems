@@ -48,7 +48,7 @@ background-image: url("../../images/25.jpg");
 						</div>
 					</div>
 					<div class="panel-body">
-						<form action="../../opt/addtype" method="post" novalidate
+						<form action="../../common/addtype.vms" method="post" novalidate
 							class="form-horizontal">
 
 							<div class="item form-group">

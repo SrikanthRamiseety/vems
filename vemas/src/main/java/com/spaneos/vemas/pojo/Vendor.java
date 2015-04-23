@@ -1,5 +1,6 @@
 package com.spaneos.vemas.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vendor {

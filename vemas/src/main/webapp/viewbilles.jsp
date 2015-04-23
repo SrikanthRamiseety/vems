@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- <script type="text/javascript">
 	$(function() {
@@ -89,6 +89,10 @@ table.collapse.in {
 .active {
 	color: aqua;
 }
+#body{
+background-image: url("images/100.jpg");
+
+}
 </style>
 
 <script type="text/javascript">
@@ -97,9 +101,13 @@ table.collapse.in {
 	});
 </script>
 </head>
-<body>
-	<%@include file="../../header_l.jsp"%>
+<body id="body">
+	<%@include file="header_v.jsp"%>
+<div class="container">
+<div class="row">
+<div class="col-md-1"></div>
 
+<div class="col-md-10">
 	<c:if test="${(billeslist eq null) or (fn:length(billeslist) eq 0) }">
 		<h2>Sorry! No Billes Uploaded..</h2>
 	</c:if>
@@ -134,7 +142,7 @@ table.collapse.in {
 								 <td><c:out value="${i.getAmount()}"></c:out></td>
 								<td><c:out value="${i.getName()}"></c:out></td>
 								<td><c:out value="${i.getMobile()}"></c:out></td>
- 							    <td><c:out value="${i.getF()}.jpg"></c:out></td>
+ 							    <td> <img alt="" src='<c:out value="${i.getF()}"></c:out>'></td>
 								
 								
 
@@ -161,7 +169,9 @@ table.collapse.in {
 			</div>
 				</div>
 	</c:if>
-
+</div>
+</div>
+</div>
 
 
 
