@@ -8,6 +8,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
@@ -22,11 +24,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
 		registry.addResourceHandler("/bootstrap/**").addResourceLocations("/bootstrap/");
-		registry.addResourceHandler("/vemas/**").addResourceLocations("/vemas/");
 		registry.addResourceHandler("/admin/**").addResourceLocations("/admin/");
-		registry.addResourceHandler("/user/**").addResourceLocations("/user/");
-		registry.addResourceHandler("/common/**").addResourceLocations("/common/");
-		registry.addResourceHandler("/**").addResourceLocations("/");
+		
+		 
+		 
+	 
 
 	}
 
@@ -39,7 +41,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		driverManagerDataSource.setPassword("spaneos");
 		return driverManagerDataSource;
 	}
-  
+	 
 	
 
 }

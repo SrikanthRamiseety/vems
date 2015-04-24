@@ -1,0 +1,65 @@
+.header {
+	min-height: 90px;
+	height: auto;
+	background:none;
+	margin-right: auto;
+}
+
+#title {
+	margin-top: -2%;
+	margin-left: -12%;
+}
+
+.title {
+	font-size: inherit;
+	margin-top: 1%;
+}
+
+.user {
+	margin-top: 11%;
+	font-size: inherit;
+}
+
+.footer {
+	margin-top: 3%;
+	font-size: small;
+	height: 3%;
+	margin-left: 32%;
+	color:rgb(158, 218, 246);
+	font-variant:small-caps;
+	font-weight: 200;
+	font-stretch: condensed;
+}
+
+#user_welcome_msg, #welcome_msg {
+	color:rgb(158, 218, 246);
+}
+
+.footer-navbar {
+	background: none;
+	margin-bottom: auto;
+	margin-right: auto;
+	/* width: 120%;
+	margin-left: -10%; */
+}
+
+#logo {
+	height: 437%;
+	width: 32%;
+	margin-top: -7%;
+}
+
+h1 {
+	color:rgb(158, 218, 246);
+	font-variant:small-caps;
+	font-weight: 200;
+	font-stretch: condensed;
+}
+
+.row {
+	height: auto;
+}
+
+#container {
+	width: 100%;
+}

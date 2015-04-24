@@ -96,12 +96,12 @@ background-image: url("images/89.jpg");
 										<td><input type='password' name='password' /></td>
 									</tr>
 									<tr>
-										<td>&nbsp;</td>
-										
-									</tr>
-									<tr>
-										<td colspan='2'><input name="submit" type="submit"
-											value="submit" /></td>
+ 									
+ 									<td>
+									&nbsp;
+ 									</td>
+										<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
+											value="submit" /></td></center>
 									</tr>
 								</table>
 

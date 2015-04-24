@@ -1,0 +1,108 @@
+#sform {
+	margin-left: 30%;
+}
+
+#wid {
+	    width: 83.667%;
+    margin-left: -5%;
+
+}
+
+em {
+	color: red;
+}
+
+ #bd>li+li:before {
+	content: "> >";
+	color: gray;
+} 
+
+lable {
+	
+}
+
+#panel {
+	width: 139%;
+margin-left: -28%;
+}
+
+#a, #b {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-moz-user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 51px;
+}
+
+#mandatory {
+	float: right;
+	margin-bottom: -2%;
+	font-size: 11px;
+}
+
+#passwordStrength
+{
+	height: 6px;
+    display: block;
+    border-width:1px;
+    float: left;
+    margin-left: 19px;
+    margin-top: -1px;
+}
+}
+.strength0
+{
+	width:200px;
+	
+	background-color:#cccccc;
+}
+
+.strength1
+{
+
+	width:56px;
+	background:#ff0000;
+}
+
+.strength2
+{
+	width:112px;	
+	background:#ff5f5f;
+}
+
+.strength3
+{
+	width:168px;
+	background:#56e500;
+}
+
+.strength4
+{
+	background:#4dcd00;
+	width:224px;
+}
+
+.strength5
+{
+	background:#399800;
+	width:303px;
+}
+#passwordDescription{
+font-size: 10px;
+margin-left: 36%;
+}
+.col-sm-4 {
+    width: 30.333%;
+}
+#bttns {
+    margin-left: -9.333%;
+}

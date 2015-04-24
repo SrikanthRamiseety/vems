@@ -3,5 +3,6 @@
   <display-name>vemas</display-name>
   <welcome-file-list>
     <welcome-file>/loginpage.jsp</welcome-file>
+      
   </welcome-file-list>
 </web-app>

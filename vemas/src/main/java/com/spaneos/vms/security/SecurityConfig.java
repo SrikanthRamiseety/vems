@@ -51,14 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/loginpage.jsp").failureUrl("/loginpage.jsp")
 				.loginProcessingUrl("/j_spring_security_check")
 				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/admin/landingpage_vendor").and().logout()
+				.defaultSuccessUrl("/landingpage_vendor").and().logout()
 				.logoutSuccessUrl("/").and().exceptionHandling()
 				.accessDeniedPage("/403").and().csrf();
+				
 		http.csrf().disable();
+		
 	
 		http.authorizeRequests().antMatchers("/user/*")
 		.access("hasRole('ROLE_USER')").and().formLogin()
-		.loginPage("/loginpage_l.jsp").failureUrl("/loginpage_l.jsp")
+		.loginPage("/loginpage_l.jsp").failureUrl("/loginpage.jsp")
 		.usernameParameter("/j_spring_security_check")
 		.usernameParameter("username").passwordParameter("password")
 		.defaultSuccessUrl("/user/landingpageOfEmplyee").and().logout()

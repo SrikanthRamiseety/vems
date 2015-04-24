@@ -102,11 +102,12 @@ background-image: url("images/90.jpg");
 										<td>&nbsp;</td>
 										
 									</tr>
-									&nbsp;
  									<tr>
  									
- 									
-										<td colspan='7'><input name="submit" type="submit"
+ 									<td>
+									&nbsp;
+ 									</td>
+										<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
 											value="submit" /></td></center>
 									</tr>
 								</table>
