@@ -113,7 +113,7 @@ public class VMS extends HttpServlet {
 			type2.setVendorCategory(category);
 			type2.setVendorType(vtype);
 			if (vendorServiceImp.addVendortype(type2)) {
-				response.sendRedirect("../landingpage_a.jsp");
+				response.sendRedirect("../admin/typevendor_t.vms");
 
 			} else {
 				response.sendRedirect("error.jsp");
@@ -260,7 +260,7 @@ public class VMS extends HttpServlet {
 			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
 			System.out.println(list3);
 			req.setAttribute("tlist", list3);
-			req.getRequestDispatcher("../addvendor_c.jsp").forward(req,
+			req.getRequestDispatcher("../addvendor_u.jsp").forward(req,
 					response);
 		}
 
