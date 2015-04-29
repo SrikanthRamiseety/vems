@@ -1,4 +1,4 @@
-
+			
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -87,6 +87,9 @@ table.collapse.in {
 .active {
 	color: aqua;
 }
+h2{
+color: red;
+}
 </style>
 
 <script type="text/javascript">
@@ -97,7 +100,8 @@ table.collapse.in {
 </head>
 <body>
 	<c:if test="${(vender eq null) or (fn:length(vender) eq 0) }">
-		<h2>Sorry! No Data Found..</h2>
+	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+		<center><h2>Sorry! No Data Found..</h2></center>
 	</c:if>
 	<c:if test="${(vender ne null) or (fn:length(vender) ne 0) }">
 		<input type="hidden" id="hidden" name="hidden"

@@ -59,7 +59,7 @@ public class AdminServlet extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(req, resp);
 			LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.FINE); 
 		} else if (uri.endsWith("typevendor")) {
-			req.getRequestDispatcher("/WEB-INF/views/addvendortype.jsp").forward(req,
+			req.getRequestDispatcher("/WEB-INF/views/addvendor_v.jsp").forward(req,
 					resp);
 
 		} else if (uri.endsWith("v_search")) {
@@ -97,26 +97,15 @@ public class AdminServlet extends HttpServlet {
 			Billes billes=new Billes();
 
 			//System.out.println("" + blist);
-			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-
-			try {
-				java.sql.Date date4 = (java.sql.Date) formatter.parse(date);
-				billes.setDate1(date4);
-			System.out.println(date);
-			System.out.println(formatter.format(date));
-				 
-				Calendar cal = Calendar.getInstance();
-				String date11 = formatter.format(cal.getTime());
-				System.out.println("....." + date11);
+			 
+			 		 
 				
-				List<Billes> blist = vendorServiceImp.getBillByDate(date4);
+				List<Billes> blist = vendorServiceImp.getBillByDate(date);
 				System.out.println("servlet"+blist);
 				
 				req.setAttribute("bill", blist);
-			} catch (ParseException e) {
-				
-				e.printStackTrace();
-			}
+			 
+				 
 			 
 			req.getRequestDispatcher("/WEB-INF/views/viewdate.jsp").forward(req, resp);
 
@@ -365,15 +354,14 @@ public class AdminServlet extends HttpServlet {
 			System.out.println(date);
 
 			try {
-				SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-				SimpleDateFormat parseDate = new java.text.SimpleDateFormat("MM/dd/yyyy");
-				SimpleDateFormat formatDdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+				 
 		        Date parsed = format.parse(date);
-		       Date date11 = (Date) parseDate.parse(date);
-		        String DisplayDate= formatDdate.format(parsed);
-		        java.sql.Date sql = new java.sql.Date(date11.getTime());
-		        System.out.println("sql"+sql);
-				  billes.setDate1(sql);
+		      
+		         
+		      java.sql.Date date11=new java.sql.Date(0000-00-00);
+		        System.out.println();
+				  billes.setDate(date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -390,6 +378,30 @@ public class AdminServlet extends HttpServlet {
 			} else {
 				resp.sendRedirect("error.jsp");
 			}
+		}else if(uri.endsWith("month.vms")){
+			req.getRequestDispatcher("/WEB-INF/views/month.jsp").forward(req,
+					resp);
+		}else if(uri.endsWith("month_v")){
+			String month=req.getParameter("month");
+			int month_int=Integer.parseInt(month);
+			System.out.println("monthvalue="+month_int);
+			List<Billes> bii_list=new ArrayList<Billes>();
+			List<Billes> blist = vendorServiceImp.getAllBilles();
+			for(Billes b:blist){
+				int month1=b.getDate1().getMonth();
+				 if(month_int==month1+1){
+					 bii_list.add(b);
+					 
+				 }
+				
+			}
+			
+			
+
+			ServletContext context = req.getServletContext();
+
+			context.setAttribute("bl", bii_list);
+			req.getRequestDispatcher("/WEB-INF/views/view_s.jsp").forward(req, resp);
 		}
 
 	}

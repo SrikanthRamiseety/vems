@@ -140,7 +140,7 @@ table.collapse.in {
 
 									<c:forEach items="${billeslist }" var="i">
 										<tr>
-                                            <td><c:out value="${i.date1}"></c:out></td>
+                                            <td data-date-format="yyyy-dd-mm"><c:out value="${i.date1}"  ></c:out></td>
 											<td><c:out value="${i.billNo}"></c:out></td>
 											<td><c:out value="${i.shopName}"></c:out></td>
 											<td><c:out value="${i.amount}"></c:out></td>

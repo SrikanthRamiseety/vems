@@ -51,7 +51,7 @@ public interface VendorDaoInf extends SQLQueries {
 
 	public Admin getPassword(String name);
 
-	public List<Billes> getBillByDate(Date Date);
+	public List<Billes> getBillByDate(String Date);
 	public List<Billes> getBillByVendorName(String vendor);
 	
 

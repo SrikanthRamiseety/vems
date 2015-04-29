@@ -35,7 +35,31 @@ background-image: url("../images/119.jpg");
 	});
    });
 	</script>
- 
+ <script type="text/javascript">
+	function conformcancel() {
+		if ($("input").val() != null) {
+			var con = confirm("All unsaved data will be lost. Are you sure you want to continue?");
+			if (con) {
+				$("input").each(function() {
+					$(this).val('');
+					$(".alert").remove();
+					$(".item").prop("class", "item form-group");
+				});
+				$("select").each(function() {
+					$(this).val('');
+				});
+
+				$("textarea").each(function() {
+					$(this).val('');
+				});
+			}
+		}
+	}
+
+	function trimSpaces(x) {
+		return x.trim();
+	}
+</script>
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link href="../css/signupform1.css" rel="stylesheet">
@@ -49,7 +73,7 @@ background-image: url("../images/119.jpg");
 </script>
 </head>
 <body id="body">
-	<%@include file="header_l.jsp"%>
+	<%@include file="header.jsp"%>
 	<br>
 	 
 	<br>
@@ -74,6 +98,15 @@ background-image: url("../images/119.jpg");
 										class="form-control" required placeholder="bill No"
 										pattern="" onblur="this.value = trimSpaces(this.value);">
 								</div>
+									<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>BillId</i>
+									</p>
+								</div>
+							</div>
 								 
 							</div>
 
@@ -83,8 +116,17 @@ background-image: url("../images/119.jpg");
 								<div class="col-sm-5" id="9">
 									<input type="text" id="shopname" name="shopname"
 										class="form-control optional" placeholder="Shop Name"
-										pattern="" onblur="this.value = trimSpaces(this.value);">
+										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
+								<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>VendorName</i>
+									</p>
+								</div>
+							</div>
 									 
 							</div>
 
@@ -95,10 +137,18 @@ background-image: url("../images/119.jpg");
 								<div class="col-sm-5" id="9">
 									<input type="text" id="amount" class="form-control"
 										name="amount" maxlength="" required placeholder="amount"
-										data-validate-length-range=""
-										data-validate-pattren="numeric">
+										 pattern="numeric" 
+										 >
 								</div>
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Amount</i>
+									</p>
+								</div>
+							</div>
 							</div>
 
 							<div class="item form-group">
@@ -107,10 +157,18 @@ background-image: url("../images/119.jpg");
 									<!-- <input type="password" id="password" name="password"
 									class="form-control" placeholder="Password" required> -->
 									<input type="text" id="name" name="name"
-										class="form-control" placeholder="Name" />
+										class="form-control" pattern="alpha" placeholder="Name" />
 								</div>
 
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Name</i>
+									</p>
+								</div>
+							</div>
 							</div>
 
 							<div class="item form-group">
@@ -119,18 +177,35 @@ background-image: url("../images/119.jpg");
 									<input type="tel" id="moblie"  class="form-control"
 										name="mobile" maxlength="" required placeholder="Mobile"
 										data-validate-length-range="10"
-										data-validate-pattren="numeric">
+										data-validate-pattren="numeric" pattern="numeric" >
 								</div>
+								<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Mobile</i>
+									</p>
+								</div>
+							</div>
 								</div>
 								<div class="item form-group">
 								<label class="col-sm-4 control-label">Date<em>*</em></label>
 								<div class="col-sm-5" id="9">
-									<input type="date" data-date-format="dd-mm-yyyy"
+									<input type="date" data-date-format="yyyy-mm-dd"
 									id="date" name="date" required="required"
 									 >
 								</div>
 								
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Date</i>
+									</p>
+								</div>
+							</div>
 							</div>
 														<div class="item form-group">
 								<label class="col-sm-4 control-label">Bill Image<em>*</em></label>
@@ -138,7 +213,15 @@ background-image: url("../images/119.jpg");
 									 <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" required="required">
 									 
 								</div>
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Images</i>
+									</p>
+								</div>
+							</div>
 							</div>
 							<img src="" width="200" style="display:none;" />
 							<div id="disp_tmp_path"></div>
@@ -154,7 +237,7 @@ background-image: url("../images/119.jpg");
 								<div class="col-sm-2">
 
 									<button type="button" class="btn btn-md btn-primary pull-right"
-										id="a">Reset</button>
+									onclick="conformcancel()"	id="a">Reset</button>
 								</div>
 							</div>
 						</form>

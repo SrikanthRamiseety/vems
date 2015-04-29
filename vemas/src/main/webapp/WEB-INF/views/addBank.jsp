@@ -36,6 +36,31 @@ $(function(){
 
 
 </script>
+<script type="text/javascript">
+	function conformcancel() {
+		if ($("input").val() != null) {
+			var con = confirm("All unsaved data will be lost. Are you sure you want to continue?");
+			if (con) {
+				$("input").each(function() {
+					$(this).val('');
+					$(".alert").remove();
+					$(".item").prop("class", "item form-group");
+				});
+				$("select").each(function() {
+					$(this).val('');
+				});
+
+				$("textarea").each(function() {
+					$(this).val('');
+				});
+			}
+		}
+	}
+
+	function trimSpaces(x) {
+		return x.trim();
+	}
+</script>
 <style type="text/css">
 #book{
 background-image: url("../images/121.jpg");
@@ -45,7 +70,7 @@ background-image: url("../images/121.jpg");
 </style>
 </head>
 <body id="book">
-	<%@include file="header_l.jsp"%>
+	<%@include file="header.jsp"%>
 	<br>
 	 
 	<br>
@@ -68,7 +93,7 @@ background-image: url("../images/121.jpg");
 								<div class="col-sm-5" id="1">
 									<input type="text" id="vendorname" name="vendorname"
 										class="form-control" required placeholder="VendorName"
-										pattern="" onblur="this.value = trimSpaces(this.value);">
+										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
 								<div class='tooltip help'>
 									<span>?</span>
@@ -125,7 +150,8 @@ background-image: url("../images/121.jpg");
 								<label class="col-sm-4 control-label">Account Name<em>*</em></label>
 								<div class="col-sm-5" id="4">
 									<input type="text" id="acname" name="acname"
-										class="form-control" placeholder="Account Name" required>
+										 class="form-control" placeholder="Account Name" required 
+										  pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
 								<div class='tooltip help'>
 									<span>?</span>
@@ -143,7 +169,7 @@ background-image: url("../images/121.jpg");
 								<div class="col-sm-5" id="9">
 									<input type="text" id="iscfcode" class="form-control"
 										name="iscfcode" maxlength="" required placeholder="iscfcode"
-										data-validate-length-range="" data-validate-pattren="numeric">
+										data-validate-length-range="" data-validate-pattren="numeric" pattern="numeric">
 								</div>
 								<div class='tooltip help'>
 									<span>?</span>
@@ -188,7 +214,7 @@ background-image: url("../images/121.jpg");
 									<input type="text" id="acn_1" name="acn_1" class="form-control"
 										required placeholder="Account Number" maxlength="11"
 										data-validate-length-range="11"
-										data-validate-pattren="numeric" pattern="alpha"
+										data-validate-pattren="numeric"  
 										onblur="this.value = trimSpaces(this.value);">
 								</div>
 								<div class='tooltip help'>
@@ -247,7 +273,7 @@ background-image: url("../images/121.jpg");
 								<div class="col-sm-2">
 
 									<button type="button" class="btn btn-md btn-primary pull-right"
-										id="a">Reset</button>
+										onclick="conformcancel()"id="a">Reset</button>
 								</div>
 							</div>
 						</form>
@@ -263,7 +289,7 @@ background-image: url("../images/121.jpg");
 	<br>
 	<br>
 	<%@include file="footer.jsp"%>
-	<script src="../js/jquery-1.11.0.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
 
 	<script src="../js/validator.js"></script>
 	<script src="../js/signuploader.js"></script>

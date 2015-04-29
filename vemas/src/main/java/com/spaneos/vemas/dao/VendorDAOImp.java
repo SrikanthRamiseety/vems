@@ -458,7 +458,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(4, billes.getName());
 			pstmt.setString(5,billes.getMobile());
 		    pstmt.setBinaryStream(6, inputStream);
-		    pstmt.setDate(7,  (java.sql.Date) billes.getDate1());
+		    pstmt.setDate(7, java.sql.Date.valueOf(billes.getDate()));
 		   
 
 				 
@@ -508,6 +508,7 @@ public class VendorDAOImp implements VendorDaoInf {
 				while ((c = in.read()) != -1) {
 					f.write(c);
 				}
+				f.close();
 		bill.setImageName(name);
 				billes.add(bill);
 					
@@ -613,12 +614,12 @@ System.out.println(billes);
 	}
 
 	@Override
-	public List<Billes> getBillByDate(Date Date) {
+	public List<Billes> getBillByDate(String Date) {
 		List<Billes> blist =new ArrayList<Billes>();
 		try {
 			con=daoUtil.getConnection();
 			pstmt=con.prepareStatement("select * from BILLES where DATE1=?;");
-			pstmt.setDate(1, (java.sql.Date) Date);
+			pstmt.setDate(1,  java.sql.Date.valueOf(Date));
 			rs=pstmt.executeQuery();
 			int i = 0;
 			while(rs.next()){
@@ -640,6 +641,7 @@ System.out.println(billes);
 				while ((c = in.read()) != -1) {
 					f.write(c);
 				}
+				f.close();
 		bill.setImageName(name);
 				blist.add(bill);
 				System.out.println("in Dao"+blist);
@@ -649,7 +651,7 @@ System.out.println(billes);
 			e.printStackTrace();
 		}finally{
 			daoUtil.close(con, stmt, pstmt, rs);
-
+          
 		}
 		return blist;
 	}
@@ -684,6 +686,7 @@ System.out.println(billes);
 				while ((c = in.read()) != -1) {
 					f.write(c);
 				}
+				f.close();
 		bill.setImageName(name);
 				blist.add(bill);
 				System.out.println("in Dao"+blist);
@@ -696,6 +699,12 @@ System.out.println(billes);
 
 		}
 		return blist;
+	}
+
+	@Override
+	public List<Billes> getBillByDate(Date Date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	}
  

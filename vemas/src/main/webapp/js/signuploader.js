@@ -25,7 +25,7 @@
 			}
 
 			if (submit){
-				alert("Forwarded to Login Page");
+				alert("Add the Vendor Type");
 				
 				this.submit();
 			}

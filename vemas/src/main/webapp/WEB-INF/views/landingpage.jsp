@@ -112,9 +112,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="menu-item color responsive">
-                                    <a href="signup">
-                                        <i class="fa fa-user"></i>
-                                        <p>Add New USER</p>
+                                    <a href="bankview.vms">
+                                        <i class="glyphicon glyphicon-download-alt"></i>
+                                        <p>Bank Detiles</p>
                                     </a>
                                 </div>
                             </div>
@@ -137,14 +137,14 @@
                         <div class="menu-item light-red">
                            <a href="billes.vms">
                                 <i class="fa fa-comment-o"></i>
-                                <p>Billes</p>
+                                <p> Upload Bills</p>
                             </a>
                         </div>
                         
                         <div class="menu-item color">
                             <a href="billesview" >
                                 <i class=" fa fa-money"></i>
-                                <p>Bills</p>
+                                <p> view Bills</p>
                             </a>
                         </div>
                         
@@ -152,7 +152,7 @@
                             <a href="addBank.vms">
                                 <i class="fa  fa-road
 "></i>
-                                <p>Bank Detilas</p>
+                                <p>Adding Bank Detilas</p>
                             </a>
                         </div>
                         

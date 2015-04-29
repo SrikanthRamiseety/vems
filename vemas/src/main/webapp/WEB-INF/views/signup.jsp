@@ -50,16 +50,16 @@ background-image: url("images/17.jpg");
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">First Name<em>*</em></label>
 								<div class="col-sm-5" id="1">
-									<input type="text" id="firstname" name="firstname"
-										class="form-control" required placeholder="First Name"
-										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
+									<<input type="text" id="vendorcategory" name="vendorcategory"
+										class="form-control" required placeholder="Enter the Vendorcategory"
+										pattern="alpha">
 								</div>
 								<div class='tooltip help'>
 									<span>?</span>
 									<div class='content'>
 										<b></b>
 										<p>
-											<i>First Name</i> should contains only Alphabets
+											<i>Vendor</i>Category
 										</p>
 									</div>
 								</div>
@@ -69,8 +69,8 @@ background-image: url("images/17.jpg");
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">Middle Name</label>
 								<div class="col-sm-5" id="2">
-									<input type="text" id="middlename" name="middlename"
-										class="form-control optional" placeholder="Middle Name"
+									<input type="text" id="vendortype" name="vendortype"
+										class="form-control optional" placeholder="vendortype"
 										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
 								<div class='tooltip help'>

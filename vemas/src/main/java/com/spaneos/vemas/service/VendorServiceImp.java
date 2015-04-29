@@ -301,7 +301,7 @@ public class VendorServiceImp implements VendorServiceInf {
 	@Override
 	public List<Billes> getBillByDate(String Date) {
 		// TODO Auto-generated method stub
-		return null;
+		return vendorDaoImp.getBillByDate(Date);
 	}
 
 }

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ADMIN</title>
+<title>Reporting</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="../css/bootstrap.min.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -32,8 +32,8 @@
 				$("#show").html(data);
 			}
 		});
-		$("#bank").click(function() {
-			$.post("bankview.vms", show);
+		$("#month").click(function() {
+			$.post("month.vms", show);
 	 
 			function show(data) {
 				$("#show").html(data);
@@ -69,8 +69,8 @@
 				<div id="right">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					
-					<p id="test">	Welcome : ${pageContext.request.userPrincipal.name}</p> <a
-							href="<c:url value="/logout" />"> Logout</a>
+					<h3 id="test" style="color: red;">	Welcome : ${pageContext.request.userPrincipal.name} <br>&nbsp; <a
+							href="<c:url value="/logout" />"> Logout</a></h3>
 					
 				</c:if>
 				</div>
@@ -82,24 +82,26 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li class="text-center"><img src="../images/23.jpg"
+					<li class="text-center"><img src="../images/srikanth.jpg"
 						class="user-image img-responsive" />
 					<li>
 						<button id="date" class="btn btn-info admin_btn">
-							<i class="fa fa-plus fa-2x"></i>&nbsp;DATE
+							  &nbsp;DATE
 						</button>
 					</li>
 					<li>
 						<button id="vendor" class="btn btn-info admin_btn">
-							<i class="fa fa-eye fa-2x"></i>&nbsp;VENDOR
+							 VENDOR
 						</button>
 					</li>
 					<li>
-						<button id="bank" class="btn btn-info admin_btn">
-							<i class="fa fa-money fa-2x"></i>&nbsp;Bank
+						<button id="month" class="btn btn-info admin_btn">
+							  Month
 						</button>
 					</li>
-					 
+					<li>
+					<br>
+					</li>
 				</ul>
 
 

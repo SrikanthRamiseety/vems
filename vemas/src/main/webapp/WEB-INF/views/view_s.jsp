@@ -105,10 +105,10 @@ background-image: url("images/100.jpg");
  
 
 <div class="col-md-10">
-	<c:if test="${(bl eq null) or (fn:length(bl) eq 0) }">
+	<c:if test="${(fn:length(bl) eq 0) }">
 		<h2>Sorry! No Bills Uploaded..</h2>
 	</c:if>
-	<c:if test="${(bl ne null) or (fn:length(bl) ne 0) }">
+	<c:if test="${(fn:length(bl) ne 0) }">
 		<input type="hidden" id="hidden" name="hidden"
 			value="${bl.size() }">
 		<div class="panel panel-primary">
