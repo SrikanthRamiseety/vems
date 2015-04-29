@@ -1,5 +1,6 @@
 package com.spaneos.vemas.web;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -93,35 +94,30 @@ public class AdminServlet extends HttpServlet {
 		} else if (uri.endsWith("date_s")) {
 			String date = req.getParameter("date");
 			System.out.println("date===" + date);
-			List<Billes> bl = new ArrayList<Billes>();
+			Billes billes=new Billes();
 
-			List<Billes> blist = vendorServiceImp.getAllBilles();
-			System.out.println("" + blist);
+			//System.out.println("" + blist);
 			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+
 			try {
-
-				Date date1 = formatter.parse(date);
-
-				System.out.println(formatter.format(date1));
+				java.sql.Date date4 = (java.sql.Date) formatter.parse(date);
+				billes.setDate1(date4);
+			System.out.println(date);
+			System.out.println(formatter.format(date));
+				 
 				Calendar cal = Calendar.getInstance();
 				String date11 = formatter.format(cal.getTime());
 				System.out.println("....." + date11);
-				for (Billes b : blist) {
-
-					Date date12 = formatter.parse(b.getDate());
-					Calendar date34 = cal.getInstance();
-					String date45 = formatter.format(cal.getTime());
-					System.out.println(date45);
-
-					if (date45.equals(date11)) {
-						bl.add(b);
-					}
-
-				}
-				req.setAttribute("bill", bl);
+				
+				List<Billes> blist = vendorServiceImp.getBillByDate(date4);
+				System.out.println("servlet"+blist);
+				
+				req.setAttribute("bill", blist);
 			} catch (ParseException e) {
+				
 				e.printStackTrace();
 			}
+			 
 			req.getRequestDispatcher("/WEB-INF/views/viewdate.jsp").forward(req, resp);
 
 		} else if (uri.endsWith("vendor_s")) {
@@ -129,14 +125,9 @@ public class AdminServlet extends HttpServlet {
 		} else if (uri.endsWith("searchview_a.vms")) {
 			String search = req.getParameter("search");
 			System.out.println(search);
-			List<Billes> blist = vendorServiceImp.getAllBilles();
-			List<Billes> bl = new ArrayList<Billes>();
-			for (Billes b : blist) {
-				if (b.getShopName().equalsIgnoreCase(search)) {
-					bl.add(b);
-				}
-			}
-			req.setAttribute("bl", bl);
+			List<Billes> blist = vendorServiceImp.getBillByVendorName(search);
+			 
+			req.setAttribute("bl", blist);
 			req.getRequestDispatcher("/WEB-INF/views/view_s.jsp").forward(req, resp);
 		} else if (uri.endsWith("bankview.vms")) {
 			List<Bank> blist = vendorServiceImp.getAllBAnkDetalies();
@@ -354,6 +345,48 @@ public class AdminServlet extends HttpServlet {
 			bank.setIcf_code(req.getParameter("iscf_code"));
 			if (vendorServiceImp.addBank(bank)) {
 				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req, resp);
+			} else {
+				resp.sendRedirect("error.jsp");
+			}
+		}else if(uri.endsWith("billes.vms")){
+			req.getRequestDispatcher("/WEB-INF/views/billes.jsp").forward(req, resp);
+			
+		}else if (uri.endsWith("billadd.vms")) {
+			Billes billes = new Billes();
+			billes.setBillNo(req.getParameter("billno"));
+			billes.setShopName(req.getParameter("shopname"));
+			System.out.println(req.getParameter("filename"));
+			billes.setAmount(req.getParameter("amount"));
+			billes.setName(req. getParameter("name"));
+			billes.setMobile(req.getParameter("mobile"));
+			System.out.println((req.getParameter("date")));
+			 
+			String date = req.getParameter("date");
+			System.out.println(date);
+
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+				SimpleDateFormat parseDate = new java.text.SimpleDateFormat("MM/dd/yyyy");
+				SimpleDateFormat formatDdate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		        Date parsed = format.parse(date);
+		       Date date11 = (Date) parseDate.parse(date);
+		        String DisplayDate= formatDdate.format(parsed);
+		        java.sql.Date sql = new java.sql.Date(date11.getTime());
+		        System.out.println("sql"+sql);
+				  billes.setDate1(sql);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			File file = new File(req.getParameter("filename"));
+			String path = file.getAbsolutePath();
+
+			billes.setImagepath(file);
+
+			if (vendorServiceImp.addBills(billes)) {
+				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req,
+						resp);
+
 			} else {
 				resp.sendRedirect("error.jsp");
 			}

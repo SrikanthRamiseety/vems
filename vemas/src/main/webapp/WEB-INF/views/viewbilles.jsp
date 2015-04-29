@@ -76,10 +76,7 @@ table.collapse.in {
 	display: table-row;
 }
 
-#vendor-table {
-	max-height: 300px;
-	overflow: auto;
-}
+ 
 
 .btn {
 	border-radius: 74px;
@@ -143,14 +140,15 @@ table.collapse.in {
 
 									<c:forEach items="${billeslist }" var="i">
 										<tr>
-                                            <td><c:out value="${i.getDate()}"></c:out></td>
-											<td><c:out value="${i.getBillNo()}"></c:out></td>
-											<td><c:out value="${i.getShopName()}"></c:out></td>
-											<td><c:out value="${i.getAmount()}"></c:out></td>
-											<td><c:out value="${i.getName()}"></c:out></td>
-											<td><c:out value="${i.getMobile()}"></c:out></td>
-											<td><img alt=""
-												src='<c:out value="${i.getF()}.jpg"></c:out>'></td>
+                                            <td><c:out value="${i.date1}"></c:out></td>
+											<td><c:out value="${i.billNo}"></c:out></td>
+											<td><c:out value="${i.shopName}"></c:out></td>
+											<td><c:out value="${i.amount}"></c:out></td>
+											<td><c:out value="${i.name}"></c:out></td>
+											<td><c:out value="${i.mobile}"></c:out></td>
+											 
+											<td><img alt="loading..." src="../upload/${i. imageName}"
+							height="100px" width="100px"></td>
 
 
 

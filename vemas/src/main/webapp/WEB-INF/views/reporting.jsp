@@ -23,17 +23,17 @@
 <script type="text/javascript">
 	$(function() {
 		$("#date").click(function() {
-			$("#show").load("admin/date");
+			$("#show").load("date");
 		});
 		$("#vendor").click(function() {
-			$.post("admin/vendor_s", show);
+			$.post("vendor_s", show);
 	 
 			function show(data) {
 				$("#show").html(data);
 			}
 		});
 		$("#bank").click(function() {
-			$.post("admin/bankview.vms", show);
+			$.post("bankview.vms", show);
 	 
 			function show(data) {
 				$("#show").html(data);
@@ -110,18 +110,18 @@
 		<div id="page-wrapper">
 			<div id="page-inner">
 				<div class="row">
-					<div class="col-md-12">
+					<%-- <div class="col-md-12">
 						 
 						<h5>Welcome<c:if test="${pageContext.request.userPrincipal.name != null}">
 					
 					<p id="test"> ${pageContext.request.userPrincipal.name}</p> 
 				</c:if> </h5>
-					</div>
+					</div> --%>
 
-				</div>
+				 
 				<!-- /. ROW  -->
-				<hr />
-				<div class="row">
+			 
+			 
 					<div class="col-md-12" id="show"></div>
 				</div>
 			</div>

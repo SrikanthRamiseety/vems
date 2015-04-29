@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.spaneos.vemas.pojo.Admin;
@@ -449,7 +450,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			System.out.println(filepath);
 			InputStream inputStream=new FileInputStream(new File(filepath));
 			con=daoUtil.getConnection();
-			pstmt=con.prepareStatement("insert into BILLES(BILLID,VENDORNAME,AMOUNT,NAME,MOBILE,PHOTO,DATE) values(?,?,?,?,?,?,?)");
+			pstmt=con.prepareStatement("insert into BILLES(BILLID,VENDORNAME,AMOUNT,NAME,MOBILE,PHOTO,DATE1) values(?,?,?,?,?,?,?);");
 			pstmt.setString(1, billes.getBillNo());
 			pstmt.setString(2,billes.getShopName());
 		
@@ -457,7 +458,7 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(4, billes.getName());
 			pstmt.setString(5,billes.getMobile());
 		    pstmt.setBinaryStream(6, inputStream);
-		    pstmt.setString(7, billes.getDate());
+		    pstmt.setDate(7,  (java.sql.Date) billes.getDate1());
 		   
 
 				 
@@ -495,22 +496,22 @@ public class VendorDAOImp implements VendorDaoInf {
 				bill.setAmount(rs.getString("AMOUNT"));
 				bill.setName(rs.getString("NAME"));
 				bill.setMobile(rs.getString("MOBILE"));
-				bill.setDate(rs.getString("DATE"));
- 				InputStream in = rs.getBinaryStream(1);
+				bill.setDate1(rs.getDate("DATE1"));
+			 
+ 				InputStream in = rs.getBinaryStream("PHOTO");
+ 				String name=rs.getString("BILLID")+"_"+rs.getDate("DATE1")+".jpg";
  				
-			
- 				FileOutputStream f = new FileOutputStream(new File("test"+i+".jpg"));
+ 				FileOutputStream f = new FileOutputStream(new File("C:/Users/Srikanth.Lakshman/git/vems1/vemas/src/main/webapp/upload/"+name));
  				
 				i++;
 				int c = 0;
-				while ((c = in.read()) > -1) {
+				while ((c = in.read()) != -1) {
 					f.write(c);
 				}
-				bill.setF(f);
-
+		bill.setImageName(name);
 				billes.add(bill);
 					
-System.out.println(billes);
+System.out.println(billes);	
 }
 		
 		} catch ( Exception e) {
@@ -548,6 +549,9 @@ System.out.println(billes);
 			
 		} catch (SQLException e) {
  			e.printStackTrace();
+		}finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
 		}
 		
  		return false;
@@ -579,6 +583,9 @@ System.out.println(billes);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
 		}
 		return list;
 	}
@@ -588,7 +595,7 @@ System.out.println(billes);
 		 con=daoUtil.getConnection();
 		 Admin admin=new Admin();
 		 try {
-			pstmt=con.prepareStatement("select password,enable from users where username=?");
+			pstmt=con.prepareStatement("select password,enable from users where username=?;");
 			pstmt.setString(1, name);
 		rs=pstmt.executeQuery();
 		while(rs.next()){
@@ -598,8 +605,97 @@ System.out.println(billes);
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
+		}finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
 		}
 		return admin;
 	}
 
-}
+	@Override
+	public List<Billes> getBillByDate(Date Date) {
+		List<Billes> blist =new ArrayList<Billes>();
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement("select * from BILLES where DATE1=?;");
+			pstmt.setDate(1, (java.sql.Date) Date);
+			rs=pstmt.executeQuery();
+			int i = 0;
+			while(rs.next()){
+				Billes bill=new Billes();
+				bill.setBillNo(rs.getString("BILLID"));
+				bill.setShopName(rs.getString("VENDORNAME"));
+				 
+				bill.setAmount(rs.getString("AMOUNT"));
+				bill.setName(rs.getString("NAME"));
+				bill.setMobile(rs.getString("MOBILE"));
+				bill.setDate1(rs.getDate("DATE1"));
+				InputStream in = rs.getBinaryStream("PHOTO");
+ 				String name=rs.getString("BILLID")+"_"+rs.getString("DATE1")+".jpg";
+ 				
+ 				FileOutputStream f = new FileOutputStream(new File("C:/Users/Srikanth.Lakshman/git/vems1/vemas/src/main/webapp/upload/"+name));
+ 				
+				i++;
+				int c = 0;
+				while ((c = in.read()) != -1) {
+					f.write(c);
+				}
+		bill.setImageName(name);
+				blist.add(bill);
+				System.out.println("in Dao"+blist);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
+		}
+		return blist;
+	}
+
+	@SuppressWarnings("resource")
+	@Override
+	public List<Billes> getBillByVendorName(String vendor) {
+		List<Billes> blist =new ArrayList<Billes>();
+		try {
+			con=daoUtil.getConnection();
+			pstmt=con.prepareStatement("select * from  BILLES where VENDORNAME=?;");
+			pstmt.setString(1, vendor);
+			rs=pstmt.executeQuery();
+			int i = 0;
+			while(rs.next()){
+				Billes bill=new Billes();
+				bill.setBillNo(rs.getString("BILLID"));
+				bill.setShopName(rs.getString("VENDORNAME"));
+				 
+				bill.setAmount(rs.getString("AMOUNT"));
+				bill.setName(rs.getString("NAME"));
+				bill.setMobile(rs.getString("MOBILE"));
+				bill.setDate1(rs.getDate("DATE1"));
+				 
+				InputStream in = rs.getBinaryStream("PHOTO");
+ 				String name=rs.getString("BILLID")+"_"+rs.getString("DATE1")+".jpg";
+ 				
+ 				FileOutputStream f = new FileOutputStream(new File("C:/Users/Srikanth.Lakshman/git/vems1/vemas/src/main/webapp/upload/"+name));
+ 				
+				i++;
+				int c = 0;
+				while ((c = in.read()) != -1) {
+					f.write(c);
+				}
+		bill.setImageName(name);
+				blist.add(bill);
+				System.out.println("in Dao"+blist);
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally{
+			daoUtil.close(con, stmt, pstmt, rs);
+
+		}
+		return blist;
+	}
+	}
+ 

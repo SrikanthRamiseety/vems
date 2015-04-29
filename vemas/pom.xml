@@ -17,6 +17,7 @@
 
 	<dependencies>
 
+
 		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -76,26 +77,39 @@
 			<version>${mysql.connector.version}</version>
 		</dependency>
 
-		<!-- Servlet  -->
+		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+			<version>4.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+
+
+
 	</dependencies>
 
-<build>
-	<finalName>vemas</finalName>
-	<plugins>
-		<!-- Java 1.7 Plugin -->
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>1.7</source>
-				<target>1.7</target>
-			</configuration>
-		</plugin>
-	</plugins>
-</build>
+	<build>
+		<finalName>vemas</finalName>
+		<plugins>
+			<!-- Java 1.7 Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

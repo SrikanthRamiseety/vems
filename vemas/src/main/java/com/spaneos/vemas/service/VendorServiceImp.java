@@ -1,5 +1,6 @@
 package com.spaneos.vemas.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.spaneos.vemas.dao.VendorDAOImp;
@@ -283,6 +284,24 @@ public class VendorServiceImp implements VendorServiceInf {
 	public Admin getPassword(String name) {
 		// TODO Auto-generated method stub
 		return vendorDaoImp.getPassword(name);
+	}
+
+	@Override
+	public List<Billes> getBillByDate(Date Date) {
+		 
+		return vendorDaoImp.getBillByDate(Date);
+	}
+
+	@Override
+	public List<Billes> getBillByVendorName(String vendor) {
+		
+		return  vendorDaoImp.getBillByVendorName(vendor);
+	}
+
+	@Override
+	public List<Billes> getBillByDate(String Date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id ="disply">
-	<%@ include file="header_l.jsp"%>
+	<%@ include file="header.jsp"%>
 	 
 	<div class="container">
 		<div id="addcontactform">

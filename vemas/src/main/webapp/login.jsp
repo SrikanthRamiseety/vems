@@ -36,11 +36,11 @@
 #body{
 
 
-background-image: url("images/90.jpg");
+background-image: url("images/411.jpg");
 }
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
         <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -116,7 +116,7 @@ background-image: url("images/90.jpg");
 									value="${_csrf.token}" />
 
 							</form>
-						If you are Admin, please &nbsp;	<a href="admin/landingpage_vendor"> login </a> &nbsp;here
+					 
 						</div>
 					</div>
 				</div>

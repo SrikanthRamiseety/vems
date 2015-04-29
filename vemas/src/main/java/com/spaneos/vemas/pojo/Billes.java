@@ -12,12 +12,28 @@ public class Billes {
 	private String name;
 	private String mobile;
 	private   File imagepath;
-	private FileOutputStream f;
+	private String imageName;
 	private String date;
+	private Date date1;
 	
 	
 	
 	
+	
+	/**
+	 * @return the date1
+	 */
+	public Date getDate1() {
+		return date1;
+	}
+
+	/**
+	 * @param date1 the date1 to set
+	 */
+	public void setDate1(Date date1) {
+		this.date1 = date1;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -26,13 +42,7 @@ public class Billes {
 		this.date = date;
 	}
 
-	public FileOutputStream getF() {
-		return f;
-	}
-
-	public void setF(FileOutputStream f) {
-		this.f = f;
-	}
+	
 
 	public File getImagepath() {
 		return imagepath;
@@ -86,8 +96,16 @@ public class Billes {
 	public String toString() {
 		return "Billes [billNo=" + billNo + ", shopName=" + shopName
 				+ ", amount=" + amount + ", name=" + name + ", mobile="
-				+ mobile + ", imagepath=" + imagepath + ", f=" + f + ", date="
+				+ mobile + ", imagepath=" + imagepath + ", date="
 				+ date + "]";
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 
 	 

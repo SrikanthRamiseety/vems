@@ -77,10 +77,7 @@ table.collapse.in {
 	display: table-row;
 }
 
-#vendor-table {
-	max-height: 300px;
-	overflow: auto;
-}
+ 
 
 .btn {
 	border-radius: 74px;
@@ -105,24 +102,26 @@ background-image: url("images/100.jpg");
 	 
 <div class="container">
 <div class="row">
-<div class="col-md-1"></div>
+ 
 
 <div class="col-md-10">
 	<c:if test="${(bl eq null) or (fn:length(bl) eq 0) }">
-		<h2>Sorry! No Billes Uploaded..</h2>
+		<h2>Sorry! No Bills Uploaded..</h2>
 	</c:if>
 	<c:if test="${(bl ne null) or (fn:length(bl) ne 0) }">
 		<input type="hidden" id="hidden" name="hidden"
-			value="${vender.size() }">
+			value="${bl.size() }">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h4>Billes</h4>
+				<h4>Bills</h4>
 
 			</div>
 			<div class="panel-body" id="vendor-table">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
+						<th>Date</th>
+						
 							<th>BillNo</th>
 							<th>VendorName</th>
 							 <th>amount</th>
@@ -132,40 +131,42 @@ background-image: url("images/100.jpg");
 
 						</tr>
 					</thead>
-					<tbody>
+								<tbody>
 
-						<c:forEach items="${bl }" var="i">
-							<tr>
-								
-								<td><c:out value="${i.getBillNo()}"></c:out></td>
-								<td><c:out value="${i.getShopName()}"></c:out></td>
-								 <td><c:out value="${i.getAmount()}"></c:out></td>
-								<td><c:out value="${i.getName()}"></c:out></td>
-								<td><c:out value="${i.getMobile()}"></c:out></td>
- 							    <td> <img alt="" src='<c:out value="${i.getF()}.jpg"></c:out>'></td>
-								
-								
-
-							</tr>
-
-							 
-							 									
-									
-
-
-								</c:forEach>
-
-
-							</tbody>
-
-
-						 
-
-					
+									<c:forEach items="${bl }" var="i">
+										<tr>
+ <td><c:out value="${i.date1}"></c:out></td>
+											<td><c:out value="${i.getBillNo()}"></c:out></td>
+											<td><c:out value="${i.getShopName()}"></c:out></td>
+											<td><c:out value="${i.getAmount()}"></c:out></td>
+											<td><c:out value="${i.getName()}"></c:out></td>
+											<td><c:out value="${i.getMobile()}"></c:out></td>
+											 	 
+											<td><img alt="loading..." src="../upload/${i. imageName}"
+							height="100px" width="100px"></td> 
 
 
 
-				</table>
+										</tr>
+
+
+
+
+
+
+									</c:forEach>
+
+
+								</tbody>
+
+
+
+
+
+
+
+
+							</table>
 			</div>
 				</div>
 	</c:if>

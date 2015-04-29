@@ -94,10 +94,10 @@
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img src="../images/4.jpg" class="img-responsive" alt="">
+                                        <img src="../images/1001.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="../images/5.jpg" class="img-responsive" alt="">
+                                        <img src="../images/765.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
                                         <img src="../images/6.jpg" class="img-responsive" alt="">
@@ -135,9 +135,9 @@
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="viewuser">
-                                <i class="fa fa-users"></i>
-                                <p>Contact</p>
+                           <a href="billes.vms">
+                                <i class="fa fa-comment-o"></i>
+                                <p>Billes</p>
                             </a>
                         </div>
                         

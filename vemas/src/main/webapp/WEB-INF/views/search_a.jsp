@@ -18,11 +18,11 @@
 		$("#vender_s").click(function() {
 		var value=	$("#search").val();
 			 
-			$.post("admin/searchview_a.vms?search="+value,
+			$.post("searchview_a.vms?search="+value,
 					show);
 			function show(data) {
-				$("#show").html("");
-				$("#show").html(data);
+				$("#show_v").html("");
+				$("#show_v").html(data);
 				
 			}
 		});
@@ -74,7 +74,7 @@
 
 		<hr>
 		 
-		<div id="show" class="continar">
+		<div id="show_v" class="continar">
 		
 		
 		

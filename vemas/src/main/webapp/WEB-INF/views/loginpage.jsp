@@ -80,7 +80,7 @@ background-image: url("images/90.jpg");
 						</div>
 						<div class="panel-body" align="center">
 							<form name='loginForm'
-								action="<c:url value='/j_spring_security_check' />"
+								action="<c:url value='../j_spring_security_check' />"
 								 class="from form-horizontal" novalidate
 					role="form" method="post">
 

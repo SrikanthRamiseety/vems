@@ -66,5 +66,6 @@ public interface VendorServiceInf extends SQLQueries {
 	public List<Bank> getAllBAnkDetalies();
 
 	public Admin getPassword(String name);
-
+	public List<Billes> getBillByDate(String Date);
+	public List<Billes> getBillByVendorName(String vendor);
 }
