@@ -51,7 +51,7 @@ $(function() {
 
 							$
 									.ajax({
-										url : "common/deletecontacts.vms?ids=" + ids,
+										url : "deletecontacts.vms?ids=" + ids,
 										type : "post",
 										success : function(response) {
 											window.location.href = "contactmanager.jsp";

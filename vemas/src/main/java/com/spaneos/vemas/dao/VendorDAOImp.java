@@ -57,7 +57,9 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(5, vendor.getVendorLandlineNumber());
 			pstmt.setString(6, vendor.getVendorWebsite());
 			pstmt.setString(7, vendor.getVendorAddress());
-
+			pstmt.setString(8, vendor.getVendorCode());
+			pstmt.setString(9, vendor.getVendorMobileNumber1());
+			pstmt.setString(10, vendor.getVendorMobileNumber2());
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
 				return true;
@@ -84,6 +86,10 @@ public class VendorDAOImp implements VendorDaoInf {
 			pstmt.setString(5, contact.getEmploymentStatus());
 			pstmt.setString(6, contact.getReportingManager());
 			pstmt.setInt(7, vendorId);
+			pstmt.setString(8, contact.getMobile1());
+			pstmt.setString(9, contact.getMobile2());
+			pstmt.setString(10, contact.getEmail1());
+			pstmt.setString(11, contact.getEmail2());
 			int i = pstmt.executeUpdate();
 			if (i > 0) {
 				return true;
@@ -168,9 +174,13 @@ public class VendorDAOImp implements VendorDaoInf {
 				vendor.setVendorCategory(rs.getString("VENDORCATEGORY"));
 				vendor.setVendorName(rs.getString("VENDORNAME"));
 				vendor.setVendorMobileNumber(rs.getString("MOBILE"));
+				
 				vendor.setVendorLandlineNumber(rs.getString("LANDLINE"));
 				vendor.setVendorWebsite(rs.getString("WEBSITE"));
 				vendor.setVendorAddress(rs.getString("ADDRESS"));
+				vendor.setVendorCode(rs.getString("VENDORCODE"));
+				vendor.setVendorMobileNumber1(rs.getString("MOBILE1"));
+				vendor.setVendorMobileNumber2(rs.getString("MOBILE2"));
 				vendor.setVendorContacts(getContactsByVendorName(name));
 				vendorList.add(vendor);
 			}
@@ -204,7 +214,12 @@ public class VendorDAOImp implements VendorDaoInf {
 				contact.setName(rs.getString("CONTACTNAME"));
 				contact.setDesignation(rs.getString("DESIGNATION"));
 				contact.setMobile(rs.getString("MOBILE"));
+				contact.setMobile(rs.getString("MOBILE"));
+				contact.setMobile1(rs.getString("MOBILE1"));
+				contact.setMobile2(rs.getString("MOBILE2"));
 				contact.setEmail(rs.getString("EMAIL"));
+				contact.setEmail1(rs.getString("EMAIL1"));
+				contact.setEmail2(rs.getString("EMAIL2"));
 				contact.setEmploymentStatus(rs.getString("EMPLOYEMENTSTATUS"));
 				contact.setReportingManager(rs.getString("REPORTINGMANAGER"));
 				contactList.add(contact);
@@ -369,6 +384,9 @@ public class VendorDAOImp implements VendorDaoInf {
 				vendor.setVendorLandlineNumber(rs.getString("LANDLINE"));
 				vendor.setVendorWebsite(rs.getString("WEBSITE"));
 				vendor.setVendorAddress(rs.getString("ADDRESS"));
+				vendor.setVendorCode(rs.getString("VENDORCODE"));
+				vendor.setVendorMobileNumber1(rs.getString("MOBILE1"));
+				vendor.setVendorMobileNumber2(rs.getString("MOBILE2"));
 
 			}
 			return vendor;
@@ -705,6 +723,57 @@ System.out.println(billes);
 	public List<Billes> getBillByDate(Date Date) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Vendor> getAllVendors() {
+		List<Vendor> vendorList = new ArrayList<Vendor>();
+		try {
+			con = daoUtil.getConnection();
+			pstmt = con.prepareStatement(GET_ALLVENDORS);
+		 
+			rs = pstmt.executeQuery();
+			int i = 1;
+			List<Contact> contactList = new ArrayList<Contact>();
+			while (rs.next()) {
+				 
+				Vendor vendor = new Vendor();
+				vendor.setId(i++);
+				vendor.setVendorType(rs.getString("VENDORTYPE"));
+				vendor.setVendorCategory(rs.getString("VENDORCATEGORY"));
+				vendor.setVendorName(rs.getString("VENDORNAME"));
+				vendor.setVendorMobileNumber(rs.getString("MOBILE"));
+				vendor.setVendorLandlineNumber(rs.getString("LANDLINE"));
+				vendor.setVendorWebsite(rs.getString("WEBSITE"));
+				vendor.setVendorAddress(rs.getString("ADDRESS"));
+				vendor.setVendorCode(rs.getString("VENDORCODE"));
+				 
+				vendor.setVendorMobileNumber1(rs.getString("MOBILE1"));
+				vendor.setVendorMobileNumber2(rs.getString("MOBILE2"));
+				Contact contact = new Contact();
+			 
+				contact.setName(rs.getString("CONTACTNAME"));
+				contact.setDesignation(rs.getString("DESIGNATION"));
+				contact.setMobile(rs.getString("MOBILE"));
+				contact.setEmail(rs.getString("EMAIL"));
+				contact.setEmploymentStatus(rs.getString("EMPLOYEMENTSTATUS"));
+				contact.setReportingManager(rs.getString("REPORTINGMANAGER"));
+				contactList.add(contact);
+				vendor.setVendorContacts(contactList);
+				vendorList.add(vendor);
+			}
+			 
+			
+			 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			daoUtil.close(con, stmt, pstmt, rs);
+		}
+
+		return vendorList;
+		 
+		 
 	}
 	}
  

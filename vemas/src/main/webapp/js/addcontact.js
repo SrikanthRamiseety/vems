@@ -2,7 +2,7 @@ $(function() {
 
 	$(".edit").click(function() {
 		var email = $(this).attr("id");
-		$.post("common/editcontact.vms?email=" + email, show);
+		$.post("editcontact.vms?email=" + email, show);
 		function show(data) {
 			$("#addcontactform").html(data);
 		}
@@ -26,7 +26,7 @@ $(function() {
 
 	$("#saveexit").click(function() {
 		$.ajax({
-			url : "common/saveall.vms",
+			url : "saveall.vms",
 			type : "post",
 			success : function(response) {
 				alert("Your data has been saved successfully.")
@@ -51,10 +51,10 @@ $(function() {
 
 							$
 									.ajax({
-										url : "common/deletecontacts.vms?ids=" + ids,
+										url : "deletecontacts.vms?ids=" + ids,
 										type : "post",
-										success : function(response) {
-											window.location.href = "contactmanager.jsp";
+										success : function(request) {
+											window.location.href = "contactmanager.vms";
 											/* $("#showcontacts").html(response); */
 										}
 									});
@@ -73,7 +73,7 @@ $(function() {
 						var choice = confirm("All unsaved data will be lost. Are you sure you want to continue?");
 
 						if (choice) {
-							window.location.replace("addvendor.jsp");
+							window.location.replace("addvendor.vms");
 						}
 					});
 
@@ -98,7 +98,7 @@ $(function() {
 			type : "post",
 			success : function(response) {
 				alert("Your data saved successfully.")
-				window.location.href = "addvendor.jsp";
+				window.location.href = "addvendor.vms";
 			}
 		});
 	});
@@ -108,7 +108,7 @@ $(function() {
 	});
 	
 	$("#maintainVendorInfo").click(function() {
-		window.location.href = "addvendor.jsp";
+		window.location.href = "addvendor.vms";
 	});
 
 });

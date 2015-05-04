@@ -51,6 +51,7 @@ public class VMS extends HttpServlet {
 
 			if (session != null) {
 				Vendor vendor = vendorServiceImp.createVendor(
+						req.getParameter("vendorcode"),
 						req.getParameter("vendorType"),
 						req.getParameter("vendorCategory"),
 						req.getParameter("vendorName"),
@@ -58,6 +59,8 @@ public class VMS extends HttpServlet {
 								+ req.getParameter("vendorLandlineNumber"),
 						req.getParameter("mobileCode") + "-"
 								+ req.getParameter("vendorMobileNumber"),
+						req.getParameter("vendorMobileNumber1"),
+						req.getParameter("vendorMobileNumber2"),
 						req.getParameter("vendorWebsite"),
 						req.getParameter("vendorAddress"));
 
@@ -119,7 +122,7 @@ public class VMS extends HttpServlet {
 				response.sendRedirect("error.jsp");
 			}
 
-		}  else if (uri.endsWith("bank.vms")) {
+		} else if (uri.endsWith("bank.vms")) {
 			Bank bank = new Bank();
 			bank.setAcno(req.getParameter("acn"));
 			bank.setAcName(req.getParameter("acname"));
@@ -228,7 +231,9 @@ public class VMS extends HttpServlet {
 				Contact contact = vendorServiceImp.createContact(
 						req.getParameter("contactName"),
 						req.getParameter("designation"),
-						req.getParameter("mobile"), req.getParameter("email"),
+						req.getParameter("mobile"), req.getParameter("mobile1"),
+						req.getParameter("mobile2"), req.getParameter("email"),
+						req.getParameter("email1"), req.getParameter("email2"),
 						req.getParameter("employmentStatus"),
 						req.getParameter("manager"));
 

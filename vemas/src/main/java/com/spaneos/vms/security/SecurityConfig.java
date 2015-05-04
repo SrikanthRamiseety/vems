@@ -15,7 +15,7 @@ import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopul
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	/* @Autowired javax.sql.DataSource dataSource;
+ @Autowired javax.sql.DataSource dataSource;
 	 
 	 @Autowired public void configAuthentication(AuthenticationManagerBuilder
 	 auth) throws Exception {
@@ -25,21 +25,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 .authoritiesByUsernameQuery(
 	 "select username, role from user_roles where username=?"); }
 	 
-*/
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
 		
-		/* http.authorizeRequests().antMatchers("/admin/* ")
+	/*http.authorizeRequests().antMatchers("/admin/* ")
 		 .access("hasRole('ROLE_ADMIN')").and().formLogin()
-		 .loginPage("/loginpage.jsp").failureUrl("/loginpage.jsp")
+		 .loginPage("/loginpage.jsp").failureUrl("/login.jsp")
 		 .loginProcessingUrl("/j_spring_security_check")
 		 .usernameParameter("username").passwordParameter("password")
-		 .defaultSuccessUrl("/landingpage_vendor").and().logout()
+		 .defaultSuccessUrl("/admin/landingpage_vendor").and().logout()
 		.logoutSuccessUrl("/").and().exceptionHandling()
 		 .accessDeniedPage("/403").and().csrf();
 		 
-		 http.csrf().disable();*/
+		 http.csrf().disable(); */
 		 
 		// http.authorizeRequests().anyRequest().authenticated().and().formLogin().permitAll()
 		/*
@@ -58,17 +58,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/j_spring_security_check")
 				.defaultSuccessUrl("/admin/landingpage_vendor",true).and().logout().logoutSuccessUrl("/").and().csrf().disable();
 
-		/* http.authorizeRequests().antMatchers("/user/* ")
+	 /* http.authorizeRequests().antMatchers("/user/* ")
 		 .access("hasRole('ROLE_USER')").and().formLogin()
-		 .loginPage("/loginpage_l.jsp").failureUrl("/loginpage.jsp")
+		 .loginPage("/loginpage_l.jsp").failureUrl("/login.jsp")
 		 .usernameParameter("/j_spring_security_check")
 		 .usernameParameter("username").passwordParameter("password")
 		 .defaultSuccessUrl("/user/landingpageOfEmplyee").and().logout()
 		 .logoutSuccessUrl("/").and().exceptionHandling()
 		 .accessDeniedPage("/403").and().csrf();
 		 
-		 http.csrf().disable();
-		 */
+		 http.csrf().disable();*/
+		 
 
 	}
 

@@ -34,7 +34,7 @@
 		$(".page").click(function() {
 			var pagenumber=$(this).val();
 			
-			$.post("searchview_s?pagenumber=" + $(this).val()+"&page=notfirst", show);
+			$.post("month_v?pagenumber=" + $(this).val()+"&page=notfirst", show);
 			
 			function show(data) {
 				$("#show").html(data);

@@ -9,10 +9,9 @@
 <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.js"></script>
 <style type="text/css">
-#disply{
-background-image: url("../images/115.jpg ");
+#disply {
+	background-image: url("../images/115.jpg ");
 }
- 
 </style>
 <script type="text/javascript">
 	function conformcancel() {
@@ -42,12 +41,12 @@ background-image: url("../images/115.jpg ");
 <link rel="stylesheet" href="../css/addvendor.css" type="text/css" />
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
-<body id="disply" >
+<body id="disply">
 	<%@include file="header.jsp"%>
- 
-	 
 
-	<div class="container"  >
+
+
+	<div class="container">
 		<div class="row">
 			<c:if test="${addedsuccessfully eq false }">
 				<div class="alert alert-success" align="center" id="alert">
@@ -60,11 +59,33 @@ background-image: url("../images/115.jpg ");
 						<h4>Add Vendor</h4>
 					</div>
 				</div>
-  
+
 				<div class="panel-body">
 					<form action="addvendor.opt" method="post"
 						class="form form-horizontal" role="form" novalidate>
+						<div class=" item form-group">
+							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Vendor
+								Code<em>*</em>
+							</label>
+							<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
+								<input type="text" id="vendorcode" name="vendorcode"
+									pattern="" required="required"
+									class=" required form-control"
+									placeholder="Enter the Vendor Code"
+									onblur="this.value = trimSpaces(this.value);"
+									 >
+							</div>
+							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+										<i>Vendor</i>  Code
+									</p>
+								</div>
+							</div>
 
+						</div>
 						<div class="item form-group" id="sel">
 							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Vendor
 								Type<em>*</em> <span> </span>
@@ -72,18 +93,18 @@ background-image: url("../images/115.jpg ");
 							<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 
 								<c:if test="${tlist eq null }">
-									 <h4>No Vendor type is added</h4>
+									<h4>No Vendor type is added</h4>
 								</c:if>
 								<c:if test="${tlist ne null }">
 									<select class="required form-control" name="vendorType"
 										id="vendortype">
-										 
+
 										<c:forEach items="${tlist}" var="i">
-										 
-										<option value="${i.getVendorCategory()}"> <c:out value="${i.getVendorCategory()}"></c:out>
-										 
+											<option value="${i.getVendorType()}">
+												<c:out value="${i.getVendorType()}"></c:out>
+
 										</c:forEach>
-										 
+
 									</select>
 								</c:if>
 
@@ -106,14 +127,14 @@ background-image: url("../images/115.jpg ");
 								<select class="required form-control" name="vendorCategory"
 									id="vendorcategory">
 									<c:if test="${tlist eq null }">
-										  <h4>No Vendor type is added</h4>
+										<h4>No Vendor type is added</h4>
 									</c:if>
 									<c:if test="${tlist ne null }">
-										 
-											<c:forEach items="${tlist}" var="i">
-										 
-										<option value="${i.getVendorType()}"> <c:out value="${i.getVendorType()}"></c:out>
-										 
+
+										<c:forEach items="${tlist}" var="i">
+
+											<option value="${i.getVendorCategory()}">
+												<c:out value="${i.getVendorCategory()}"></c:out>
 										</c:forEach>
 									</c:if>
 								</select>
@@ -155,7 +176,7 @@ background-image: url("../images/115.jpg ");
 
 						</div>
 						<div class="item form-group">
-							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile<em>*</em></label>
+							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile-1<em>*</em></label>
 							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
 								<c:if test="${vendor eq null }">
 									<input type="text" id="code" name="mobileCode"
@@ -184,6 +205,69 @@ background-image: url("../images/115.jpg ");
 								</div>
 							</div>
 						</div>
+						 
+						<div class="item form-group">
+							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile-2 </label>
+							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
+								<c:if test="${vendor eq null }">
+									<input type="text" id="code" name="mobileCode1"
+									 	 class="form-control" maxlength="5"
+										value="+91">
+								</c:if>
+									<c:if test="${vendor ne null }">
+									<input type="text" id="code1" name="mobileCode"
+										   class="form-control" maxlength="5"
+										value="${vendorMobileCode }">
+								</c:if>
+							</div>
+							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+								<input type="tel" id="mobile1" name="vendorMobileNumber1"
+									  class="form-control optional" maxlength="10"
+									  data-validate-length-range="-1"    pattern="numeric"
+									placeholder="Enter Mobile number"  
+									 value="${vendorMobileNumber }">
+							</div>
+							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+										<i>Mobile</i> number should have only numbers with 10 digits.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile-3</label>
+							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
+								<c:if test="${vendor eq null }">
+									<input type="text" id="code" name="mobileCode"
+										required="required"  class="form-control" maxlength="5"
+										value="+91">
+								</c:if>
+								<c:if test="${vendor ne null }">
+									<input type="text" id="code" name="mobileCode"
+									   class="form-control" maxlength="5"
+										value="${vendorMobileCode }">
+								</c:if>
+							</div>
+							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
+								<input type="tel" id="mobile1" name="vendorMobileNumber2"
+									required="required"  class="form-control optional" maxlength="10"
+									  data-validate-length-range="-1" 
+									placeholder="Enter Mobile number" maxlength="10" pattern="numeric"
+									 value="${vendorMobileNumber }">
+							</div>
+							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									(opation)	<i>Mobile</i> number should have only numbers with 10 digits.
+									</p>
+								</div>
+							</div>
+						</div>
 						<div class="item form-group">
 							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Landline</label>
 							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
@@ -193,8 +277,8 @@ background-image: url("../images/115.jpg ");
 							</div>
 							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
 								<input type="tel" id="number" name="vendorLandlineNumber"
-									class="form-control" placeholder="Enter LandLine number"
-									maxlength="8" data-validate-length-range="4"
+								required="required"	class="form-control optional" placeholder="Enter LandLine number"
+								 	maxlength="8" data-validate-length-range="-1" pattern="numeric"
 									value="${vendorLandlineNumber }">
 							</div>
 							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
@@ -276,7 +360,7 @@ background-image: url("../images/115.jpg ");
 			</div>
 		</div>
 	</div>
-	 
+
 
 	<%@include file="footer.jsp"%>
 	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>

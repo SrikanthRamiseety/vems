@@ -2,7 +2,7 @@ $(function() {
 
 	$(".edit").click(function() {
 		var email = $(this).attr("id");
-		$.post("common/editcontact.vms?email=" + email, show);
+		$.post("editcontact.vms?email=" + email, show);
 		function show(data) {
 			$("#addcontactform").html(data);
 		}
@@ -26,7 +26,7 @@ $(function() {
 
 	$("#saveexit").click(function() {
 		$.ajax({
-			url : "common/saveall.vms",
+			url : "saveall.vms",
 			type : "post",
 			success : function(response) {
 				alert("Your data has been saved successfully.")
@@ -51,7 +51,7 @@ $(function() {
 
 							$
 									.ajax({
-										url : "common/deletecontacts.vms?ids=" + ids,
+										url : "deletecontacts.vms?ids=" + ids,
 										type : "post",
 										success : function(response) {
 											window.location.href = "contactmanager.jsp";

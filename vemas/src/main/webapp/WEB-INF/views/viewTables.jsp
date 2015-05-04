@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Table</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/font-awesome.min.css" rel="stylesheet">
 <link href="../css/prettyPhoto.css" rel="stylesheet">
@@ -19,6 +20,7 @@
     <![endif]-->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/bootstrap.css" rel="stylesheet">
+
 
 <script type="text/javascript">
 	$(function() {
@@ -43,7 +45,7 @@
 				function() {
 					var pagenumber = $(this).val();
 
-					$.post("admin/date_s?pagenumber=" + $(this).val()
+					$.post("search.vms?pagenumber=" + $(this).val()
 							+ "&page=notfirst", show);
 
 					function show(data) {
@@ -54,35 +56,73 @@
 	});
 </script>
 <style type="text/css">
-.T-I-JN {
-	-webkit-border-radius: 0;
-	border-radius: 0;
-	border: 1px solid transparent;
-	font-size: 13px;
-	font-weight: normal;
-	height: 21px;
-	line-height: 21px;
-	margin-right: 1px;
-	min-width: 0;
-	padding: 0;
+#pagination {
+	color: #337AB7;
+	background-color: transparent;
+	box-sizing: border-box;
+	font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	text-align: center;
+}
+
+.clickable {
+	border: 1px;
+}
+
+#view {
+	overflow: auto;
+}
+
+th {
+	background-color: silver;
+}
+
+.no-line, #no-line {
+	border-bottom-style: hidden;
+	border-bottom-width: 0em;
+	background-color: white;
+}
+
+table.collapse.in {
+	display: table-row;
+}
+
+.btn {
+	border-radius: 74px;
+}
+
+.active {
+	color: aqua;
+}
+
+#body {
+	background-image: url("../images/1920.jpg");
 }
 </style>
-</head>
-<body>
+
+<script type="text/javascript">
+	$(function() {
+		//	$(".tbl-row").hide();
+	});
+</script>
+<body id="body">
+	<%@include file="header.jsp"%>
 	<div class="container">
-
 		<div class="row">
+			<div class="col-md-1"></div>
 
-			<c:if test="${(fn:length(bill) eq 0) }">
-				<h2>Sorry! No Bills Uploaded..</h2>
-			</c:if>
-			<div class="col-md-9">
-				<c:if test="${(fn:length(bill) ne 0) }">
+			<div class="col-md-10">
+				<c:if
+					test="${(billeslist eq null) or (fn:length(billeslist) eq 0) }">
+					<h2>Sorry! No Billes Uploaded..</h2>
+				</c:if>
+				<c:if
+					test="${(billeslist ne null) or (fn:length(billeslist) ne 0) }">
 					<input type="hidden" id="hidden" name="hidden"
-						value="${bill.size() }">
+						value="${vender.size() }">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h4>Bills</h4>
+							<h4>Billes</h4>
 
 						</div>
 						<div class="panel-body" id="vendor-table">
@@ -90,27 +130,31 @@
 								<thead>
 									<tr>
 
+
+
+
+
+										<th>Date</th>
 										<th>BillNo</th>
 										<th>VendorName</th>
 										<th>amount</th>
 										<th>Name</th>
 										<th>Mobile</th>
 										<th>Images</th>
-										<th>Date</th>
 
 									</tr>
 								</thead>
 								<tbody>
 
-									<c:forEach begin="${(param.pagenumber-1) * 4 }"
-										items="${bill }" end="${(param.pagenumber * 4 )-1 }" var="i">
+									<c:forEach items="${billeslist }" var="i">
 										<tr>
-
-											<td><c:out value="${i.getBillNo()}"></c:out></td>
-											<td><c:out value="${i.getShopName()}"></c:out></td>
-											<td><c:out value="${i.getAmount()}"></c:out></td>
-											<td><c:out value="${i.getName()}"></c:out></td>
-											<td><c:out value="${i.getMobile()}"></c:out></td>
+											<td data-date-format="yyyy-dd-mm"><c:out
+													value="${i.date1}"></c:out></td>
+											<td><c:out value="${i.billNo}"></c:out></td>
+											<td><c:out value="${i.shopName}"></c:out></td>
+											<td><c:out value="${i.amount}"></c:out></td>
+											<td><c:out value="${i.name}"></c:out></td>
+											<td><c:out value="${i.mobile}"></c:out></td>
 
 											<td>
 												<section id="portfolio">
@@ -128,11 +172,6 @@
 													</div>
 												</section>
 											</td>
-											<td><c:out
-													value="${i.date1}"></c:out></td>
-
-
-
 										</tr>
 
 
@@ -154,32 +193,21 @@
 
 							</table>
 						</div>
-						<div id="pagination">
-
-
-							<ul class="pager">
-
-								<li><button class="btn btn-primary btn-sm page "
-										value="${(param.pagenumber)-1 }" name="previous" id="previous">Previous</button></li>
-
-								<li><button class="btn btn-primary btn-sm page"
-										value="${(param.pagenumber)+1 }" name="next" id="next">next</button></li>
-
-							</ul>
-
-							 
-
-						</div>
 					</div>
 				</c:if>
-
-
-
 			</div>
-
-
 		</div>
 	</div>
+
+
+
+
+	 
+</body>
+
+
+
+
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.prettyPhoto.js"></script>

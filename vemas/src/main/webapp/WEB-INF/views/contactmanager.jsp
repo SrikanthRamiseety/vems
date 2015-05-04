@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Contact Information</title>
+<title><img src="../images/About_spaneos.png">Manage Contact Information</title>
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/addcontact.css">
@@ -16,6 +16,7 @@
 	#disply{
 	background-image: url("../images/117.jpg");
 	}
+	 
 	</style>
 </head>
 <body>

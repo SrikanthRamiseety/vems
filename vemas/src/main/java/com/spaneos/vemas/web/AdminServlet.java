@@ -1,11 +1,11 @@
 package com.spaneos.vemas.web;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.spaneos.vemas.pojo.Admin;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -36,13 +39,15 @@ import com.spaneos.vemas.service.VendorServiceImp;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VendorServiceImp vendorServiceImp = VendorServiceImp.getInstance();
-	private final static Logger LOGGER = Logger.getLogger(AdminServlet.class.getName()); 
+	private final static Logger LOGGER = Logger.getLogger(AdminServlet.class
+			.getName());
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public AdminServlet() {
 		super();
-		 
+
 	}
 
 	/**
@@ -56,14 +61,17 @@ public class AdminServlet extends HttpServlet {
 			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
 			System.out.println(list3);
 			req.setAttribute("tlist", list3);
-			req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(req, resp);
-			LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.FINE); 
+			req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(
+					req, resp);
+			LogManager.getLogManager().getLogger(Logger.GLOBAL_LOGGER_NAME)
+					.setLevel(Level.FINE);
 		} else if (uri.endsWith("typevendor")) {
-			req.getRequestDispatcher("/WEB-INF/views/addvendor_v.jsp").forward(req,
-					resp);
+			req.getRequestDispatcher("/WEB-INF/views/addvendor_v.jsp").forward(
+					req, resp);
 
 		} else if (uri.endsWith("v_search")) {
-			req.getRequestDispatcher("/WEB-INF/views/search.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/search.jsp").forward(req,
+					resp);
 		} else if (uri.endsWith("signup")) {
 			req.getRequestDispatcher("signup.jsp").forward(req, resp);
 
@@ -74,7 +82,8 @@ public class AdminServlet extends HttpServlet {
 			ServletContext context = req.getServletContext();
 
 			context.setAttribute("userslist", users);
-			req.getRequestDispatcher("/WEB-INF/views/viewUser.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/viewUser.jsp").forward(
+					req, resp);
 
 		} else if (uri.endsWith("billesview")) {
 			List<Billes> billes = vendorServiceImp.getAllBilles();
@@ -82,54 +91,64 @@ public class AdminServlet extends HttpServlet {
 			ServletContext context = req.getServletContext();
 
 			context.setAttribute("billeslist", billes);
-			req.getRequestDispatcher("/WEB-INF/views/viewbilles.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/viewTables.jsp").forward(
+					req, resp);
 		} else if (uri.endsWith("landingpage_vendor")) {
-			  req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(
+					req, resp);
 		} else if (uri.endsWith("addBank.vms")) {
-			req.getRequestDispatcher("/WEB-INF/views/addBank.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/addBank.jsp").forward(req,
+					resp);
 		} else if (uri.endsWith("date")) {
 			System.out.println("date");
-			req.getRequestDispatcher("/WEB-INF/views/date.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/date.jsp").forward(req,
+					resp);
 
 		} else if (uri.endsWith("date_s")) {
 			String date = req.getParameter("date");
 			System.out.println("date===" + date);
-			Billes billes=new Billes();
+			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
+			String page = req.getParameter("page");
 
-			//System.out.println("" + blist);
-			 
-			 		 
-				
-				List<Billes> blist = vendorServiceImp.getBillByDate(date);
-				System.out.println("servlet"+blist);
-				
-				req.setAttribute("bill", blist);
-			 
-				 
-			 
-			req.getRequestDispatcher("/WEB-INF/views/viewdate.jsp").forward(req, resp);
+			// System.out.println("" + blist);
+
+			List<Billes> blist = vendorServiceImp.getBillByDate(date);
+			System.out.println("servlet" + blist);
+
+			req.setAttribute("bill", blist);
+
+			req.getRequestDispatcher(
+					"/WEB-INF/views/viewdate.jsp?pagenumber=" + pageNumber)
+					.forward(req, resp);
 
 		} else if (uri.endsWith("vendor_s")) {
-			req.getRequestDispatcher("/WEB-INF/views/search_a.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/search_a.jsp").forward(
+					req, resp);
 		} else if (uri.endsWith("searchview_a.vms")) {
 			String search = req.getParameter("search");
+			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
+			String page = req.getParameter("page");
 			System.out.println(search);
 			List<Billes> blist = vendorServiceImp.getBillByVendorName(search);
-			 
+
 			req.setAttribute("bl", blist);
-			req.getRequestDispatcher("/WEB-INF/views/view_s.jsp").forward(req, resp);
+			req.getRequestDispatcher(
+					"/WEB-INF/views/view_s.jsp?pagenumber=" + pageNumber)
+					.forward(req, resp);
 		} else if (uri.endsWith("bankview.vms")) {
 			List<Bank> blist = vendorServiceImp.getAllBAnkDetalies();
 			req.setAttribute("banklist", blist);
-			req.getRequestDispatcher("/WEB-INF/views/searchview_b.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/searchview_b.jsp")
+					.forward(req, resp);
 		} else if (uri.endsWith("typevendor_t.vms")) {
-		 resp.sendRedirect("addvendortype_l.jsp");
+			resp.sendRedirect("addvendortype_l.jsp");
 
-		}else if (uri.endsWith("addvendor.opt")) {
+		} else if (uri.endsWith("addvendor.opt")) {
 			HttpSession session = req.getSession(false);
 
 			if (session != null) {
 				Vendor vendor = vendorServiceImp.createVendor(
+						req.getParameter("vendorcode"),
 						req.getParameter("vendorType"),
 						req.getParameter("vendorCategory"),
 						req.getParameter("vendorName"),
@@ -137,6 +156,8 @@ public class AdminServlet extends HttpServlet {
 								+ req.getParameter("vendorLandlineNumber"),
 						req.getParameter("mobileCode") + "-"
 								+ req.getParameter("vendorMobileNumber"),
+						req.getParameter("vendorMobileNumber1"),
+						req.getParameter("vendorMobileNumber2"),
 						req.getParameter("vendorWebsite"),
 						req.getParameter("vendorAddress"));
 
@@ -153,10 +174,10 @@ public class AdminServlet extends HttpServlet {
 						req.getParameter("vendorLandlineNumber"));
 				session.setAttribute("vendor", vendor);
 
-				req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp").forward(req,
-						resp);
+				req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
+						.forward(req, resp);
 			}
-		}else if (uri.endsWith("updatecontact.vms")) {
+		} else if (uri.endsWith("updatecontact.vms")) {
 			HttpSession session = req.getSession(false);
 
 			if (session != null) {
@@ -177,8 +198,8 @@ public class AdminServlet extends HttpServlet {
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp").forward(req,
-					resp);
+			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
+					.forward(req, resp);
 		} else if (uri.endsWith("deletecontacts.vms")) {
 			HttpSession session = req.getSession(false);
 
@@ -195,8 +216,8 @@ public class AdminServlet extends HttpServlet {
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			req.getRequestDispatcher("/WEB-INF/views/viewcontacts.jsp").forward(req,
-					resp);
+			req.getRequestDispatcher("/WEB-INF/views/viewcontacts.jsp")
+					.forward(req, resp);
 		} else if (uri.endsWith("saveall.vms")) {
 			HttpSession session = req.getSession(false);
 
@@ -205,9 +226,9 @@ public class AdminServlet extends HttpServlet {
 
 				if (((VendorServiceImp) vendorServiceImp).saveAllData(vendor)) {
 					req.setAttribute("addedsuccessfully", true);
-					System.out.println("vendor" + vendor);
-					req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(req,
-							resp);
+					session.invalidate();
+					req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp")
+							.forward(req, resp);
 				} else {
 					resp.sendRedirect("error.jsp");
 				}
@@ -220,8 +241,8 @@ public class AdminServlet extends HttpServlet {
 
 				if (vendorServiceImp.addVendor(vendor)) {
 					req.setAttribute("addedsuccessfully", true);
-					req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(req,
-							resp);
+					req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp")
+							.forward(req, resp);
 				} else {
 					resp.sendRedirect("error.jsp");
 				}
@@ -234,24 +255,35 @@ public class AdminServlet extends HttpServlet {
 				Contact contact = vendorServiceImp.createContact(
 						req.getParameter("contactName"),
 						req.getParameter("designation"),
-						req.getParameter("mobile"), req.getParameter("email"),
+						req.getParameter("mobile"),
+						req.getParameter("mobile1"),
+						req.getParameter("mobile2"), req.getParameter("email"),
+						req.getParameter("email1"), req.getParameter("email2"),
 						req.getParameter("employmentStatus"),
 						req.getParameter("manager"));
 
 				if (contact == null) {
-					resp.sendRedirect("error.jsp");
+					resp.sendRedirect("/WEB-INF/views/error.jsp");
 				}
-				vendor.setVendorContacts(new ArrayList<Contact>());
-				vendor.getVendorContacts().add(contact);
- 
+				if (vendor.getVendorContacts() == null) {
+					vendor.setVendorContacts(new ArrayList<Contact>());
+					vendor.getVendorContacts().add(contact);
+				}
+
+				if (!vendorServiceImp.addContactToVendor(contact,
+						vendor.getVendorContacts())) {
+					session.setAttribute("duplicateEntry",
+							"This Contact already exists");
+				}
+
 				/* vendor.getVendorContacts().add(contact); */
 
 				session.setAttribute("vendor", vendor);
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp").forward(req,
-					resp);
+			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
+					.forward(req, resp);
 		} else if (uri.endsWith("editcontact.vms")) {
 			HttpSession session = req.getSession(false);
 
@@ -266,15 +298,15 @@ public class AdminServlet extends HttpServlet {
 					}
 				}
 			}
-			req.getRequestDispatcher("/WEB-INF/views/addcontact.jsp").forward(req,
-					resp);
-		} else if(uri.endsWith("addvendor.vms")){
+			req.getRequestDispatcher("/WEB-INF/views/addcontact.jsp").forward(
+					req, resp);
+		} else if (uri.endsWith("addvendor.vms")) {
 			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
 			System.out.println(list3);
 			req.setAttribute("tlist", list3);
-			req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(req,
-					resp);
-		}else if (uri.endsWith("addtype.vms")) {
+			req.getRequestDispatcher("/WEB-INF/views/addvendor.jsp").forward(
+					req, resp);
+		} else if (uri.endsWith("addtype.vms")) {
 			String category = req.getParameter("vendorcategory");
 			String vtype = req.getParameter("vendortype");
 			System.out.println(vtype);
@@ -283,15 +315,15 @@ public class AdminServlet extends HttpServlet {
 			type2.setVendorCategory(category);
 			type2.setVendorType(vtype);
 			if (vendorServiceImp.addVendortype(type2)) {
-				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req,
-						resp); 
+				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp")
+						.forward(req, resp);
 
 			} else {
-				resp.sendRedirect("error.jsp");
+				resp.sendRedirect("/WEB-INF/views/error.jsp");
 			}
 
-		}else if (uri.endsWith("searchview.vms")) {
-		 
+		} else if (uri.endsWith("searchview.vms")) {
+
 			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
 			String page = req.getParameter("page");
 			String search = req.getParameter("search");
@@ -315,13 +347,12 @@ public class AdminServlet extends HttpServlet {
 			}
 
 			req.getRequestDispatcher(
-					"/WEB-INF/views/searchview.jsp?pagenumber=" + pageNumber).forward(req,
-					resp);
-		}else if(uri.endsWith("reporting.vms")){
-			req.getRequestDispatcher(
-					"/WEB-INF/views/reporting.jsp").forward(req,
-					resp);
-		}else if (uri.endsWith("bank.vms")) {
+					"/WEB-INF/views/searchview.jsp?pagenumber=" + pageNumber)
+					.forward(req, resp);
+		} else if (uri.endsWith("reporting.vms")) {
+			req.getRequestDispatcher("/WEB-INF/views/reporting.jsp").forward(
+					req, resp);
+		} else if (uri.endsWith("bank.vms")) {
 			Bank bank = new Bank();
 			bank.setAcno(req.getParameter("acn"));
 			bank.setAcName(req.getParameter("acname"));
@@ -333,35 +364,36 @@ public class AdminServlet extends HttpServlet {
 			bank.setOtherbankname(req.getParameter("bank_name"));
 			bank.setIcf_code(req.getParameter("iscf_code"));
 			if (vendorServiceImp.addBank(bank)) {
-				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp")
+						.forward(req, resp);
 			} else {
-				resp.sendRedirect("error.jsp");
+				resp.sendRedirect("/WEB-INF/views/error.jsp");
 			}
-		}else if(uri.endsWith("billes.vms")){
-			req.getRequestDispatcher("/WEB-INF/views/billes.jsp").forward(req, resp);
-			
-		}else if (uri.endsWith("billadd.vms")) {
+		} else if (uri.endsWith("billes.vms")) {
+			req.getRequestDispatcher("/WEB-INF/views/billes.jsp").forward(req,
+					resp);
+
+		} else if (uri.endsWith("billadd.vms")) {
 			Billes billes = new Billes();
 			billes.setBillNo(req.getParameter("billno"));
 			billes.setShopName(req.getParameter("shopname"));
 			System.out.println(req.getParameter("filename"));
 			billes.setAmount(req.getParameter("amount"));
-			billes.setName(req. getParameter("name"));
+			billes.setName(req.getParameter("name"));
 			billes.setMobile(req.getParameter("mobile"));
 			System.out.println((req.getParameter("date")));
-			 
+
 			String date = req.getParameter("date");
 			System.out.println(date);
 
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-				 
-		        Date parsed = format.parse(date);
-		      
-		         
-		      java.sql.Date date11=new java.sql.Date(0000-00-00);
-		        System.out.println();
-				  billes.setDate(date);
+
+				Date parsed = format.parse(date);
+
+				java.sql.Date date11 = new java.sql.Date(0000 - 00 - 00);
+				System.out.println();
+				billes.setDate(date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -372,37 +404,77 @@ public class AdminServlet extends HttpServlet {
 			billes.setImagepath(file);
 
 			if (vendorServiceImp.addBills(billes)) {
-				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp").forward(req,
-						resp);
+				req.getRequestDispatcher("/WEB-INF/views/landingpage.jsp")
+						.forward(req, resp);
 
 			} else {
-				resp.sendRedirect("error.jsp");
+				resp.sendRedirect("/WEB-INF/views/error.jsp");
 			}
-		}else if(uri.endsWith("month.vms")){
+		} else if (uri.endsWith("month.vms")) {
 			req.getRequestDispatcher("/WEB-INF/views/month.jsp").forward(req,
 					resp);
-		}else if(uri.endsWith("month_v")){
-			String month=req.getParameter("month");
-			int month_int=Integer.parseInt(month);
-			System.out.println("monthvalue="+month_int);
-			List<Billes> bii_list=new ArrayList<Billes>();
+		} else if (uri.endsWith("month_v")) {
+
+			String month = req.getParameter("month");
+			int month_int = Integer.parseInt(month);
+			System.out.println("monthvalue=" + month_int);
+			List<Billes> bii_list = new ArrayList<Billes>();
 			List<Billes> blist = vendorServiceImp.getAllBilles();
-			for(Billes b:blist){
-				int month1=b.getDate1().getMonth();
-				 if(month_int==month1+1){
-					 bii_list.add(b);
-					 
-				 }
-				
+			for (Billes b : blist) {
+				int month1 = b.getDate1().getMonth();
+				if (month_int == month1 + 1) {
+					bii_list.add(b);
+
+				}
+
 			}
-			
-			
 
 			ServletContext context = req.getServletContext();
 
 			context.setAttribute("bl", bii_list);
-			req.getRequestDispatcher("/WEB-INF/views/view_s.jsp").forward(req, resp);
-		}
+			req.getRequestDispatcher("/WEB-INF/views/view_m.jsp").forward(req,
+					resp);
+		} else if (uri.endsWith("allvendors")) {
+			List<Vendor> list = vendorServiceImp.getAllVendors();
+			System.out.println("coming...");
+
+			req.setAttribute("vlist", list);
+			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
+			String page = req.getParameter("page");
+			req.getRequestDispatcher(
+					"/WEB-INF/views/view_vendor.jsp?pagenumber=" + pageNumber)
+					.forward(req, resp);
+		} else if (uri.endsWith("contactmanager.vms")) {
+			HttpSession session = req.getSession(false);
+
+			if (session != null) {
+				Vendor vendor = (Vendor) session.getAttribute("vendor");
+
+				List<Contact> vendorContacts = vendorServiceImp.deleteContacts(
+						req.getParameter("ids"), vendor.getVendorContacts());
+
+				session.setAttribute("vendor", vendor);
+				session.setAttribute("editContact", null);
+				session.setAttribute("contactList", vendor.getVendorContacts());
+			}
+			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
+					.forward(req, resp);
+		}else if(uri.endsWith("excel")){
+			String inj1=req.getParameter("bill"); 
+			  
+			  HSSFWorkbook wb = new HSSFWorkbook();
+			  HSSFSheet sheet = wb.createSheet("Excel Sheet"); 
+			  HSSFRow rowhead = sheet.createRow((short)0);
+			  rowhead.createCell((short)0).setCellValue("Injections");
+			 
+			  HSSFRow row = sheet.createRow((short)1);
+			  row.createCell((short)0).setCellValue(inj1);
+			  
+			  FileOutputStream fileOut = new FileOutputStream("c:/Injection_Details.xls/Injection_Details.xls");
+			  wb.write(fileOut);
+			  fileOut.close();
+			   
+			 		}
 
 	}
 

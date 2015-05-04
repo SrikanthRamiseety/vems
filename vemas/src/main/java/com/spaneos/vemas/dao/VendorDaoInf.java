@@ -1,6 +1,5 @@
 package com.spaneos.vemas.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.spaneos.vemas.pojo.Admin;
@@ -52,7 +51,7 @@ public interface VendorDaoInf extends SQLQueries {
 	public Admin getPassword(String name);
 
 	public List<Billes> getBillByDate(String Date);
-	public List<Billes> getBillByVendorName(String vendor);
-	
 
+	public List<Billes> getBillByVendorName(String vendor);
+   public List<Vendor> getAllVendors();
 }

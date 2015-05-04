@@ -10,40 +10,42 @@
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel="stylesheet">
 
-<!-- <script type="text/javascript">
+
+<script type="text/javascript">
 	$(function() {
-			var page=$("#previous").val();
-		if(page == 0){
+		var page = $("#previous").val();
+		if (page == 0) {
 			$("#previous").addClass("disabled");
-			 
-			
+
 		}
-		 var size1=$("#hidden").val();
-		 if(size1<=4){
-			 $("#previous").hide();
-			 $("#next").hide();
-			 
-		 }
-		 var size=$("#hidden").val();
-		 var number=$("#next").val();
-		 
-		 if(number==Math.round(size/3)+1){
-			 $("#next"). addClass("disabled");
-		 }
-		$(".page").click(function() {
-			var pagenumber=$(this).val();
-			
-			$.post("search.vms?pagenumber=" + $(this).val()+"&page=notfirst", show);
-			
-			function show(data) {
-				$("#show").html(data);
-			}
-			$(".pa").css("color", "#303030");
-		});
+		var size1 = $("#hidden").val();
+		if (size1 <= 4) {
+			$("#previous").hide();
+			$("#next").hide();
+
+		}
+		var size = $("#hidden").val();
+		var number = $("#next").val();
+
+		if (number == Math.round(size / 3) + 1) {
+			$("#next").addClass("disabled");
+		}
+		$(".page").click(
+				function() {
+					var pagenumber = $(this).val();
+
+					$.post("search.vms?pagenumber=" + $(this).val()
+							+ "&page=notfirst", show);
+
+					function show(data) {
+						$("#show").html(data);
+					}
+					$(".pa").css("color", "#303030");
+				});
 	});
 </script>
- -->
 <style type="text/css">
 #pagination {
 	color: #337AB7;
@@ -75,8 +77,6 @@ th {
 table.collapse.in {
 	display: table-row;
 }
-
- 
 
 .btn {
 	border-radius: 74px;
@@ -140,18 +140,19 @@ table.collapse.in {
 
 									<c:forEach items="${billeslist }" var="i">
 										<tr>
-                                            <td data-date-format="yyyy-dd-mm"><c:out value="${i.date1}"  ></c:out></td>
+											<td data-date-format="yyyy-dd-mm"><c:out
+													value="${i.date1}"></c:out></td>
 											<td><c:out value="${i.billNo}"></c:out></td>
 											<td><c:out value="${i.shopName}"></c:out></td>
 											<td><c:out value="${i.amount}"></c:out></td>
 											<td><c:out value="${i.name}"></c:out></td>
 											<td><c:out value="${i.mobile}"></c:out></td>
-											 
-											<td><img alt="loading..." src="../upload/${i. imageName}"
-							height="100px" width="100px"></td>
 
+											<td id="img"><img alt="loading..."
+												src="../upload/${i. imageName}" height="100px" width="200px">
+												 
 
-
+													 </td>
 										</tr>
 
 
@@ -184,4 +185,7 @@ table.collapse.in {
 
 	<%@ include file="footer.jsp"%>
 </body>
+<script src="../js/jquery.prettyPhoto.js"></script>
+<link href="../css/prettyPhoto.css" rel="stylesheet">
+<link href="../css/maind.css" rel="stylesheet">
 </html>

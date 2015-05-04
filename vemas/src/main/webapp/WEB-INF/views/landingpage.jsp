@@ -97,7 +97,7 @@
                                         <img src="../images/1001.jpg" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
-                                        <img src="../images/765.jpg" class="img-responsive" alt="">
+                                        <img src="../images/765.jpg" height="500px" width="330px" class="img-responsive" alt="">
                                     </div>
                                     <div class="item">
                                         <img src="../images/6.jpg" class="img-responsive" alt="">

@@ -40,7 +40,8 @@ import com.spaneos.vemas.service.VendorServiceInf;
 public class VendorManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VendorServiceImp vendorServiceImp = VendorServiceImp.getInstance();
-public String PATH="/WEB-INF/view_u/";
+	public String PATH = "/WEB-INF/view_u/";
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -58,12 +59,11 @@ public String PATH="/WEB-INF/view_u/";
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
-    
 
- if(uri.endsWith("landingpageOfEmplyee")){
-			request.getRequestDispatcher(PATH+"landingpageOfEmplyee.jsp").forward(request, response);
-		}
-  else if (uri.endsWith("forgotpwd.vms")) {
+		if (uri.endsWith("landingpageOfEmplyee")) {
+			request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
+					.forward(request, response);
+		} else if (uri.endsWith("forgotpwd.vms")) {
 			String email = request.getParameter("email");
 			String seq_question = request.getParameter("seq_question");
 			String answer = request.getParameter("answer");
@@ -92,29 +92,29 @@ public String PATH="/WEB-INF/view_u/";
 
 				response.sendRedirect("loginpage.jsp");
 			}
- 
- 
-		
-		}else if(uri.endsWith("type.vms")){
+
+		} else if (uri.endsWith("type.vms")) {
 			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
-		 	request.setAttribute("tlist", list3);
-			request.getRequestDispatcher(PATH+"addvendor.jsp").forward(request,
+			request.setAttribute("tlist", list3);
+			request.getRequestDispatcher(PATH + "addvendor.jsp").forward(
+					request, response);
+		} else if (uri.endsWith("search_v")) {
+			request.getRequestDispatcher(PATH + "search.jsp").forward(request,
 					response);
-		}else if (uri.endsWith("search_v")) {
-			request.getRequestDispatcher(PATH+"search.jsp").forward(request, response);
-		}else if(uri.endsWith("typevendor.vms")){
-			request.getRequestDispatcher(PATH+"addvendortype.jsp").forward(request,
+		} else if (uri.endsWith("typevendor.vms")) {
+			request.getRequestDispatcher(PATH + "addvendortype.jsp").forward(
+					request, response);
+		} else if (uri.endsWith("billes.vms")) {
+			request.getRequestDispatcher(PATH + "billes.jsp").forward(request,
 					response);
-		}else if(uri.endsWith("billes.vms")){
-			request.getRequestDispatcher(PATH+"billes.jsp").forward(request, response);
-			
-		}else if (uri.endsWith("billadd.vms")) {
+
+		} else if (uri.endsWith("billadd.vms")) {
 			Billes billes = new Billes();
 			billes.setBillNo(request.getParameter("billno"));
 			billes.setShopName(request.getParameter("shopname"));
 			System.out.println(request.getParameter("filename"));
 			billes.setAmount(request.getParameter("amount"));
-			billes.setName(request. getParameter("name"));
+			billes.setName(request.getParameter("name"));
 			billes.setMobile(request.getParameter("mobile"));
 			System.out.println((request.getParameter("date")));
 			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
@@ -126,7 +126,7 @@ public String PATH="/WEB-INF/view_u/";
 				System.out.println(date1);
 				System.out.println(formatter.format(date1));
 				Calendar cal = Calendar.getInstance();
-				  billes.setDate(formatter.format(cal.getTime()));
+				billes.setDate(formatter.format(cal.getTime()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -137,23 +137,24 @@ public String PATH="/WEB-INF/view_u/";
 			billes.setImagepath(file);
 
 			if (vendorServiceImp.addBills(billes)) {
-				request.getRequestDispatcher(PATH+"landingpageOfEmplyee.jsp").forward(request,
-						response);
+				request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
+						.forward(request, response);
 
 			} else {
 				response.sendRedirect("error.jsp");
 			}
-		}else if(uri.endsWith("viewUsers")){
+		} else if (uri.endsWith("viewUsers")) {
 			List<User> users = vendorServiceImp.getAllUsers();
 			ServletContext context = request.getServletContext();
 
 			context.setAttribute("userslist", users);
 			response.sendRedirect("viewUser.vms");
-		}else if (uri.endsWith("addvendor.opt")) {
+		} else if (uri.endsWith("addvendor.opt")) {
 			HttpSession session = request.getSession(false);
 
 			if (session != null) {
 				Vendor vendor = vendorServiceImp.createVendor(
+						request.getParameter("vendorcode"),
 						request.getParameter("vendorType"),
 						request.getParameter("vendorCategory"),
 						request.getParameter("vendorName"),
@@ -161,6 +162,8 @@ public String PATH="/WEB-INF/view_u/";
 								+ request.getParameter("vendorLandlineNumber"),
 						request.getParameter("mobileCode") + "-"
 								+ request.getParameter("vendorMobileNumber"),
+						request.getParameter("vendorMobileNumber1"),
+						request.getParameter("vendorMobileNumber2"),
 						request.getParameter("vendorWebsite"),
 						request.getParameter("vendorAddress"));
 
@@ -177,22 +180,40 @@ public String PATH="/WEB-INF/view_u/";
 						request.getParameter("vendorLandlineNumber"));
 				session.setAttribute("vendor", vendor);
 
-				request.getRequestDispatcher(PATH+"contactmanager.jsp").forward(request,
-						response);
+				request.getRequestDispatcher(PATH + "contactmanager.jsp")
+						.forward(request, response);
 			}
-		}
-		else if (uri.endsWith("updatecontact.vms")) {
+		} else if (uri.endsWith("updatecontact.vms")) {
 			HttpSession session = request.getSession(false);
 
 			if (session != null) {
 				Vendor vendor = (Vendor) session.getAttribute("vendor");
+				List<Contact> vendorContacts = vendorServiceImp.updateContact(
+						request.getParameter("contactName"),
+						request.getParameter("designation"),
+						request.getParameter("mobile"),
+						request.getParameter("email"),
+						request.getParameter("employmentStatus"),
+						request.getParameter("manager"),
+						vendor.getVendorContacts());
+
+				if (vendorContacts == null) {
+					response.sendRedirect("error.jsp");
+				}
+				session.setAttribute("vendor", vendor);
+				session.setAttribute("editContact", null);
+				session.setAttribute("contactList", vendor.getVendorContacts());
+			}
+			request.getRequestDispatcher(PATH + "contactmanager.jsp").forward(
+					request, response);
+		} else if (uri.endsWith("deletecontacts.vms")) {
+			HttpSession session = request.getSession(false);
+
+			if (session != null) {
+				Vendor vendor = (Vendor) session.getAttribute("vendor");
+
 				List<Contact> vendorContacts = vendorServiceImp
-						.updateContact(request.getParameter("contactName"),
-								request.getParameter("designation"),
-								request.getParameter("mobile"),
-								request.getParameter("email"),
-								request.getParameter("employmentStatus"),
-								request.getParameter("manager"),
+						.deleteContacts(request.getParameter("ids"),
 								vendor.getVendorContacts());
 
 				if (vendorContacts == null) {
@@ -202,26 +223,8 @@ public String PATH="/WEB-INF/view_u/";
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			request.getRequestDispatcher(PATH+"contactmanager.jsp").forward(request,
-					response);
-		} else if (uri.endsWith("deletecontacts.vms")) {
-			HttpSession session = request.getSession(false);
-
-			if (session != null) {
-				Vendor vendor = (Vendor) session.getAttribute("vendor");
-
-				List<Contact> vendorContacts = vendorServiceImp.deleteContacts(
-						request.getParameter("ids"), vendor.getVendorContacts());
-
-				if (vendorContacts == null) {
-					response.sendRedirect("error.jsp");
-				}
-				session.setAttribute("vendor", vendor);
-				session.setAttribute("editContact", null);
-				session.setAttribute("contactList", vendor.getVendorContacts());
-			}
-			request.getRequestDispatcher(PATH+"viewcontacts.jsp").forward(request,
-					response);
+			request.getRequestDispatcher(PATH + "viewcontacts.jsp").forward(
+					request, response);
 		} else if (uri.endsWith("saveall.vms")) {
 			HttpSession session = request.getSession(false);
 
@@ -231,8 +234,8 @@ public String PATH="/WEB-INF/view_u/";
 				if (((VendorServiceImp) vendorServiceImp).saveAllData(vendor)) {
 					request.setAttribute("addedsuccessfully", true);
 					System.out.println("vendor" + vendor);
-					request.getRequestDispatcher(PATH+"addvendor.jsp").forward(request,
-							response);
+					request.getRequestDispatcher(PATH + "addvendor.jsp")
+							.forward(request, response);
 				} else {
 					response.sendRedirect("error.jsp");
 				}
@@ -245,8 +248,8 @@ public String PATH="/WEB-INF/view_u/";
 
 				if (vendorServiceImp.addVendor(vendor)) {
 					request.setAttribute("addedsuccessfully", true);
-					request.getRequestDispatcher(PATH+"addvendor.jsp").forward(request,
-							response);
+					request.getRequestDispatcher(PATH + "addvendor.jsp")
+							.forward(request, response);
 				} else {
 					response.sendRedirect("error.jsp");
 				}
@@ -259,7 +262,11 @@ public String PATH="/WEB-INF/view_u/";
 				Contact contact = vendorServiceImp.createContact(
 						request.getParameter("contactName"),
 						request.getParameter("designation"),
-						request.getParameter("mobile"), request.getParameter("email"),
+						request.getParameter("mobile"),
+						request.getParameter("mobile1"),
+						request.getParameter("mobile2"), request.getParameter("email"),
+						request.getParameter("email1"), request.getParameter("email2"),
+						 
 						request.getParameter("employmentStatus"),
 						request.getParameter("manager"));
 
@@ -268,15 +275,15 @@ public String PATH="/WEB-INF/view_u/";
 				}
 				vendor.setVendorContacts(new ArrayList<Contact>());
 				vendor.getVendorContacts().add(contact);
- 
+
 				/* vendor.getVendorContacts().add(contact); */
 
 				session.setAttribute("vendor", vendor);
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			request.getRequestDispatcher(PATH+"contactmanager.jsp").forward(request,
-					response);
+			request.getRequestDispatcher(PATH + "contactmanager.jsp").forward(
+					request, response);
 		} else if (uri.endsWith("editcontact.vms")) {
 			HttpSession session = request.getSession(false);
 
@@ -291,15 +298,15 @@ public String PATH="/WEB-INF/view_u/";
 					}
 				}
 			}
-			request.getRequestDispatcher(PATH+"addcontact.jsp").forward(request,
-					response);
-		} else if(uri.endsWith("addvendor.vms")){
+			request.getRequestDispatcher(PATH + "addcontact.jsp").forward(
+					request, response);
+		} else if (uri.endsWith("addvendor.vms")) {
 			List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
 			System.out.println(list3);
 			request.setAttribute("tlist", list3);
-			request.getRequestDispatcher(PATH+"addvendor.jsp").forward(request,
-					response);
-		}else if (uri.endsWith("addtype_v.vms")) {
+			request.getRequestDispatcher(PATH + "addvendor.jsp").forward(
+					request, response);
+		} else if (uri.endsWith("addtype_v.vms")) {
 			String category = request.getParameter("vendorcategory");
 			String vtype = request.getParameter("vendortype");
 			System.out.println(vtype);
@@ -308,47 +315,45 @@ public String PATH="/WEB-INF/view_u/";
 			type2.setVendorCategory(category);
 			type2.setVendorType(vtype);
 			if (vendorServiceImp.addVendortype(type2)) {
-				request.getRequestDispatcher(PATH+"landingpageOfEmplyee.jsp").forward(request,
-						response); 
+				request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
+						.forward(request, response);
 
 			} else {
 				response.sendRedirect("error.jsp");
 			}
 
-		}else if (uri.endsWith("searchview.vms")) {
-			 
-				int pageNumber = Integer.parseInt(request.getParameter("pagenumber"));
-				String page = request.getParameter("page");
-				String search = request.getParameter("search");
-				List<Vendor> vendorList = null;
+		} else if (uri.endsWith("searchview.vms")) {
 
-				if (page.equals("first")) {
-					HttpSession session = request.getSession();
-					if (search == null || search == "")
-						session.setAttribute("vender", null);
-					else {
-						vendorList = vendorServiceImp
-								.getVendorsByVendorname(search);
-						/*
-						 * if (vendorlist1 == null) vendorlist1 = new
-						 * ArrayList<Vendor>();
-						 */
+			int pageNumber = Integer.parseInt(request
+					.getParameter("pagenumber"));
+			String page = request.getParameter("page");
+			String search = request.getParameter("search");
+			List<Vendor> vendorList = null;
 
-					}
+			if (page.equals("first")) {
+				HttpSession session = request.getSession();
+				if (search == null || search == "")
+					session.setAttribute("vender", null);
+				else {
+					vendorList = vendorServiceImp
+							.getVendorsByVendorname(search);
+					/*
+					 * if (vendorlist1 == null) vendorlist1 = new
+					 * ArrayList<Vendor>();
+					 */
 
-					session.setAttribute("vender", vendorList);
 				}
 
-				request.getRequestDispatcher(
-						PATH+"searchview.jsp?pagenumber=" + pageNumber).forward(request,
-						response);
-			}else if(uri.endsWith("viewUser.vms")){
-				request.getRequestDispatcher(
-						PATH+"viewUser.jsp").forward(request,
-						response);
+				session.setAttribute("vender", vendorList);
 			}
-		
+
+			request.getRequestDispatcher(
+					PATH + "searchview.jsp?pagenumber=" + pageNumber).forward(
+					request, response);
+		} else if (uri.endsWith("viewUser.vms")) {
+			request.getRequestDispatcher(PATH + "viewUser.jsp").forward(
+					request, response);
+		}
 
 	}
-
 }

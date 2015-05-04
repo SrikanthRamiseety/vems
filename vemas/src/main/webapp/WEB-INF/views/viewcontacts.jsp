@@ -3,8 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.contact-info{
+
+height: auto;
+
+}
+
+
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>
+<img src="../images/About_spaneos.png">
+
+
+</title>
 </head>
 <body>
 	<div class="panel panel-primary" id="table">
@@ -31,8 +44,12 @@
 					<tr>
 						<td>${contact.name }</td>
 						<td>${contact.designation }</td>
-						<td>${contact.mobile }</td>
-						<td>${contact.email }</td>
+						<td>${contact.mobile },
+						${contact.mobile1 }
+						,${contact.mobile2 }</td>
+						<td>${contact.email },
+						${contact.email1 }
+						,${contact.email2 }</td>
 						<td>${contact.employmentStatus }</td>
 						<td>${contact.reportingManager }</td>
 						<td><input type="radio" name="edit" class="edit"

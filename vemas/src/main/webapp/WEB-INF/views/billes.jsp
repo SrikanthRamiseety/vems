@@ -113,9 +113,9 @@ background-image: url("../images/119.jpg");
 
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">VendorName</label>
-								<div class="col-sm-5" id="9">
+								<div class="col-sm-5" id="1">
 									<input type="text" id="shopname" name="shopname"
-										class="form-control optional" placeholder="Shop Name"
+									required="required"	class="form-control" placeholder="Shop Name"
 										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
 								<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
@@ -157,7 +157,7 @@ background-image: url("../images/119.jpg");
 									<!-- <input type="password" id="password" name="password"
 									class="form-control" placeholder="Password" required> -->
 									<input type="text" id="name" name="name"
-										class="form-control" pattern="alpha" placeholder="Name" />
+									required="required"	class="form-control" pattern="alpha" placeholder="Name" />
 								</div>
 
 								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>

@@ -87,26 +87,26 @@ public class VendorServiceImp implements VendorServiceInf {
 	}
 
 	@Override
-	public Vendor createVendor(String type, String category, String name,
-			String lNumber, String mNumber, String website, String address) {
+	public Vendor createVendor(String code,String type, String category, String name,
+			String lNumber,  String mNumber,String mNumber1,String mNumber2, String website, String address) {
 
-		if (type == null || category == null || name == null || lNumber == null
+		if (code==null||type == null || category == null || name == null || lNumber == null
 				|| mNumber == null || address == null) {
 			return null;
 		}
-		return new Vendor(0, type, category, name, lNumber, mNumber, website,
+		return new Vendor(0,code, type, category, name, lNumber, mNumber,mNumber1,mNumber2, website,
 				address, null);
 	}
 
 	@Override
 	public Contact createContact(String name, String designation,
-			String mobile, String email, String empStatus, String manager) {
+			String mobile,String mobile1,String mobile2, String email,String email1,String email2, String empStatus, String manager) {
 
 		if (name == null || designation == null || mobile == null
 				|| email == null) {
 			return null;
 		}
-		return new Contact(0, name, designation, mobile, email, empStatus,
+		return new Contact(0, name, designation, mobile,mobile1,mobile2, email,email1,email2, empStatus,
 				manager);
 	}
 
@@ -303,5 +303,14 @@ public class VendorServiceImp implements VendorServiceInf {
 		// TODO Auto-generated method stub
 		return vendorDaoImp.getBillByDate(Date);
 	}
+
+	@Override
+	public List<Vendor> getAllVendors() {
+		 
+		return vendorDaoImp.getAllVendors();
+	}
+
+ 
+	 
 
 }

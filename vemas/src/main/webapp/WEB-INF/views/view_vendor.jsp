@@ -32,7 +32,7 @@
 				function() {
 					var pagenumber = $(this).val();
 
-					$.post("searchview.vms?pagenumber=" + $(this).val()
+					$.post("allvendors?pagenumber=" + $(this).val()
 							+ "&page=notfirst", show);
 
 					function show(data) {
@@ -85,10 +85,6 @@ table.collapse.in {
 h2 {
 	color: red;
 }
-#vendor-table{
-max-height: 400px;
-overflow: scroll;
-}
 </style>
 
 <script type="text/javascript">
@@ -98,15 +94,15 @@ overflow: scroll;
 </script>
 </head>
 <body>
-	<c:if test="${(vender eq null) or (fn:length(vender) eq 0) }">
+	<c:if test="${  (fn:length(vlist) eq 0) }">
 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
 		<center>
 			<h2>Sorry! No Data Found..</h2>
 		</center>
 	</c:if>
-	<c:if test="${(vender ne null) or (fn:length(vender) ne 0) }">
+	<c:if test="${  (fn:length(vlist) ne 0) }">
 		<input type="hidden" id="hidden" name="hidden"
-			value="${vender.size() }">
+			value="${vlist.size() }">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h4>Vendor</h4>
@@ -116,7 +112,6 @@ overflow: scroll;
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-
 							<th>S.No</th>
 							<th>VendorCode</th>
 							<th>Type</th>
@@ -130,8 +125,8 @@ overflow: scroll;
 					</thead>
 					<tbody>
 
-						<c:forEach begin="${(param.pagenumber-1) * 8 }" items="${vender }"
-							end="${(param.pagenumber * 8 )-1 }" var="i">
+						<c:forEach begin="${(param.pagenumber-1) *  5 }" items="${vlist}"
+							end="${(param.pagenumber * 5 )-1 }" var="i">
 							<tr class="clickable" data-toggle="collapse"
 								id="view${i.getId()}" data-target=".view${i.getId()}">
 								<td><c:out value="${i.getId()}"></c:out></td>
@@ -141,8 +136,8 @@ overflow: scroll;
 								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
 								<td><c:out
-										value="${i.getVendorMobileNumber()},${i.getVendorMobileNumber1()},${i.getVendorMobileNumber2()}"></c:out></td>
-								<td><a href="http://${i.getVendorWebsite()}"target="_blank">${i.getVendorWebsite()}</a></td>
+										value="${i.getVendorMobileNumber()}, ${i.getVendorMobileNumber1()},  ${i.getVendorMobileNumber2()}"></c:out></td>
+								<td><c:out value="${i.getVendorWebsite()}"></c:out></td>
 
 
 							</tr>
@@ -165,15 +160,12 @@ overflow: scroll;
 							<tbody>
 								<c:forEach items="${ i.vendorContacts}" var="contact">
 									<tr class="collapse view${i.getId()}" id="child-table">
-
 										<td class="info"><c:out value="${contact.getId() }"></c:out></td>
 										<td class="info"><c:out value="${contact.getName() }"></c:out></td>
 										<td class="info"><c:out
 												value="${contact.getDesignation() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getMobile() },${contact.getMobile1() },${contact.getMobile2() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getEmail() },${contact.getEmail1() },${contact.getEmail2() }"></c:out></td>
+										<td class="info"><c:out value="${contact.getMobile() }"></c:out></td>
+										<td class="info"><c:out value="${contact.getEmail() }"></c:out></td>
 										<td class="info"><c:out
 												value="${contact.getEmploymentStatus() }"></c:out></td>
 										<td class="info"><c:out

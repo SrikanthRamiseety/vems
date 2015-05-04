@@ -6,12 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Date</title>
+<title>
+
+
+</title>
 <script type="text/javascript">
 $(function(){
 	$("#b").click(function(){
 		 var date=$("#date_r").val();
-		 $.post("admin/date_s?date="+date,
+		 $.post("admin/date_s?pagenumber=1&date="+date+"&page=first",
 					show);
 			function show(data) {
 				$("#disply").html("");
@@ -54,20 +57,14 @@ $(function(){
 							 
 							<br>
 							<div class="form-group" id="bttns">
-								<div class="col-sm-offset-2 col-sm-4">
+								<div class="col-sm-offset-3 col-sm-4">
 									 <button type="button"
 											class="btn btn-md btn-primary pull-right" id="b">Submit</button></a>
 								</div>
-								<div class="col-sm-2">
-
-									<button type="button" class="btn btn-md btn-primary pull-right"
-										id="a">Reset</button>
-								</div>
+								 
 							</div>
 						</form>
-						<p id="mandatory" class="pull-right">
-							All fields marked in<span><em> * </em></span> are mandatory
-						</p>
+						 
 					</div>
 				</div>
 			</div>

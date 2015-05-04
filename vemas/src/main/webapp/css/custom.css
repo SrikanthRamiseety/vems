@@ -1,4 +1,4 @@
-body {
+#nyu {
     font-family: 'Open Sans', sans-serif;
     background-image: url("../images/890.jpg");
 }
@@ -233,7 +233,7 @@ font-weight: 700;
     padding-left: 55px;
 }
 .sidebar-collapse , .sidebar-collapse .nav{
-	background:none;
+	background:rgb(51, 122, 183);
 }
 .sidebar-collapse .nav {
 	padding:0;

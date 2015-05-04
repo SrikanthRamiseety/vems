@@ -97,7 +97,7 @@ background-image: url("../images/120.jpg");
 								<label class="col-sm-4 control-label">VendorType<em>*</em></label>
 								<div class="col-sm-5" id="4">
 									<input type="text" id="vendortype" name="vendortype"
-										class="form-control" placeholder="vendortype" required>
+										class="form-control" placeholder="vendortype" required pattern="alpha">
 								</div>
 								<div class='tooltip help'>
 									<span>?</span>
