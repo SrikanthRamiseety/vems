@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout().logoutSuccessUrl("/").and().exceptionHandling()
 		.accessDeniedPage("/403").and().csrf();
 		http.csrf().disable();*/
-		http.authorizeRequests().antMatchers("/admin/* ")
+		/*http.authorizeRequests().antMatchers("/admin/* ")
 		.access("hasRole('ROLE_ADMIN')").and().formLogin()
 		.loginPage("/loginpage_l.jsp").failureUrl("/loginpage_l.jsp")
 		.loginProcessingUrl("/j_spring_security_check")
@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout().logoutSuccessUrl("/").and().exceptionHandling()
 		.accessDeniedPage("/403").and().csrf();
 		http.csrf().disable();
-		
+		*/
 		http.authorizeRequests().antMatchers("/css/**").permitAll()
 		.antMatchers("/js/**").permitAll().antMatchers("/images/**")
 		.permitAll().antMatchers("/bootstrap/**").permitAll()
