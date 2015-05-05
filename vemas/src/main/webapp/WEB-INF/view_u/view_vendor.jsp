@@ -9,10 +9,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+ 
+<link href="../css/bootstrap.css" rel="stylesheet">
+
+        
+        <!-- Template js -->
+        <script src="../js/jquery-2.1.1.min.js"></script>
+         
+        <script src="../js/jquery.appear.js"></script>
+        
+
 <script type="text/javascript">
 	$(function() {
+		 
 		var page = $("#previous").val();
-		if (page == 0) {
+		if (page == 0) {	
 			$("#previous").addClass("disabled");
 
 		}
@@ -36,7 +48,7 @@
 							+ "&page=notfirst", show);
 
 					function show(data) {
-						$("#show").html(data);
+						$("#disply").html(data);
 					}
 					$(".pa").css("color", "#303030");
 				});
@@ -93,7 +105,12 @@ h2 {
 	});
 </script>
 </head>
-<body>
+<body id="disply">
+<%@ include file="header.jsp" %>
+<div class="container">
+<div class="row">
+ 
+<div class="col-md-11"> 
 	<c:if test="${  (fn:length(vlist) eq 0) }">
 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
 		<center>
@@ -167,6 +184,7 @@ h2 {
 			</div>
 		</div>
 	</c:if>
-
+	</div>
+	</div></div>
 </body>
 </html>

@@ -114,8 +114,8 @@ background-image: url("../images/97.jpg");
                         <!-- Start Carousel Section -->
                         
                         <div class="row">
-                        <div class="col-md-2"></div>
-                            <div class="col-md-8">
+                         
+                            <div class="col-md-12">
                                 <div class="menu-item color responsive">
                                     <a href="search_v">
                                         <i class="fa fa-search"></i>
@@ -140,9 +140,9 @@ background-image: url("../images/97.jpg");
                     <div class="col-md-3">
                         
                         <div class="menu-item light-red">
-                            <a href="viewUsers">
+                            <a href="allvendors?pagenumber=1&page=first">
                                 <i class="fa fa-envelope-o"></i>
-                                <p>Contact</p>
+                                <p>All Vendor</p>
                             </a>
                         </div>
                         

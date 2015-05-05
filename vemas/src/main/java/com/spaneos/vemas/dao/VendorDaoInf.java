@@ -54,4 +54,5 @@ public interface VendorDaoInf extends SQLQueries {
 
 	public List<Billes> getBillByVendorName(String vendor);
    public List<Vendor> getAllVendors();
+   public List<Bank> getBankdetiles(String name);
 }

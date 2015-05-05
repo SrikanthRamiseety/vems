@@ -40,9 +40,8 @@ float: right;
 				</div>
 				<div id="right">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
-					
-					<p id="test">	Welcome : ${pageContext.request.userPrincipal.name}</p> <br> <a
-							href="<c:url value="/logout" />"> Logout</a>
+					<h3 id="test" style="color: red;">	Welcome : ${pageContext.request.userPrincipal.name} <br>&nbsp; <a
+							href="<c:url value="/logout" />"> Logout</a></h3>
 					
 				</c:if>
 				</div>

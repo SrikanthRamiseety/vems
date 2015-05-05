@@ -310,6 +310,12 @@ public class VendorServiceImp implements VendorServiceInf {
 		return vendorDaoImp.getAllVendors();
 	}
 
+	@Override
+	public List<Bank> getBankdetiles(String name) {
+		
+		return vendorDaoImp.getBankdetiles(name);
+	}
+
  
 	 
 

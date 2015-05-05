@@ -14,6 +14,24 @@
 }
 </style>
 <script type="text/javascript">
+$(function() {
+
+ 
+	$("#addbank").click(function() {
+	var vendor = $("#vendorname").val();
+	if(vendor.length <= 0) {
+		alert("Please enter vendorName to continue.");
+	
+					 
+		} else {
+		window.location.href = "addbank_v?vendorName="+ vendor;
+		}
+					});
+});
+
+
+</script>
+<script type="text/javascript">
 	function conformcancel() {
 		if ($("input").val() != null) {
 			var con = confirm("All unsaved data will be lost. Are you sure you want to continue?");
@@ -38,6 +56,7 @@
 		return x.trim();
 	}
 </script>
+
 <link rel="stylesheet" href="../css/addvendor.css" type="text/css" />
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
@@ -68,19 +87,17 @@
 								Code<em>*</em>
 							</label>
 							<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
-								<input type="text" id="vendorcode" name="vendorcode"
-									pattern="" required="required"
-									class=" required form-control"
+								<input type="text" id="vendorcode" name="vendorcode" pattern=""
+									required="required" class=" required form-control"
 									placeholder="Enter the Vendor Code"
-									onblur="this.value = trimSpaces(this.value);"
-									 >
+									onblur="this.value = trimSpaces(this.value);">
 							</div>
 							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
 								<span>?</span>
 								<div class='content'>
 									<b></b>
 									<p>
-										<i>Vendor</i>  Code
+										<i>Vendor</i> Code
 									</p>
 								</div>
 							</div>
@@ -102,7 +119,6 @@
 										<c:forEach items="${tlist}" var="i">
 											<option value="${i.getVendorType()}">
 												<c:out value="${i.getVendorType()}"></c:out>
-
 										</c:forEach>
 
 									</select>
@@ -205,27 +221,27 @@
 								</div>
 							</div>
 						</div>
-						 
+
 						<div class="item form-group">
-							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile-2 </label>
+							<label class="col-sm-4 col-md-4 col-xs-4 col-lg-4 control-label">Mobile-2
+							</label>
 							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
 								<c:if test="${vendor eq null }">
 									<input type="text" id="code" name="mobileCode1"
-									 	 class="form-control" maxlength="5"
-										value="+91">
+										class="form-control" maxlength="5" value="+91">
 								</c:if>
-									<c:if test="${vendor ne null }">
+								<c:if test="${vendor ne null }">
 									<input type="text" id="code1" name="mobileCode"
-										   class="form-control" maxlength="5"
+										class="form-control" maxlength="5"
 										value="${vendorMobileCode }">
 								</c:if>
 							</div>
 							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
 								<input type="tel" id="mobile1" name="vendorMobileNumber1"
-									  class="form-control optional" maxlength="10"
-									  data-validate-length-range="-1"    pattern="numeric"
-									placeholder="Enter Mobile number"  
-									 value="${vendorMobileNumber }">
+									class="form-control optional" maxlength="10"
+									data-validate-length-range="-1" pattern="numeric"
+									placeholder="Enter Mobile number"
+									value="${vendorMobileNumber }">
 							</div>
 							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
 								<span>?</span>
@@ -242,28 +258,29 @@
 							<div class="col-sm-2 col-md-2 col-xs-2 col-lg-2">
 								<c:if test="${vendor eq null }">
 									<input type="text" id="code" name="mobileCode"
-										required="required"  class="form-control" maxlength="5"
+										required="required" class="form-control" maxlength="5"
 										value="+91">
 								</c:if>
 								<c:if test="${vendor ne null }">
 									<input type="text" id="code" name="mobileCode"
-									   class="form-control" maxlength="5"
+										class="form-control" maxlength="5"
 										value="${vendorMobileCode }">
 								</c:if>
 							</div>
 							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
 								<input type="tel" id="mobile1" name="vendorMobileNumber2"
-									required="required"  class="form-control optional" maxlength="10"
-									  data-validate-length-range="-1" 
-									placeholder="Enter Mobile number" maxlength="10" pattern="numeric"
-									 value="${vendorMobileNumber }">
+									required="required" class="form-control optional"
+									maxlength="10" data-validate-length-range="-1"
+									placeholder="Enter Mobile number" maxlength="10"
+									pattern="numeric" value="${vendorMobileNumber }">
 							</div>
 							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
 								<span>?</span>
 								<div class='content'>
 									<b></b>
 									<p>
-									(opation)	<i>Mobile</i> number should have only numbers with 10 digits.
+										(opation) <i>Mobile</i> number should have only numbers with
+										10 digits.
 									</p>
 								</div>
 							</div>
@@ -277,8 +294,9 @@
 							</div>
 							<div class="col-sm-4 col-md-4 col-xs-4 col-lg-4">
 								<input type="tel" id="number" name="vendorLandlineNumber"
-								required="required"	class="form-control optional" placeholder="Enter LandLine number"
-								 	maxlength="8" data-validate-length-range="-1" pattern="numeric"
+									required="required" class="form-control optional"
+									placeholder="Enter LandLine number" maxlength="8"
+									data-validate-length-range="-1" pattern="numeric"
 									value="${vendorLandlineNumber }">
 							</div>
 							<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
@@ -335,22 +353,27 @@
 									</p>
 								</div>
 							</div>
+
 						</div>
 
 						<div class="item form-group">
 							<br>
 							<div
-								class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-offset-3 col-sm-4 col-md-4 col-xs-4 col-lg-4">
+								class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-offset-2 col-sm-3 col-md-2 col-xs-2 col-lg-2">
 								<button type="submit" class="btn btn-primary btn-xl"
 									id="maintainContactInfo">Maintain Contact Information</button>
 							</div>
 							<div
-								class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-offset-1 col-sm-3 col-md-3 col-xs-3 col-lg-3">
-								<button type="button" class="btn btn-primary btn-xl re"
+								class="col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-offset-2 col-sm-3 col-md-2 col-xs-2 col-lg-2">
+								<button type="button" id="addbank" class=" btn btn-primary btn btn-xl">ADD
+									BAnk</button>
+							</div>
+							<div
+								class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-offset-1 col-sm-2 col-md-2 col-xs-2 col-lg-2">
+								<button type="button" class="btn btn-primary btn-xl"
 									onclick="conformcancel()" id="reset">Reset</button>
 
 							</div>
-
 						</div>
 						<p id="mandatory">
 							All fields marked in<span><em> * </em></span>are mandatory

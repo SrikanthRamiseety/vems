@@ -7,144 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Date</title>
-<script type="text/javascript"src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/jquery-2.1.1.min.js"></script>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$("#b").click(function() {
-			var month = $("#b").val();
-			alert(month)
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b1").click(function() {
-			var month = $("#b1").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b2").click(function() {
-			var month = $("#b2").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b3").click(function() {
-			var month = $("#b3").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b4").click(function() {
-			var month = $("#b4").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b5").click(function() {
-			var month = $("#b5").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b6").click(function() {
-			var month = $("#b6").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b7").click(function() {
-			var month = $("#b7").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b8").click(function() {
-			var month = $("#b8").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b9").click(function() {
-			var month = $("#b9").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b10").click(function() {
-			var month = $("#b10").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-	$(function() {
-		$("#b11").click(function() {
-			var month = $("#b11").val();
-			$.post("admin/month_v?month=" + month, show);
-			function show(data) {
-				$("#disply").html("");
-				$("#disply").html(data);
-
-			}
-		});
-	});
-</script>
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+ 
 <style type="text/css">
 .col-md-3 {
 	padding: 10px;
@@ -152,16 +18,16 @@
 }
 
 fieldset {
-	background-color:#367;
+	background-color: #367;
 	color: white;
 }
 
 .btn {
-	color:green;
+	color: green;
 }
-#b{
 
-
+#b {
+	
 }
 </style>
 </head>
@@ -175,20 +41,23 @@ fieldset {
 				<div class="panel panel-primary " id="panel">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<h4>Months Of
-							<select>
-							
-							<option value="2015">2015</option>
-							</select></h4>
+							<h4>
+								Months Of 
+							</h4>
 						</div>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-3">
+							<select>
+									<option selected="selected" value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2014">2013</option>
+								</select>
 								<fieldset>
 									<br>
 									<center>
-										<button id="b" class="btn btn-denger" value="1">January
+										<button id="b" class="btn btn-primary" value="1">January
 										</button>
 									</center>
 									<br>

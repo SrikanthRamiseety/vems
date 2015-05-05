@@ -28,11 +28,13 @@ public interface VendorServiceInf extends SQLQueries {
 
 	List<User> getPasswordByEmail(String email);
 
-	Vendor createVendor(String code,String type, String category, String name,
-			String lNumber, String mNumber,String mNumber1,String mNumber2, String website, String address);
+	Vendor createVendor(String code, String type, String category, String name,
+			String lNumber, String mNumber, String mNumber1, String mNumber2,
+			String website, String address);
 
-	Contact createContact(String name, String designation, String mobile,String mobile1,String mobile2,
-			String email,String email1,String email2, String empStatus, String manager);
+	Contact createContact(String name, String designation, String mobile,
+			String mobile1, String mobile2, String email, String email1,
+			String email2, String empStatus, String manager);
 
 	User createUser(String fname, String mname, String lname, String email,
 			String password, String seqQuestion, String answer, String mobile);
@@ -70,5 +72,9 @@ public interface VendorServiceInf extends SQLQueries {
 	public List<Billes> getBillByDate(String Date);
 
 	public List<Billes> getBillByVendorName(String vendor);
-	 public List<Vendor> getAllVendors();
+
+	public List<Vendor> getAllVendors();
+
+	public List<Bank> getBankdetiles(String name);
+
 }

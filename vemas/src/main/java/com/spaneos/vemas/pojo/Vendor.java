@@ -16,20 +16,10 @@ public class Vendor {
 	private String vendorWebsite;
 	private String vendorAddress;
 	private List<Contact> vendorContacts;
-	
+
 	public Vendor() {
-		
+
 	}
-
-	
-
-	 
-
-	
-
-
-
-
 
 	public Vendor(int id, String vendorCode, String vendorType,
 			String vendorCategory, String vendorName,
@@ -52,16 +42,6 @@ public class Vendor {
 		this.vendorContacts = vendorContacts;
 	}
 
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * @return the vendorMobileNumber1
 	 */
@@ -69,32 +49,13 @@ public class Vendor {
 		return vendorMobileNumber1;
 	}
 
-
-
-
-
-
-
-
-
-
-
 	/**
-	 * @param vendorMobileNumber1 the vendorMobileNumber1 to set
+	 * @param vendorMobileNumber1
+	 *            the vendorMobileNumber1 to set
 	 */
 	public void setVendorMobileNumber1(String vendorMobileNumber1) {
 		this.vendorMobileNumber1 = vendorMobileNumber1;
 	}
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * @return the vendorMobileNumber2
@@ -103,32 +64,13 @@ public class Vendor {
 		return vendorMobileNumber2;
 	}
 
-
-
-
-
-
-
-
-
-
-
 	/**
-	 * @param vendorMobileNumber2 the vendorMobileNumber2 to set
+	 * @param vendorMobileNumber2
+	 *            the vendorMobileNumber2 to set
 	 */
 	public void setVendorMobileNumber2(String vendorMobileNumber2) {
 		this.vendorMobileNumber2 = vendorMobileNumber2;
 	}
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * @return the vendorCode
@@ -137,20 +79,13 @@ public class Vendor {
 		return vendorCode;
 	}
 
-
-
-
-
 	/**
-	 * @param vendorCode the vendorCode to set
+	 * @param vendorCode
+	 *            the vendorCode to set
 	 */
 	public void setVendorCode(String vendorCode) {
 		this.vendorCode = vendorCode;
 	}
-
-
-
-
 
 	public int getId() {
 		return id;
@@ -220,13 +155,9 @@ public class Vendor {
 		return vendorContacts;
 	}
 
-
-
 	public void setVendorContacts(List<Contact> vendorContacts) {
 		this.vendorContacts = vendorContacts;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -236,6 +167,6 @@ public class Vendor {
 				+ ", vendorMobileNumber=" + vendorMobileNumber
 				+ ", vendorWebsite=" + vendorWebsite + ", vendorAddress="
 				+ vendorAddress + ", vendorContacts=" + vendorContacts + "]";
-	}	
-	
+	}
+
 }

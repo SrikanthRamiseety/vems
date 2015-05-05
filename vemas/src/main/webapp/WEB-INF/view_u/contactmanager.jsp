@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Contact Information</title>
+<title> Manage Contact Information</title>
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/addcontact.css">
@@ -16,6 +16,7 @@
 	#disply{
 	background-image: url("../images/117.jpg");
 	}
+	 
 	</style>
 </head>
 <body>
@@ -39,7 +40,7 @@
 	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../js/validator.js"></script>
 	<script type="text/javascript" src="../js/loader.js"></script>
-	<script type="text/javascript" src="../js/addcontact_u.js"></script>
+	<script type="text/javascript" src="../js/addcontact.js"></script>
 	
 </body>
 </html>

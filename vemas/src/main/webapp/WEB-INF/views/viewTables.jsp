@@ -20,7 +20,7 @@
     <![endif]-->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/bootstrap.css" rel="stylesheet">
-
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -30,7 +30,7 @@
 
 		}
 		var size1 = $("#hidden").val();
-		if (size1 <= 4) {
+		if (size1 <= 3) {
 			$("#previous").hide();
 			$("#next").hide();
 
@@ -45,11 +45,11 @@
 				function() {
 					var pagenumber = $(this).val();
 
-					$.post("search.vms?pagenumber=" + $(this).val()
+					$.post("billesview?pagenumber=" + $(this).val()
 							+ "&page=notfirst", show);
 
 					function show(data) {
-						$("#show").html(data);
+						$("#body").html(data);
 					}
 					$(".pa").css("color", "#303030");
 				});
@@ -69,9 +69,7 @@
 	border: 1px;
 }
 
-#view {
-	overflow: auto;
-}
+ 	
 
 th {
 	background-color: silver;
@@ -111,15 +109,14 @@ table.collapse.in {
 		<div class="row">
 			<div class="col-md-1"></div>
 
-			<div class="col-md-10">
+			<div class="col-md-10" id="list">
 				<c:if
 					test="${(billeslist eq null) or (fn:length(billeslist) eq 0) }">
 					<h2>Sorry! No Billes Uploaded..</h2>
 				</c:if>
 				<c:if
 					test="${(billeslist ne null) or (fn:length(billeslist) ne 0) }">
-					<input type="hidden" id="hidden" name="hidden"
-						value="${vender.size() }">
+					 
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h4>Billes</h4>
@@ -146,7 +143,10 @@ table.collapse.in {
 								</thead>
 								<tbody>
 
-									<c:forEach items="${billeslist }" var="i">
+
+									<c:forEach begin="${(param.pagenumber-1) * 2 }"
+										items="${ billeslist }" end="${(param.pagenumber * 2 )-1 }"
+										var="i">
 										<tr>
 											<td data-date-format="yyyy-dd-mm"><c:out
 													value="${i.date1}"></c:out></td>
@@ -193,6 +193,20 @@ table.collapse.in {
 
 							</table>
 						</div>
+						<div id="pagination">
+
+
+							<ul class="pager">
+
+								<li><button class="btn btn-primary btn-sm page "
+										value="${(param.pagenumber)-1 }" name="previous" id="previous">Previous</button></li>
+
+								<li><button class="btn btn-primary btn-sm page"
+										value="${(param.pagenumber)+1 }" name="next" id="next">next</button></li>
+
+							</ul>
+
+						</div>
 					</div>
 				</c:if>
 			</div>
@@ -202,7 +216,7 @@ table.collapse.in {
 
 
 
-	 
+
 </body>
 
 

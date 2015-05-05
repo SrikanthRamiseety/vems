@@ -775,5 +775,39 @@ System.out.println(billes);
 		 
 		 
 	}
+
+	@Override
+	public List<Bank> getBankdetiles(String name) {
+		 List<Bank> blist=new ArrayList<Bank>();
+		 con=daoUtil.getConnection();
+			try {
+				pstmt=con.prepareStatement("select * from bank where VANDORNAME LIKE ?");
+				pstmt.setString(1,"%"+name+"%");
+				rs=pstmt.executeQuery();
+				 
+				while(rs.next()){
+					Bank bank=new Bank();
+					bank.setVendorName(rs.getString("VANDORNAME"));
+					bank.setBankName(rs.getString("BANKNAME"));
+					bank.setAcName(rs.getString("ACCOUNTNAME"));
+					bank.setAcno(rs.getString("ACCOUNTNUMBER"));
+					bank.setIcfcode(rs.getString("ISCFCODE"));
+					bank.setOtherbankname(rs.getString("BANKNAME_1"));
+					bank.setA_cno(rs.getString("ACCOUNTNUMBER_1"));
+					bank.setA_cName(rs.getString("ACCOUNTNAME_1"));
+				 
+					bank.setIcf_code(rs.getString("ISCFCODE_1"));
+					blist.add(bank);
+					System.out.println(bank);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				daoUtil.close(con, stmt, pstmt, rs);
+
+			}
+		return blist;
+	}
 	}
  

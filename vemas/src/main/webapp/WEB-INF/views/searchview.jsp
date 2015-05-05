@@ -25,7 +25,7 @@
 		var size = $("#hidden").val();
 		var number = $("#next").val();
 
-		if (number == Math.round(size / 3) + 1) {
+		if (number == Math.round(size / 2) + 1) {
 			$("#next").addClass("disabled");
 		}
 		$(".page").click(
@@ -118,10 +118,10 @@ overflow: scroll;
 						<tr>
 
 							<th>S.No</th>
-							<th>VendorCode</th>
+							<th>Company Name</th>
+						 
 							<th>Type</th>
 							<th>Category</th>
-							<th>Company Name</th>
 							<th>Address</th>
 							<th>Contact #</th>
 							<th>Web Site</th>
@@ -132,13 +132,13 @@ overflow: scroll;
 
 						<c:forEach begin="${(param.pagenumber-1) * 8 }" items="${vender }"
 							end="${(param.pagenumber * 8 )-1 }" var="i">
-							<tr class="clickable" data-toggle="collapse"
-								id="view${i.getId()}" data-target=".view${i.getId()}">
+							<tr class="clickable"   
+								 >
 								<td><c:out value="${i.getId()}"></c:out></td>
-								<td><c:out value="${i.getVendorCode()}"></c:out></td>
+								<td><a href="vendor_view?vendor=${i.getVendorName() }">${i.getVendorName() }</a></td>
+								 
 								<td><c:out value="${i.getVendorType()}"></c:out></td>
 								<td><c:out value="${i.getVendorCategory() }"></c:out></td>
-								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
 								<td><c:out
 										value="${i.getVendorMobileNumber()},${i.getVendorMobileNumber1()},${i.getVendorMobileNumber2()}"></c:out></td>
@@ -147,45 +147,9 @@ overflow: scroll;
 
 							</tr>
 
-							<thead>
-								<tr class="collapse view${i.getId()}" id="child-head">
+							 
 
-									<th class="success">S.No</th>
-									<th class="success">Name</th>
-									<th class="success">Designation</th>
-									<th class="success">Contact #</th>
-									<th class="success">Email</th>
-									<th class="success">Employee Status</th>
-									<th class="success">Reporting Manager</th>
-
-								</tr>
-
-							</thead>
-
-							<tbody>
-								<c:forEach items="${ i.vendorContacts}" var="contact">
-									<tr class="collapse view${i.getId()}" id="child-table">
-
-										<td class="info"><c:out value="${contact.getId() }"></c:out></td>
-										<td class="info"><c:out value="${contact.getName() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getDesignation() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getMobile() },${contact.getMobile1() },${contact.getMobile2() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getEmail() },${contact.getEmail1() },${contact.getEmail2() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getEmploymentStatus() }"></c:out></td>
-										<td class="info"><c:out
-												value="${contact.getReportingManager() }"></c:out></td>
-
-									</tr>
-
-
-								</c:forEach>
-
-
-							</tbody>
+							 
 
 
 						</c:forEach>

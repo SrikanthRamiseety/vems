@@ -28,7 +28,7 @@
 
 		}
 		var size1 = $("#hidden").val();
-		if (size1 <= 4) {
+		if (size1 <= 2) {
 			$("#previous").hide();
 			$("#next").hide();
 
@@ -36,7 +36,7 @@
 		var size = $("#hidden").val();
 		var number = $("#next").val();
 
-		if (number == Math.round(size / 3) + 1) {
+		if (number == Math.round(size / 2) + 1) {
 			$("#next").addClass("disabled");
 		}
 		$(".page").click(
@@ -47,24 +47,58 @@
 							+ "&page=notfirst", show);
 
 					function show(data) {
-						$("#show").html(data);
+						$("#disply").html(data);
 					}
 					$(".pa").css("color", "#303030");
 				});
 	});
 </script>
-<style type="text/css">
-.T-I-JN {
-	-webkit-border-radius: 0;
-	border-radius: 0;
-	border: 1px solid transparent;
-	font-size: 13px;
-	font-weight: normal;
-	height: 21px;
-	line-height: 21px;
-	margin-right: 1px;
-	min-width: 0;
-	padding: 0;
+ <style type="text/css">
+#pagination {
+	color: #337AB7;
+	background-color: transparent;
+	box-sizing: border-box;
+	font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	text-align: center;
+}
+
+.clickable {
+	border: 1px;
+}
+
+#view {
+	overflow: auto;
+}
+
+th {
+	background-color: silver;
+}
+
+.no-line, #no-line {
+	border-bottom-style: hidden;
+	border-bottom-width: 0em;
+	background-color: white;
+}
+
+table.collapse.in {
+	display: table-row;
+}
+
+.btn {
+	border-radius: 74px;
+}
+
+.active {
+	color: aqua;
+}
+
+h2 {
+	color: red;
+}
+#vendor-table{
+max-height: 400px;
+overflow: scroll;
 }
 </style>
 </head>
@@ -102,8 +136,8 @@
 								</thead>
 								<tbody>
 
-									<c:forEach begin="${(param.pagenumber-1) * 4 }"
-										items="${bill }" end="${(param.pagenumber * 4 )-1 }" var="i">
+									<c:forEach begin="${(param.pagenumber-1) * 2 }"
+										items="${bill }" end="${(param.pagenumber * 2 )-1 }" var="i">
 										<tr>
 
 											<td><c:out value="${i.getBillNo()}"></c:out></td>

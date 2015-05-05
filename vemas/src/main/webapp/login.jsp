@@ -116,7 +116,7 @@ background-image: url("images/411.jpg");
 									value="${_csrf.token}" />
 
 							</form>
-					 
+					 If your Admin Login <a href="admin/landingpage_vendor">Here</a>
 						</div>
 					</div>
 				</div>

@@ -7,16 +7,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>billes</title>
 <!-- <link rel="stylesheet" href="css/fv.css" type="text/css" /> -->
+<script type="text/javascript " src="../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/jquery.timepicker.js"></script>
+
+<script type="text/javascript" src="../js\query-ui.js"></script>
 <style type="text/css">
 #body{
 background-image: url("../images/119.jpg");
 }
 
-
 </style>
-   
-<script type="text/javascript"
-	src="http://docs/docs/jquery_json/jquery-1.11.1.js"></script>
+   <script type="text/javascript">
+   $(function(){
+	   alert("coming");
+	var pickerOpts = {
+		minDate : new Date(),
+		maxDate : "+30",
+		beforeShowDay : function(date) {
+			var day = date.getDay();
+			return [ (day != 0), '' ];
+		}
+	};
+	$(function() {
+		$("#datepicker").datepicker(
+		pickerOpts
+		);
+	});
+   });
+	</script>
+ <script type="text/javascript">
+	function conformcancel() {
+		if ($("input").val() != null) {
+			var con = confirm("All unsaved data will be lost. Are you sure you want to continue?");
+			if (con) {
+				$("input").each(function() {
+					$(this).val('');
+					$(".alert").remove();
+					$(".item").prop("class", "item form-group");
+				});
+				$("select").each(function() {
+					$(this).val('');
+				});
+
+				$("textarea").each(function() {
+					$(this).val('');
+				});
+			}
+		}
+	}
+
+	function trimSpaces(x) {
+		return x.trim();
+	}
+</script>
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link href="../css/signupform1.css" rel="stylesheet">
@@ -50,23 +93,41 @@ background-image: url("../images/119.jpg");
 
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">Bill No<em>*</em></label>
-								<div class="col-sm-5" id="1">
+								<div class="col-sm-5" id="9">
 									<input type="text" id="billno" name="billno"
 										class="form-control" required placeholder="bill No"
 										pattern="" onblur="this.value = trimSpaces(this.value);">
 								</div>
+									<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>BillId</i>
+									</p>
+								</div>
+							</div>
 								 
 							</div>
 
 
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">VendorName</label>
-								<div class="col-sm-5" id="2">
+								<div class="col-sm-5" id="1">
 									<input type="text" id="shopname" name="shopname"
-										class="form-control optional" placeholder="Shop Name"
-										pattern="" onblur="this.value = trimSpaces(this.value);">
+									required="required"	class="form-control" placeholder="Shop Name"
+										pattern="alpha" onblur="this.value = trimSpaces(this.value);">
 								</div>
-								 
+								<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>VendorName</i>
+									</p>
+								</div>
+							</div>
+									 
 							</div>
 
 
@@ -76,22 +137,38 @@ background-image: url("../images/119.jpg");
 								<div class="col-sm-5" id="9">
 									<input type="text" id="amount" class="form-control"
 										name="amount" maxlength="" required placeholder="amount"
-										data-validate-length-range=""
-										data-validate-pattren="numeric">
+										 pattern="numeric" 
+										 >
 								</div>
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Amount</i>
+									</p>
+								</div>
+							</div>
 							</div>
 
 							<div class="item form-group">
 								<label class="col-sm-4 control-label">Who Upload<em>*</em></label>
-								<div class="col-sm-5" id="5">
+								<div class="col-sm-5" id="9">
 									<!-- <input type="password" id="password" name="password"
 									class="form-control" placeholder="Password" required> -->
 									<input type="text" id="name" name="name"
-										class="form-control" placeholder="Name" />
+									required="required"	class="form-control" pattern="alpha" placeholder="Name" />
 								</div>
 
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Name</i>
+									</p>
+								</div>
+							</div>
 							</div>
 
 							<div class="item form-group">
@@ -100,25 +177,51 @@ background-image: url("../images/119.jpg");
 									<input type="tel" id="moblie"  class="form-control"
 										name="mobile" maxlength="" required placeholder="Mobile"
 										data-validate-length-range="10"
-										data-validate-pattren="numeric">
+										data-validate-pattren="numeric" pattern="numeric" >
 								</div>
+								<div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Mobile</i>
+									</p>
+								</div>
+							</div>
 								</div>
 								<div class="item form-group">
 								<label class="col-sm-4 control-label">Date<em>*</em></label>
 								<div class="col-sm-5" id="9">
-									<input type="date" id="date"  class="form-control"
-										name="date" maxlength="" required placeholder="Date">
+									<input type="date" data-date-format="yyyy-mm-dd"
+									id="date" name="date" required="required"
+									 >
 								</div>
 								
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Date</i>
+									</p>
+								</div>
+							</div>
 							</div>
 														<div class="item form-group">
 								<label class="col-sm-4 control-label">Bill Image<em>*</em></label>
-								<div class="col-sm-5" id="">
-									 <input type="file" name="filename" accept="image/gif, image/jpeg, image/png">
+								<div class="col-sm-5" id="9">
+									 <input type="file" name="filename" accept="image/gif, image/jpeg, image/png" required="required">
 									 
 								</div>
-								 
+								 <div class='col-sm-2 col-md-2 col-xs-2 tooltip help'>
+								<span>?</span>
+								<div class='content'>
+									<b></b>
+									<p>
+									<i>Images</i>
+									</p>
+								</div>
+							</div>
 							</div>
 							<img src="" width="200" style="display:none;" />
 							<div id="disp_tmp_path"></div>
@@ -134,7 +237,7 @@ background-image: url("../images/119.jpg");
 								<div class="col-sm-2">
 
 									<button type="button" class="btn btn-md btn-primary pull-right"
-										id="a">Reset</button>
+									onclick="conformcancel()"	id="a">Reset</button>
 								</div>
 							</div>
 						</form>
@@ -150,10 +253,10 @@ background-image: url("../images/119.jpg");
 	<br>
 	<br>
 	<%@include file="footer.jsp"%>
-	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
 
-	<script src="js/validator.js"></script>
-	<script src="js/signuploader.js"></script>
+	<script src="../js/validator.js"></script>
+	<script src="../js/signuploader.js"></script>
 	<!--sign up loader  -->
 </body>
 </html>

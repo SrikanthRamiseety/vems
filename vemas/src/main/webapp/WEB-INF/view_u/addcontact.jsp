@@ -8,7 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Add Contact</title>
+<script type="text/javascript">
+$(function(){
 
+	
+	
+});
+
+</script>
 
 </head>
 <body>
@@ -70,7 +77,7 @@
 				</c:if>
 			</div>
 
-			<div class="col-sm-6 pull-right" id="contact_form">
+			<div class="col-sm-7 pull-right" id="contact_form">
 
 
 				<div class="item form-group">
@@ -116,7 +123,7 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="col-sm-4 control-label contact-label">Mobile
+					<label class="col-sm-4 control-label contact-label">Mobile-1
 						<em>*</em>
 					</label>
 					<div class="col-sm-5">
@@ -137,19 +144,113 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="col-sm-4 control-label contact-label">Email <em>*</em></label>
+					<label class="col-sm-4 control-label contact-label">Mobile-2
+						 
+					</label>
+					<div class="col-sm-5">
+						<input type="tel" id="mobile" name="mobile1" required
+							class="form-control optional contact_info" maxlength="10"
+							placeholder="Enter Mobile Number" data-validate-length-range="-1"
+							value="${editContact.mobile1 }">
+					</div>
+
+					<div class='tooltip help'>
+						<span>?</span>
+						<div class='content'>
+							<b></b>
+							<p>
+							( optional)	<i>Mobile</i> should have only numbers with 10 digits
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item form-group">
+					<label class="col-sm-4 control-label contact-label">Mobile-3
+						 
+					</label>
+					<div class="col-sm-5">
+						<input type="tel" id="mobile" name="mobile2" required
+							class="form-control  optional contact_info" maxlength="10"
+							placeholder="Enter Mobile Number" data-validate-length-range="-1"
+							value="${editContact.mobile2 }">
+					</div>
+
+					<div class='tooltip help'>
+						<span>?</span>
+						<div class='content'>
+							<b></b>
+							<p>
+						( optional)		<i>Mobile</i> should have only numbers with 10 digits
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item form-group">
+					<label class="col-sm-4 control-label contact-label">Email-1 <em>*</em></label>
 					<c:if test="${editContact eq null}">
 						<div class="col-sm-5">
 							<input type="email" id="email" name="email"
-								class="form-control contact_info" placeholder="Enter Email"
+								class="form-control   contact_info" placeholder="Enter Email"
 								required value="${editContact.email }">
 						</div>
 					</c:if>
 					<c:if test="${editContact ne null}">
 						<div class="col-sm-5">
 							<input type="email" id="email" name="email"
-								class="form-control contact_info" placeholder="Enter Email"
+								class="form-control   contact_info" placeholder="Enter Email"
 								required value="${editContact.email }" readonly>
+						</div>
+					</c:if>
+					<div class='tooltip help'>
+						<span>?</span>
+						<div class='content'>
+							<b></b>
+							<p>
+								Example: <br> vms@spaneos.com
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item form-group">
+					<label class="col-sm-4 control-label contact-label">Email-2 <em>*</em></label>
+					<c:if test="${editContact eq null}">
+						<div class="col-sm-5">
+							<input type="email" id="email1" name="email1"
+								class="form-control optional" placeholder="Enter Email"
+								  value="${editContact.email11 }">
+						</div>
+					</c:if>
+					<c:if test="${editContact ne null}">
+						<div class="col-sm-5">
+							<input type="email" id="email1" name="email1"
+								class="form-control optional " placeholder="Enter Email"
+								  value="${editContact.email1 }" readonly>
+						</div>
+					</c:if>
+					<div class='tooltip help'>
+						<span>?</span>
+						<div class='content'>
+							<b></b>
+							<p>
+								Example: <br> vms@spaneos.com
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item form-group">
+					<label class="col-sm-4 control-label contact-label">Email-3<em>*</em>  </label>
+					<c:if test="${editContact eq null}">
+						<div class="col-sm-5">
+							<input type="email" id="email2" name="email2"
+								class="form-control  optional contact_info" placeholder="Enter Email"
+								  value="${editContact.email2}">
+						</div>
+					</c:if>
+					<c:if test="${editContact ne null}">
+						<div class="col-sm-5">
+							<input type="email" id="email" name="email"
+								class="form-control optional contact_info" placeholder="Enter Email"
+								  value="${editContact.email2 }" readonly>
 						</div>
 					</c:if>
 					<div class='tooltip help'>
