@@ -74,7 +74,7 @@ background-image: url("images/411.jpg");
 					<c:if test="${not empty msg}">
 						<div class="msg">${msg}</div>
 					</c:if>
-					<div class="panel panel-info">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h4 class="">Login</h4>
 						</div>

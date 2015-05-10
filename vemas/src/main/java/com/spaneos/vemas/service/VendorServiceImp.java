@@ -3,14 +3,15 @@ package com.spaneos.vemas.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.security.core.userdetails.User;
+
 import com.spaneos.vemas.dao.VendorDAOImp;
-import com.spaneos.vemas.pojo.Admin;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
-import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
+import com.spaneos.vemas.pojo.user_d;
 
 public class VendorServiceImp implements VendorServiceInf {
 	private static VendorServiceImp vendorServiceImp = null;
@@ -43,19 +44,7 @@ public class VendorServiceImp implements VendorServiceInf {
 				.getVendorMobileNumber());
 		return vendorDaoImp.addContact(contact, DBvendor.getId());
 	}
-
-	@Override
-	public boolean addUser(User signup) {
-		List<User> usersList = vendorDaoImp.getAllUsers();
-
-		for (User user : usersList) {
-			if (user.getEmail().equalsIgnoreCase(signup.getEmail())) {
-				return false;
-			}
-		}
-		return vendorDaoImp.addUser(signup);
-	}
-
+ 
 	@Override
 	public boolean updateContactByEmail(Contact contact) {
 
@@ -80,11 +69,7 @@ public class VendorServiceImp implements VendorServiceInf {
 		return vendorDaoImp.getVendorsByVendorname(name);
 	}
 
-	@Override
-	public List<User> getPasswordByEmail(String email) {
-
-		return null;
-	}
+	 
 
 	@Override
 	public Vendor createVendor(String code,String type, String category, String name,
@@ -161,36 +146,9 @@ public class VendorServiceImp implements VendorServiceInf {
 		return true;
 	}
 
-	@Override
-	public boolean authenticateUser(String email, String password) {
-		User user = vendorDaoImp.getUserByEmail(email);
+	 
 
-		if (user.getEmail().equalsIgnoreCase(email)
-				&& user.getPassword().equals(password))
-			return true;
-
-		return false;
-	}
-
-	@Override
-	public User createUser(String fname, String mname, String lname,
-			String email, String password, String seqQuestion, String answer,
-			String mobile) {
-
-		if (fname == null || email == null || password == null
-				|| seqQuestion == null || answer == null || mobile == null) {
-			return null;
-		}
-
-		return new User(fname, lname, mname, email, password, seqQuestion,
-				answer, mobile, 0,false);
-	}
-
-	@Override
-	public User getUserByEmail(String email) {
-
-		return vendorDaoImp.getUserByEmail(email);
-	}
+	 
 
 	public boolean saveAllData(Vendor vendor) {
 		if (vendor == null)
@@ -212,20 +170,7 @@ public class VendorServiceImp implements VendorServiceInf {
 		return true;
 	}
 
-	public boolean checkCredentials(String email, String seq_question,
-			String answer) {
-		User user = vendorServiceImp.getUserByEmail(email);
-		/*System.out.println(seq_question.equalsIgnoreCase(user.getSelectquestion()));
-		System.out.println(user.getSelectquestion());
-		System.out.println(answer.trim().equalsIgnoreCase(user.getAnswer().trim()));*/
-		if (user != null
-				&& user.getSelectquestion().trim().equalsIgnoreCase(seq_question.trim())
-				&& user.getAnswer().trim().equalsIgnoreCase(answer.trim()))
-			return true;
-
-		return false;
-	}
-
+	 
 	@Override
 	public boolean admin(String email, String password) {
 		
@@ -263,11 +208,7 @@ public class VendorServiceImp implements VendorServiceInf {
 		return vendorDaoImp.getAllBilles();
 	}
 
-	@Override
-	public List<User> getAllUsers() {
-		
-		return vendorDaoImp.getAllUsers();
-	}
+	 
 
 	@Override
 	public boolean addBank(Bank bank) {
@@ -281,7 +222,7 @@ public class VendorServiceImp implements VendorServiceInf {
 	}
 
 	@Override
-	public Admin getPassword(String name) {
+	public user_d getPassword(String name) {
 		// TODO Auto-generated method stub
 		return vendorDaoImp.getPassword(name);
 	}
@@ -314,6 +255,18 @@ public class VendorServiceImp implements VendorServiceInf {
 	public List<Bank> getBankdetiles(String name) {
 		
 		return vendorDaoImp.getBankdetiles(name);
+	}
+
+	@Override
+	public boolean authenticateUser(String userName, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public user_d getUser(String name) {
+	 
+		return vendorDaoImp.getUser(name);
 	}
 
  

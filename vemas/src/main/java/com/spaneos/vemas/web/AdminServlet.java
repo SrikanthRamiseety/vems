@@ -29,7 +29,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
-import com.spaneos.vemas.pojo.User;
+ 
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.service.VendorServiceImp;
@@ -79,15 +79,7 @@ public class AdminServlet extends HttpServlet {
 
 		} else if (uri.endsWith("reporting")) {
 
-		} else if (uri.endsWith("viewuser")) {
-			List<User> users = vendorServiceImp.getAllUsers();
-			ServletContext context = req.getServletContext();
-
-			context.setAttribute("userslist", users);
-			req.getRequestDispatcher("/WEB-INF/views/viewUser.jsp").forward(
-					req, resp);
-
-		} else if (uri.endsWith("billesview")) {
+		}    else if (uri.endsWith("billesview")) {
 			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
 			String page = req.getParameter("page");
 			List<Billes> billes = vendorServiceImp.getAllBilles();

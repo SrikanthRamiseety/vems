@@ -2,36 +2,27 @@ package com.spaneos.vemas.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Formatter;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import javax.xml.ws.spi.http.HttpContext;
 
-import com.spaneos.vemas.dao.VendorDAOImp;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
-import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
+import com.spaneos.vemas.pojo.user_d;
 import com.spaneos.vemas.service.VendorServiceImp;
-import com.spaneos.vemas.service.VendorServiceInf;
+import com.spaneos.vms.security.CustomAuthenticationProvider;
 
 /**
  * Servlet implementation class VendorManagementServlet
@@ -61,6 +52,8 @@ public class VendorManagementServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 
 		if (uri.endsWith("landingpageOfEmplyee")) {
+			 
+		 
 			request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
 					.forward(request, response);
 		} else if (uri.endsWith("forgotpwd.vms")) {
@@ -68,22 +61,20 @@ public class VendorManagementServlet extends HttpServlet {
 			String seq_question = request.getParameter("seq_question");
 			String answer = request.getParameter("answer");
 
-			if (vendorServiceImp.checkCredentials(email, seq_question, answer)) {
-				User user = vendorServiceImp.getUserByEmail(email);
+		
+				 
 
 				request.setAttribute("email", email);
 
-				request.setAttribute("password", user.getPassword());
+				 
 				request.setAttribute("incorrectAnswer", false);
 				request.getRequestDispatcher("forgotpwdform.jsp").forward(
 						request, response);
 				;
-			} else {
-				request.setAttribute("incorrectAnswer", true);
-				request.getRequestDispatcher("forgotpwdform.jsp").forward(
-						request, response);
+			 
+			 
 				;
-			}
+			 
 		} else if (uri.endsWith("logout.vms")) {
 			HttpSession session = request.getSession(false);
 
@@ -117,16 +108,18 @@ public class VendorManagementServlet extends HttpServlet {
 			billes.setName(request.getParameter("name"));
 			billes.setMobile(request.getParameter("mobile"));
 			System.out.println((request.getParameter("date")));
-			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+
 			String date = request.getParameter("date");
+			System.out.println(date);
 
 			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 
-				Date date1 = formatter.parse(date);
-				System.out.println(date1);
-				System.out.println(formatter.format(date1));
-				Calendar cal = Calendar.getInstance();
-				billes.setDate(formatter.format(cal.getTime()));
+				Date parsed = format.parse(date);
+
+				java.sql.Date date11 = new java.sql.Date(0000 - 00 - 00);
+				System.out.println();
+				billes.setDate(date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -136,6 +129,7 @@ public class VendorManagementServlet extends HttpServlet {
 
 			billes.setImagepath(file);
 
+
 			if (vendorServiceImp.addBills(billes)) {
 				request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
 						.forward(request, response);
@@ -143,13 +137,7 @@ public class VendorManagementServlet extends HttpServlet {
 			} else {
 				response.sendRedirect("error.jsp");
 			}
-		} else if (uri.endsWith("viewUsers")) {
-			List<User> users = vendorServiceImp.getAllUsers();
-			ServletContext context = request.getServletContext();
-
-			context.setAttribute("userslist", users);
-			response.sendRedirect("viewUser.vms");
-		} else if (uri.endsWith("addvendor.opt")) {
+		}    else if (uri.endsWith("addvendor.opt")) {
 			HttpSession session = request.getSession(false);
 
 			if (session != null) {

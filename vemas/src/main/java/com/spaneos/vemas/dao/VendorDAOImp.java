@@ -14,11 +14,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.spaneos.vemas.pojo.Admin;
+import org.springframework.security.core.userdetails.User;
+
+import com.spaneos.vemas.pojo.user_d;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
-import com.spaneos.vemas.pojo.User;
+ 
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.DaoUtil;
@@ -102,32 +104,7 @@ public class VendorDAOImp implements VendorDaoInf {
 		return false;
 	}
 
-	@Override
-	public boolean addUser(User user) {
-		try {
-			con = daoUtil.getConnection();
-			pstmt = con.prepareStatement(ADD_USER);
-			pstmt.setString(1, user.getFirstname());
-			pstmt.setString(2, user.getMiddlename());
-			pstmt.setString(3, user.getLastname());
-			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getPassword());
-			pstmt.setString(6, user.getSelectquestion());
-			pstmt.setString(7, user.getAnswer());
-			pstmt.setString(8, user.getMobile());
-			pstmt.setBoolean(9, user.Isadmin());
-			int i = pstmt.executeUpdate();
-			if (i > 0) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			daoUtil.close(con, stmt, pstmt, rs);
-		}
-
-		return false;
-	}
+	 
 
 	@Override
 	public List<Contact> getContactsById(int id) {
@@ -282,89 +259,11 @@ public class VendorDAOImp implements VendorDaoInf {
 		return false;
 	}
 
-	@Override
-	public List<User> getPasswordByEmail(String email) {
-		try {
-			con = daoUtil.getConnection();
-			pstmt = con.prepareStatement(GET_PASSWORD_BY_EMAIL);
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			List<User> userList = new ArrayList<User>();
-			while (rs.next()) {
-				User user = new User();
-				user.setPassword(rs.getString("PASSWORD"));
-				user.setSelectquestion(rs.getString("SELECTQUESTION"));
-				user.setAnswer(rs.getString("ANSWER"));
-				userList.add(user);
-			}
-			return userList;
-		} catch (Exception e) {
+	 
 
-		} finally {
-			daoUtil.close(con, stmt, pstmt, rs);
-		}
-		return null;
-	}
+	 
 
-	@Override
-	public List<User> getAllUsers() {
-		List<User> userList = new ArrayList<User>();
-		try {
-			con = daoUtil.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(GET_ALL_USERS);
-			while (rs.next()) {
-				User user = new User();
-				user.setFirstname(rs.getString("FIRSTNAME"));
-				user.setMiddlename(rs.getString("MIDDLENAME"));
-				user.setLastname(rs.getString("LASTNAME"));
-				user.setEmail(rs.getString("EMAIL"));
-				user.setPassword(rs.getString("PASSWORD"));
-				user.setSelectquestion(rs.getString("SELECT_QUESTION"));
-				user.setAnswer(rs.getString("ANSWER"));
-				user.setMobile(rs.getString("MOBILE"));
-
-				userList.add(user);
-			}
-
-		} catch (Exception e) {
-
-		} finally {
-			daoUtil.close(con, stmt, pstmt, rs);
-		}
-		return userList;
-	}
-
-	@Override
-	public User getUserByEmail(String email) {
-		try {
-			con = daoUtil.getConnection();
-			pstmt = con.prepareStatement(GET_USER_BY_EMAIL);
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			User user = new User();
-			while (rs.next()) {
-				user.setFirstname(rs.getString("FIRSTNAME"));
-				user.setMiddlename(rs.getString("MIDDLENAME"));
-				user.setLastname(rs.getString("LASTNAME"));
-				user.setEmail(rs.getString("EMAIL"));
-				user.setPassword(rs.getString("PASSWORD"));
-				user.setSelectquestion(rs.getString("SELECT_QUESTION"));
-				user.setAnswer(rs.getString("ANSWER"));
-				user.setMobile(rs.getString("MOBILE"));
-				user.setUserId(rs.getInt("USERID"));
-				user.setIsadmin(rs.getBoolean("ISADMIN"));
-			}
-			return user;
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			daoUtil.close(con, stmt, pstmt, rs);
-		}
-		return null;
-	}
+	 
 
 	@Override
 	public Vendor getVendorsByVendorMobile(String mobile) {
@@ -399,24 +298,7 @@ public class VendorDAOImp implements VendorDaoInf {
 		return null;
 	}
 
-	@Override
-	public boolean isadmin(int id) {
-		boolean isadmin = false;
-		try {
-			con=daoUtil.getConnection();
-			pstmt=con.prepareStatement("select ISADMIN from USER where USERID=?");
-			pstmt.setInt(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				User user=new User();
-			isadmin=	user.setIsadmin(rs.getBoolean("ISADMIN"));
-			}
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
- 		return  isadmin;
-	}
+	 
 
 	@Override
 	public boolean addVendortype(VendorType vendortype) {
@@ -610,9 +492,9 @@ System.out.println(billes);
 	}
 
 	@Override
-	public Admin getPassword(String name) {
+	public user_d getPassword(String name) {
 		 con=daoUtil.getConnection();
-		 Admin admin=new Admin();
+		 user_d admin=new user_d();
 		 try {
 			pstmt=con.prepareStatement("select password,enable from users where username=?;");
 			pstmt.setString(1, name);
@@ -674,7 +556,7 @@ System.out.println(billes);
 		return blist;
 	}
 
-	@SuppressWarnings("resource")
+	 
 	@Override
 	public List<Billes> getBillByVendorName(String vendor) {
 		List<Billes> blist =new ArrayList<Billes>();
@@ -808,6 +690,32 @@ System.out.println(billes);
 
 			}
 		return blist;
+	}
+
+	@Override
+	public boolean isadmin(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public user_d getUser(String name) {
+		user_d user_d=new user_d();
+		  con=daoUtil.getConnection();
+		  try {
+			pstmt=con.prepareStatement("select username, role from user_roles where username=?");
+			pstmt.setString(1, name);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+			user_d.setName(rs.getString(2));
+			user_d.setRole(rs.getString(3));
+			
+			}
+		} catch (SQLException e) {
+		 
+			e.printStackTrace();
+		}
+		return user_d;
 	}
 	}
  

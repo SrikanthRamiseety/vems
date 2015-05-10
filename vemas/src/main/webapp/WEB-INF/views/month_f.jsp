@@ -152,7 +152,7 @@
 								<fieldset>
 									<br>
 									<center>
-										<button id="b" class="btn btn-succes" value="1">January
+										<button id="b" class="btn btn-info" value="1">January
 										</button>
 									</center>
 									<br>
@@ -164,7 +164,7 @@
 								<fieldset>
 									<br>
 									<center>
-										<button id="b1" class="btn btn-" value="2">February</button>
+										<button id="b1" class="btn btn-info" value="2">February</button>
 									</center>
 									<br>
 
@@ -175,7 +175,7 @@
 								<fieldset>
 									<br>
 									<center>
-										<button id="b2" class="btn btn-" value="3">March</button>
+										<button id="b2" class="btn btn-info" value="3">March</button>
 									</center>
 									<br>
 
@@ -186,7 +186,7 @@
 								<fieldset>
 									<br>
 									<center>
-										<button id="b3" class="btn btn-" value="4">April</button>
+										<button id="b3" class="btn btn-info" value="4">April</button>
 									</center>
 									<br>
 
@@ -201,7 +201,7 @@
 								<fieldset>
 									<br>
 									<center>
-										<button id="b4" class="btn btn-" value="5">May</button>
+										<button id="b4" class="btn btn-info" value="5">May</button>
 									</center>
 									<br>
 

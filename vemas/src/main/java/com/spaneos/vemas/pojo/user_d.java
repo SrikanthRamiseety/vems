@@ -1,10 +1,18 @@
 package com.spaneos.vemas.pojo;
 
  
-public class Admin {
+public class user_d {
 	private String name;
 	private String password;
 	private  boolean isAdmin;
+	private String role;
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getName() {
 		return name;
 	}

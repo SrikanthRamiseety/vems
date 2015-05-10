@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>table</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="../js/control_2.3.0.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var page = $("#previous").val();
@@ -141,7 +142,7 @@ h2 {
 
 							</tr>
 
-							 
+
 
 
 						</c:forEach>
@@ -165,6 +166,10 @@ h2 {
 				</ul>
 
 			</div>
+			<a
+				href="excel"><img
+				border="0" hspace="2" class="link" alt="Excel"
+				src="/click-examples/assets/images/page_excel.png"><span>Excel</span></a>
 		</div>
 	</c:if>
 

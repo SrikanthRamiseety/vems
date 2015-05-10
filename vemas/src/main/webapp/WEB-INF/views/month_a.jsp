@@ -44,7 +44,7 @@ fieldset {
 }
 
 .btn {
-	color: green;
+	color:white;
 }
 
 #b {

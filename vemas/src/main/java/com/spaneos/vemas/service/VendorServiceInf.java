@@ -2,11 +2,15 @@ package com.spaneos.vemas.service;
 
 import java.util.List;
 
-import com.spaneos.vemas.pojo.Admin;
+
+
+import org.springframework.security.core.userdetails.User;
+
+import com.spaneos.vemas.pojo.user_d;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
-import com.spaneos.vemas.pojo.User;
+ 
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.SQLQueries;
@@ -16,8 +20,7 @@ public interface VendorServiceInf extends SQLQueries {
 
 	boolean addContact(Contact contact, Vendor vendor);
 
-	boolean addUser(User signup);
-
+	 
 	boolean updateContactByEmail(Contact contact);
 
 	boolean updateVendorByVendorId(Vendor vendor);
@@ -26,7 +29,7 @@ public interface VendorServiceInf extends SQLQueries {
 
 	List<Vendor> getVendorsByVendorname(String name);
 
-	List<User> getPasswordByEmail(String email);
+ 
 
 	Vendor createVendor(String code, String type, String category, String name,
 			String lNumber, String mNumber, String mNumber1, String mNumber2,
@@ -36,8 +39,7 @@ public interface VendorServiceInf extends SQLQueries {
 			String mobile1, String mobile2, String email, String email1,
 			String email2, String empStatus, String manager);
 
-	User createUser(String fname, String mname, String lname, String email,
-			String password, String seqQuestion, String answer, String mobile);
+	 
 
 	List<Contact> updateContact(String name, String designation, String mobile,
 			String email, String empStatus, String manager,
@@ -51,7 +53,7 @@ public interface VendorServiceInf extends SQLQueries {
 
 	public boolean admin(String email, String password);
 
-	public User getUserByEmail(String email);
+	 
 
 	public boolean addVendortype(VendorType vendortype);
 
@@ -61,13 +63,12 @@ public interface VendorServiceInf extends SQLQueries {
 
 	public List<Billes> getAllBilles();
 
-	public List<User> getAllUsers();
-
+	 
 	public boolean addBank(Bank bank);
 
 	public List<Bank> getAllBAnkDetalies();
 
-	public Admin getPassword(String name);
+	public user_d getPassword(String name);
 
 	public List<Billes> getBillByDate(String Date);
 
@@ -76,5 +77,6 @@ public interface VendorServiceInf extends SQLQueries {
 	public List<Vendor> getAllVendors();
 
 	public List<Bank> getBankdetiles(String name);
+	public user_d getUser(String name);
 
 }
