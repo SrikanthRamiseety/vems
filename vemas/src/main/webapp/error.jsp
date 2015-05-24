@@ -16,6 +16,6 @@
 </head>
 <body>
  
-<img alt="" src="images/404.png" height="100%" width="100%">
+<img alt="" src="../images/404.png" height="100%" width="100%">
 </body>
 </html>

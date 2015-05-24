@@ -41,10 +41,14 @@ float: right;
 				<div id="right">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					
-					<p id="test">	Welcome : ${pageContext.request.userPrincipal.name}</p> <br> <a
+					<p id="test">	Welcome : ${pageContext.request.userPrincipal.name}</p> <br>
+					 <br> <a
+					
 							href="<c:url value="/logout" />"> Logout</a>
+							<hr>
 					
 				</c:if>
+				 
 				</div>
 			 	</div>
 		</div>

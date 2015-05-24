@@ -3,15 +3,12 @@ package com.spaneos.vemas.service;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.security.core.userdetails.User;
-
 import com.spaneos.vemas.dao.VendorDAOImp;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
-import com.spaneos.vemas.pojo.user_d;
 
 public class VendorServiceImp implements VendorServiceInf {
 	private static VendorServiceImp vendorServiceImp = null;
@@ -221,11 +218,7 @@ public class VendorServiceImp implements VendorServiceInf {
  		return vendorDaoImp.getAllBAnkDetalies();
 	}
 
-	@Override
-	public user_d getPassword(String name) {
-		// TODO Auto-generated method stub
-		return vendorDaoImp.getPassword(name);
-	}
+	 
 
 	@Override
 	public List<Billes> getBillByDate(Date Date) {
@@ -264,7 +257,7 @@ public class VendorServiceImp implements VendorServiceInf {
 	}
 
 	@Override
-	public user_d getUser(String name) {
+	public com.spaneos.vemas.pojo.User getUser(String name) {
 	 
 		return vendorDaoImp.getUser(name);
 	}

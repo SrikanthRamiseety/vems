@@ -34,11 +34,26 @@
 	border: 1px solid #000;
 }
 #body{
-background-image: url("images/565.jpg");
+
+
+ 
+}
+#right{
+height: 100%;
+width: 40%;
+float: right;
+
+
+}
+#lift{
+height: 100%;
+width: 60%;
+float: left;	
+ background-image: url('images/22.jpg');
 }
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
 
         <!-- Font Awesome CSS -->
         <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -47,35 +62,64 @@ background-image: url("images/565.jpg");
         <link href="css/animate.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        
+       
 
         <!-- Custom Fonts -->
+         
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href="fonts" type="" rel="text/css">
   <script src="js/jquery-2.1.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        $(function(){
+        	 
+        	$("#username,#password").keyup(function(){
+        		$("#error").hide();
+        	});
+        	
+        });
+        
+        
+        
+        </script>
       
 </head>
 <body id="body" onload='document.loginForm.username.focus();'>
-<%@ include file="header_v.jsp" %>
-<br>
-	<div class="container">
-		<div class="row">
-			 
-			<div class="col-md-8">
-				 
+ 
 
+	 
+		<div class="row">
+			<div class="col-md-" style=";"  id="lift">
+<%@ include file="header_v.jsp" %>
+			</div>
+			
+			<div class="col-md-"  id="right">
+				 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-6">
 					<c:if test="${not empty error}">
 						<div class="error">${error}</div>
 					</c:if>
 					<c:if test="${not empty msg}">
 						<div class="msg">${msg}</div>
 					</c:if>
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h4 class=""> Admin Login</h4>
-						</div>
-						<div class="panel-body" align="center">
+					 
+							<h1 class="">Login</h1>
+						 <br>
+						 <div id="error">
+						 <h4 style="color: red;">Invalid Email Or password</h4>
+						 
+						 </div>
+						 <br>
+					 <h4 >Sign in with your Spaneos Ids </h4>
+					 <br>
 							<form name='loginForm'
 								action="<c:url value='/j_spring_security_check' />"
 								 class="from form-horizontal" novalidate
@@ -85,23 +129,27 @@ background-image: url("images/565.jpg");
 									<tr>
 									
 										<td>User:</td>
-										<td><input type='text' name='username'></td>
-									</tr>
-									<tr>
+										<td><input type='text'id="username" name='username' required="required"></td>
+										</tr>
+										<tr>
 										<td>&nbsp;</td>
 										
 									</tr>
 									<tr>
 										<td>Password:</td>
-										<td><input type='password' name='password' /></td>
+										<td><input type='password' id="password" name='password' required="required" /></td>
 									</tr>
 									<tr>
+										<td>&nbsp;</td>
+										
+									</tr>
+ 									<tr>
  									
  									<td>
 									&nbsp;
  									</td>
-										<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
-											value="submit" /></td></center>
+									<center>	<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
+											value="Log-in" /></td></center>
 									</tr>
 								</table>
 
@@ -109,13 +157,11 @@ background-image: url("images/565.jpg");
 									value="${_csrf.token}" />
 
 							</form>
-						  If your Admin Login <a href="admin/landingpage_vendor">Here</a>
+					 
 						</div>
-						 
 					</div>
-				</div>
-			</div>
-		</div>
+				 </div>
+				 </div>
 	 
 </body>
 </html>

@@ -14,15 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
-import com.spaneos.vemas.pojo.user_d;
 import com.spaneos.vemas.service.VendorServiceImp;
-import com.spaneos.vms.security.CustomAuthenticationProvider;
 
 /**
  * Servlet implementation class VendorManagementServlet
@@ -52,6 +51,12 @@ public class VendorManagementServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 
 		if (uri.endsWith("landingpageOfEmplyee")) {
+		
+		String user=request.getParameter("username");
+		String password=request.getParameter("password");
+		System.out.println(user+","+password);
+		
+			
 			 
 		 
 			request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")

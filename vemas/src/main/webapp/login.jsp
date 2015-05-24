@@ -36,7 +36,20 @@
 #body{
 
 
-background-image: url("images/411.jpg");
+ 
+}
+#right{
+height: 100%;
+width: 40%;
+float: right;
+
+
+}
+#lift{
+height: 100%;
+width: 60%;
+float: left;	
+ background-image: url('images/22.jpg');
 }
 </style>
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -60,25 +73,37 @@ background-image: url("images/411.jpg");
       
 </head>
 <body id="body" onload='document.loginForm.username.focus();'>
-<%@ include file="header_v.jsp" %>
-<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				 
+ 
 
+	 
+		<div class="row">
+			<div class="col-md-" style=";"  id="lift">
+<%@ include file="header_v.jsp" %>
+			</div>
+			
+			<div class="col-md-"  id="right">
+				 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-6">
 					<c:if test="${not empty error}">
 						<div class="error">${error}</div>
 					</c:if>
 					<c:if test="${not empty msg}">
 						<div class="msg">${msg}</div>
 					</c:if>
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h4 class="">Login</h4>
-						</div>
-						<div class="panel-body" align="center">
+					 
+							<h1 style="color: green;" class="">Login</h1>
+						 <br>
+						 <br>
+					 <h4  >Sign in with your Spaneos Ids </h4>
+					 <br>
 							<form name='loginForm'
 								action="<c:url value='/j_spring_security_check' />"
 								 class="from form-horizontal" novalidate
@@ -88,7 +113,7 @@ background-image: url("images/411.jpg");
 									<tr>
 									
 										<td>User:</td>
-										<td><input type='text' name='username'></td>
+										<td><input type='text' name='username' required="required"></td>
 										</tr>
 										<tr>
 										<td>&nbsp;</td>
@@ -96,7 +121,7 @@ background-image: url("images/411.jpg");
 									</tr>
 									<tr>
 										<td>Password:</td>
-										<td><input type='password' name='password' /></td>
+										<td><input type='password' name='password' required="required" /></td>
 									</tr>
 									<tr>
 										<td>&nbsp;</td>
@@ -107,8 +132,10 @@ background-image: url("images/411.jpg");
  									<td>
 									&nbsp;
  									</td>
-										<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
-											value="submit" /></td></center>
+									<center>	<td colspan='7'><input class="btn btn-info btn-xs"   name="submit" type="submit"
+											value="Log-In" />
+											 <input class="btn btn-info btn-xs"   name="reset" type="reset"
+											 > </td></center>
 									</tr>
 								</table>
 
@@ -116,12 +143,11 @@ background-image: url("images/411.jpg");
 									value="${_csrf.token}" />
 
 							</form>
-					 If your Admin Login <a href="admin/landingpage_vendor">Here</a>
+					 
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+				 </div>
+				 </div>
 	 
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.spaneos.vemas.pojo;
 
  
-public class user_d {
+public class User {
 	private String name;
 	private String password;
 	private  boolean isAdmin;

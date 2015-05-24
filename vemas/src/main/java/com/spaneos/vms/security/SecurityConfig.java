@@ -2,17 +2,20 @@ package com.spaneos.vms.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.ldap.LdapAuthenticationProviderConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	javax.sql.DataSource dataSource;
 
@@ -37,22 +40,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login.jsp").permitAll().failureUrl("/login.jsp")
 				.loginProcessingUrl("/j_spring_security_check")
 				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/admin/landingpage_vendor",true).and().logout()
-				.logoutSuccessUrl("/").and().exceptionHandling()
+				.defaultSuccessUrl("/admin/landingpage_vendor", true).and()
+				.logout().logoutSuccessUrl("/").and().exceptionHandling()
 				.accessDeniedPage("/403").and().csrf();
 		http.csrf().disable();
-		
-		/*  http.authorizeRequests().antMatchers("/user/* ")
-		  .access("hasRole('ROLE_USER')").anyRequest()
-			.authenticated().and().formLogin()
-		   .loginPage("/loginpage_l.jsp") .failureUrl("/login.jsp")
-		  .loginProcessingUrl("/j_spring_security_check")
-		   .usernameParameter("username").passwordParameter("password")
-		   .defaultSuccessUrl("/user/landingpageOfEmplyee").and()
-		   .logout().logoutSuccessUrl("/").and().exceptionHandling()
-		  .accessDeniedPage("/403").and().csrf(); http.csrf().disable();
+
+		/*
+		 * http.authorizeRequests().antMatchers("/user/* ")
+		 * .access("hasRole('ROLE_USER')").anyRequest()
+		 * .authenticated().and().formLogin() .loginPage("/loginpage_l.jsp")
+		 * .failureUrl("/login.jsp")
+		 * .loginProcessingUrl("/j_spring_security_check")
+		 * .usernameParameter("username").passwordParameter("password")
+		 * .defaultSuccessUrl("/user/landingpageOfEmplyee").and()
+		 * .logout().logoutSuccessUrl("/").and().exceptionHandling()
+		 * .accessDeniedPage("/403").and().csrf(); http.csrf().disable();
 		 */
 
+		AuthenticationProvider auth = new CustomAuthenticationProvider();
 		/*
 		 * http.authorizeRequests().antMatchers("/css/**").permitAll()
 		 * .antMatchers("/js/**").permitAll().antMatchers("/images/**")
@@ -66,25 +71,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .logout().logoutSuccessUrl("/").and().csrf().disable();
 		 * http.csrf().disable();
 		 */
+
 		http.authorizeRequests().antMatchers("/css/**").permitAll()
 				.antMatchers("/js/**").permitAll().antMatchers("/images/**")
 				.permitAll().antMatchers("/bootstrap/**").permitAll()
 				.antMatchers("/upload/**").permitAll().anyRequest()
-				
+
 				.authenticated().and().formLogin().loginPage("/login.jsp")
 				.permitAll().failureUrl("/loginpage_l.jsp")
-				
-				.loginProcessingUrl("/j_spring_security_check")
+				.loginProcessingUrl("/j_spring_security_check").usernameParameter("username")
+
 				.defaultSuccessUrl("/user/landingpageOfEmplyee", true).and()
 
 				.logout().logoutSuccessUrl("/").and().csrf().disable();
 		http.csrf().disable();
-	 
-		
 
 	}
 
-	@Autowired
+/*	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
 		String ldap_url = "ldap://192.168.1.4/dc=spaneos,dc=local";
@@ -107,6 +111,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.ldapAuthoritiesPopulator(ldapAuthoritiesPopulator)
 				.groupRoleAttribute(ldap_url);
 
-	}
+	}*/
 
 }

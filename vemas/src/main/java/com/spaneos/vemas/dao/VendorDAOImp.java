@@ -14,13 +14,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.security.core.userdetails.User;
-
-import com.spaneos.vemas.pojo.user_d;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
- 
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.DaoUtil;
@@ -491,27 +487,7 @@ System.out.println(billes);
 		return list;
 	}
 
-	@Override
-	public user_d getPassword(String name) {
-		 con=daoUtil.getConnection();
-		 user_d admin=new user_d();
-		 try {
-			pstmt=con.prepareStatement("select password,enable from users where username=?;");
-			pstmt.setString(1, name);
-		rs=pstmt.executeQuery();
-		while(rs.next()){
-			admin.setPassword(rs.getString("password"));
-			admin.setAdmin(rs.getBoolean("enable"));
-		}
-		} catch (SQLException e) {
-		
-			e.printStackTrace();
-		}finally{
-			daoUtil.close(con, stmt, pstmt, rs);
-
-		}
-		return admin;
-	}
+	 
 
 	@Override
 	public List<Billes> getBillByDate(String Date) {
@@ -699,23 +675,23 @@ System.out.println(billes);
 	}
 
 	@Override
-	public user_d getUser(String name) {
-		user_d user_d=new user_d();
+	public com.spaneos.vemas.pojo.User getUser(String name) {
+		com.spaneos.vemas.pojo.User user=new com.spaneos.vemas.pojo.User();
 		  con=daoUtil.getConnection();
 		  try {
 			pstmt=con.prepareStatement("select username, role from user_roles where username=?");
 			pstmt.setString(1, name);
 			rs=pstmt.executeQuery();
 			while(rs.next()){
-			user_d.setName(rs.getString(2));
-			user_d.setRole(rs.getString(3));
+			user.setName(rs.getString(2));
+			user.setRole(rs.getString(3));
 			
 			}
 		} catch (SQLException e) {
 		 
 			e.printStackTrace();
 		}
-		return user_d;
+		return user;
 	}
 	}
  
