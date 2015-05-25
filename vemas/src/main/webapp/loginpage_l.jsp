@@ -114,7 +114,7 @@ float: left;
 							<h1 class="">Login</h1>
 						 <br>
 						 <div id="error">
-						 <h4 style="color: red;">Invalid Email Or password</h4>
+						 <h4 style="color: red;">Invalid UserName Or password</h4>
 						 
 						 </div>
 						 <br>

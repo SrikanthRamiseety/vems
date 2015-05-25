@@ -7,12 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Landing page</title>
-<script type="text/javascript"
-	src="http://docs/docs/jquery_json/jquery-1.11.1.js"></script>
-<script type="text/javascript"
-	src="http://docs/docs/References/08_Bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap.min.js">
-	
-</script>
+ 
+ 
+ 
 
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/landingpage.css">
@@ -33,7 +30,7 @@
 
         <!-- Template js -->
         <script src="../js/jquery-2.1.1.min.js"></script>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="../js/jquery.appear.js"></script>
         <script src="../js/contact_me.js"></script>
         <script src="../js/jqBootstrapValidation.js"></script>

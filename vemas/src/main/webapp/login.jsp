@@ -99,7 +99,7 @@ float: left;
 						<div class="msg">${msg}</div>
 					</c:if>
 					 
-							<h1 style="color:blue;" class="">Login</h1>
+							<h1 style="color: rgb(83, 131, 178);" class="">Login</h1>
 						 <br>
 						 <br>
 					 <h4 style="color: lime;" >Sign in with your Spaneos Ids </h4>
