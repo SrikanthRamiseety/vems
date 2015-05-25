@@ -19,6 +19,7 @@ import javax.servlet.jsp.PageContext;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
+import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.service.VendorServiceImp;
@@ -51,14 +52,7 @@ public class VendorManagementServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 
 		if (uri.endsWith("landingpageOfEmplyee")) {
-		
-		String user=request.getParameter("username");
-		String password=request.getParameter("password");
-		System.out.println(user+","+password);
-		
 			
-			 
-		 
 			request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
 					.forward(request, response);
 		} else if (uri.endsWith("forgotpwd.vms")) {
@@ -66,20 +60,15 @@ public class VendorManagementServlet extends HttpServlet {
 			String seq_question = request.getParameter("seq_question");
 			String answer = request.getParameter("answer");
 
-		
-				 
+			request.setAttribute("email", email);
 
-				request.setAttribute("email", email);
+			request.setAttribute("incorrectAnswer", false);
+			request.getRequestDispatcher("forgotpwdform.jsp").forward(request,
+					response);
+			;
 
-				 
-				request.setAttribute("incorrectAnswer", false);
-				request.getRequestDispatcher("forgotpwdform.jsp").forward(
-						request, response);
-				;
-			 
-			 
-				;
-			 
+			;
+
 		} else if (uri.endsWith("logout.vms")) {
 			HttpSession session = request.getSession(false);
 
@@ -134,7 +123,6 @@ public class VendorManagementServlet extends HttpServlet {
 
 			billes.setImagepath(file);
 
-
 			if (vendorServiceImp.addBills(billes)) {
 				request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
 						.forward(request, response);
@@ -142,7 +130,7 @@ public class VendorManagementServlet extends HttpServlet {
 			} else {
 				response.sendRedirect("error.jsp");
 			}
-		}    else if (uri.endsWith("addvendor.opt")) {
+		} else if (uri.endsWith("addvendor.opt")) {
 			HttpSession session = request.getSession(false);
 
 			if (session != null) {
@@ -374,8 +362,8 @@ public class VendorManagementServlet extends HttpServlet {
 			String vendor = request.getParameter("vendorName");
 			System.out.println(vendor);
 			request.setAttribute("vendorname", vendor);
-			request.getRequestDispatcher("/WEB-INF/views/addBank_v.jsp")
-					.forward(request, response);
+			request.getRequestDispatcher(PATH + "addBank_v.jsp").forward(
+					request, response);
 		} else if (uri.endsWith("bankadd_n.vms")) {
 			Bank bank = new Bank();
 			bank.setAcno(request.getParameter("acn"));
@@ -391,10 +379,10 @@ public class VendorManagementServlet extends HttpServlet {
 				List<VendorType> list3 = vendorServiceImp.getAllVendorTypes();
 				System.out.println(list3);
 				request.setAttribute("tlist", list3);
-				request.getRequestDispatcher("/WEB-INF/views/addvendor.jsp")
-						.forward(request, response);
+				request.getRequestDispatcher(PATH + "addvendor.jsp").forward(
+						request, response);
 			} else {
-				response.sendRedirect("/WEB-INF/views/error.jsp");
+				response.sendRedirect("error.jsp");
 			}
 		} else if (uri.endsWith("contactmanager.vms")) {
 			HttpSession session = request.getSession(false);
@@ -410,8 +398,8 @@ public class VendorManagementServlet extends HttpServlet {
 				session.setAttribute("editContact", null);
 				session.setAttribute("contactList", vendor.getVendorContacts());
 			}
-			request.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
-					.forward(request, response);
+			request.getRequestDispatcher(PATH + "contactmanager.jsp").forward(
+					request, response);
 		} else if (uri.endsWith("allvendors")) {
 			List<Vendor> list = vendorServiceImp.getAllVendors();
 			System.out.println("coming...");
@@ -423,6 +411,19 @@ public class VendorManagementServlet extends HttpServlet {
 			request.getRequestDispatcher(
 					PATH + "view_vendor.jsp?pagenumber=" + pageNumber).forward(
 					request, response);
+		} else if (uri.endsWith("landingpage")) {
+			String user = request.getParameter("name");
+			User role = vendorServiceImp.getUser(user);
+			String user_role = role.getRole();
+			request.setAttribute("role", user_role);
+			request.setAttribute("name",user);
+			System.out.println("role="+user_role);
+			 
+			 
+			 
+				request.getRequestDispatcher(PATH+"landing.jsp").forward(
+						request, response);
+			 
 		}
 
 	}

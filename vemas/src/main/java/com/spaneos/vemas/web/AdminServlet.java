@@ -30,6 +30,7 @@ import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
  
+import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.service.VendorServiceImp;
@@ -600,6 +601,17 @@ public class AdminServlet extends HttpServlet {
 			System.out.println(vlist);
 			req.getRequestDispatcher("/WEB-INF/views/searchview_b.jsp").forward(req, resp);
 
+		}else if(uri.endsWith("adduser.vms")){
+			req.getRequestDispatcher("/WEB-INF/views/signup.jsp").forward(req, resp);
+		}else if(uri.endsWith("adding.vms")){
+			User user =new User();
+			user.setName(req.getParameter("name"));
+			user.setRole(req.getParameter("role"));
+			if(vendorServiceImp.addUser(user)){
+				req.getRequestDispatcher("landingpage_vendor").forward(req, resp);
+			}else{
+				resp.sendRedirect("/WEB-INF/views/error.jsp");
+			}
 		}
 
 	}

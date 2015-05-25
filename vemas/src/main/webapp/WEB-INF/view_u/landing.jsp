@@ -50,29 +50,13 @@ background-image: url("../images/97.jpg");
 
 }
 </style>
-<script type="text/javascript">
-$(function(){
-	
-	 
-		var name=$("#name").val();
-		 
-		$.post("user/landingpage?name=" + name,show);
-		function show(data) {
-			$("#show").html("");
-			$("#show").html(data);
-
-		}
-	 
-});
-
-
-</script>
+ 
 </head>
 <body id="body">
-<div id="show">
+
 	<%@ include file="header.jsp"%>
-	<input type="text" id="name" name="name" style="display: none;"value="${pageContext.request.userPrincipal.name}"></input>
-	<%--  <c:if test="${role eq USER}">
+	 
+	 <c:if test="${role== 'USER'}">
 	 
 	        <div class="mainbody-section text-center" >
             <div class="container">
@@ -188,7 +172,7 @@ $(function(){
 	<br>
 	<%@ include file="footer.jsp"%>
 	</c:if>
-	 <c:if test="${role eq 'ADMIN'}">
+	 <c:if test="${role == 'ADMIN'}">
 	 <div class="mainbody-section text-center">
 		<div class="container">
 			<div class="row">
@@ -272,8 +256,8 @@ $(function(){
 					</div>
 
 					<div class="menu-item color">
-						<a href="../admin/billesview?pagenumber=1&page=first"> <i class=" fa fa-money"></i>
-							<p>view Bills</p>
+						<a href="../admin/adduser.vms"> <i class=" fa fa-money"></i>
+							<p>Adding New User</p>
 						</a>
 					</div>
 					<div class="menu-item green">
@@ -290,7 +274,24 @@ $(function(){
 	<br>
 	<br>
 	<%@ include file="footer.jsp"%>
-	 </c:if> --%>
+	 </c:if>
+	 <div class="container">
+	<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-10">
+	  <c:if test="${role eq null }">
+	 <h1 style="color: red;"> Sorry! &nbsp;&nbsp;${name } your not authorization member  <br>
+	 Please Logout......</h1>
+	 </c:if>
+	
+	
+	</div>
+	
+	</div>
+	 
 	 </div>
+	
+	 
+	 
 </body>
 </html>

@@ -20,6 +20,7 @@ color: blue;
 float: right;
 }
 </style>
+
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top header"

@@ -134,8 +134,8 @@
 					</div>
 
 					<div class="menu-item color">
-						<a href="billesview?pagenumber=1&page=first"> <i class=" fa fa-money"></i>
-							<p>view Bills</p>
+						<a href="../admin/adduser.vms"> <i class=" fa fa-money"></i>
+							<p>Adding New User</p>
 						</a>
 					</div>
 					<div class="menu-item green">

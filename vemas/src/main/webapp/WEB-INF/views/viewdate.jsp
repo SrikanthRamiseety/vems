@@ -42,7 +42,7 @@
 		$(".page").click(
 				function() {
 					var pagenumber = $(this).val();
-
+					 var date=$("#date_r").val();
 					$.post("admin/date_s?pagenumber=" + $(this).val()
 							+ "&page=notfirst", show);
 
@@ -136,8 +136,8 @@ overflow: scroll;
 								</thead>
 								<tbody>
 
-									<c:forEach begin="${(param.pagenumber-1) * 2 }"
-										items="${bill }" end="${(param.pagenumber * 2 )-1 }" var="i">
+									<c:forEach  
+										items="${bill }"  var="i">
 										<tr>
 
 											<td><c:out value="${i.getBillNo()}"></c:out></td>
@@ -188,7 +188,7 @@ overflow: scroll;
 
 							</table>
 						</div>
-						<div id="pagination">
+						<%-- <div id="pagination">
 
 
 							<ul class="pager">
@@ -203,7 +203,7 @@ overflow: scroll;
 
 							 
 
-						</div>
+						</div> --%>
 					</div>
 				</c:if>
 

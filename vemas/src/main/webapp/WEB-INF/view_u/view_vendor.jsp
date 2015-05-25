@@ -37,7 +37,7 @@
 		var size = $("#hidden").val();
 		var number = $("#next").val();
 
-		if (number == Math.round(size / 10) + 1) {
+		if (number == Math.round(size / 9) + 1) {
 			$("#next").addClass("disabled");
 		}
 		$(".page").click(

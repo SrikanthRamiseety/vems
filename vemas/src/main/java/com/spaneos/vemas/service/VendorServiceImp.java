@@ -7,6 +7,7 @@ import com.spaneos.vemas.dao.VendorDAOImp;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
+import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 
@@ -260,6 +261,12 @@ public class VendorServiceImp implements VendorServiceInf {
 	public com.spaneos.vemas.pojo.User getUser(String name) {
 	 
 		return vendorDaoImp.getUser(name);
+	}
+
+	@Override
+	public boolean addUser(User user) {
+		 
+		return vendorDaoImp.addUser(user);
 	}
 
  

@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .accessDeniedPage("/403").and().csrf(); http.csrf().disable();
 		 */
 
-		AuthenticationProvider auth = new CustomAuthenticationProvider();
+	 
 		/*
 		 * http.authorizeRequests().antMatchers("/css/**").permitAll()
 		 * .antMatchers("/js/**").permitAll().antMatchers("/images/**")
@@ -88,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-/*	@Autowired
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
 		String ldap_url = "ldap://192.168.1.4/dc=spaneos,dc=local";
@@ -111,6 +111,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.ldapAuthoritiesPopulator(ldapAuthoritiesPopulator)
 				.groupRoleAttribute(ldap_url);
 
-	}*/
+	}
 
 }

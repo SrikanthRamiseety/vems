@@ -17,6 +17,7 @@ import java.util.List;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
+import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
 import com.spaneos.vemas.util.DaoUtil;
@@ -679,19 +680,41 @@ System.out.println(billes);
 		com.spaneos.vemas.pojo.User user=new com.spaneos.vemas.pojo.User();
 		  con=daoUtil.getConnection();
 		  try {
-			pstmt=con.prepareStatement("select username, role from user_roles where username=?");
+			pstmt=con.prepareStatement("select user_role from user_role where username=?");
 			pstmt.setString(1, name);
 			rs=pstmt.executeQuery();
 			while(rs.next()){
-			user.setName(rs.getString(2));
-			user.setRole(rs.getString(3));
+			 
+			user.setRole(rs.getString("user_role"));
 			
 			}
 		} catch (SQLException e) {
 		 
 			e.printStackTrace();
 		}
+	finally{
+		daoUtil.close(con, stmt, pstmt, rs);
+
+	}
 		return user;
+	}
+
+	@Override
+	public boolean addUser(User user) {
+		 con=daoUtil.getConnection();
+		 try {
+			pstmt=con.prepareStatement("insert into user_role(username,user_role)values(?,?)");
+			pstmt.setString(1, user.getName());
+			pstmt.setString(2, user.getRole());
+		int i=pstmt.executeUpdate();
+		if(i>0){
+			return true;
+			
+		}
+		} catch (SQLException e) {
+			 
+		}
+		return false;
 	}
 	}
  
