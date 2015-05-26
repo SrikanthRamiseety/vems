@@ -1,5 +1,6 @@
 package com.spaneos.vemas.web;
 
+import java.awt.Font;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,9 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
@@ -433,8 +437,8 @@ public class AdminServlet extends HttpServlet {
 					resp);
 		} else if (uri.endsWith("allvendors")) {
 			List<Vendor> list = vendorServiceImp.getAllVendors();
-			System.out.println("coming...");
-
+			 
+            System.out.println(list.size());
 			req.setAttribute("vlist", list);
 			int pageNumber = Integer.parseInt(req.getParameter("pagenumber"));
 			String page = req.getParameter("page");
@@ -456,22 +460,55 @@ public class AdminServlet extends HttpServlet {
 			}
 			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
 					.forward(req, resp);
-		} else if (uri.endsWith("excel")) {
-			String inj1 = req.getParameter("bill");
-
-			HSSFWorkbook wb = new HSSFWorkbook();
-			HSSFSheet sheet = wb.createSheet("Excel Sheet");
-			HSSFRow rowhead = sheet.createRow((short) 0);
-			rowhead.createCell((short) 0).setCellValue("Injections");
-
-			HSSFRow row = sheet.createRow((short) 1);
-			row.createCell((short) 0).setCellValue(inj1);
-
-			FileOutputStream fileOut = new FileOutputStream(
-					"c:/Injection_Details.xls/Injection_Details.xls");
-			wb.write(fileOut);
-			fileOut.close();
-
+		} else if(uri.endsWith("execlsheet")){
+			 
+			List<Vendor> list = vendorServiceImp.getAllVendors();
+			try{ 
+				
+				String filename="C:/data/vendor_admin.xls" ; 
+				HSSFWorkbook hwb=new HSSFWorkbook(); 
+				HSSFSheet sheet = hwb.createSheet("sheet"); 
+				HSSFCellStyle style = hwb.createCellStyle();
+				HSSFFont font = hwb.createFont();// Create font
+				 
+				font.setBoldweight((short) Font.ROMAN_BASELINE);
+				style.setFont(font);
+				
+				HSSFRow rowhead= sheet.createRow((short)0);
+				 
+				rowhead.createCell((short) 0).setCellValue("VENDOR NAME"); 
+				rowhead.createCell((short) 1).setCellValue("VENDOR TYPE"); 
+				rowhead.createCell((short) 2).setCellValue("VENDOR CATEGORY"); 
+				rowhead.createCell((short) 3).setCellValue("VENDOR ADDRESS"); 
+				rowhead.createCell((short) 4).setCellValue("VENDOR CONTACTS#"); 
+				rowhead.createCell((short) 5).setCellValue(" VENDOR WEB_SITE"); 
+				int j=0;
+			for(Vendor i:list){
+				  j++;
+				 
+				  
+				 
+				 
+				 
+				HSSFRow row= sheet.createRow(j); 
+				row.createCell((short) 0).setCellValue(i.getVendorName()); 
+			 
+				row.createCell((short) 1).setCellValue(i.getVendorType()); 
+				row.createCell((short) 2).setCellValue(i.getVendorCategory()); 
+				row.createCell((short) 3).setCellValue(i.getVendorAddress()); 
+				row.createCell((short) 4).setCellValue(i.getVendorMobileNumber());
+				row.createCell((short) 5).setCellValue(i.getVendorWebsite());
+				} 
+				FileOutputStream fileOut = new FileOutputStream(filename); 
+				hwb.write(fileOut); 
+				fileOut.close(); 
+			 
+				} catch( Exception ex ) { 
+				System.out.println(ex); 
+				}
+			req.getRequestDispatcher("landingpage_vendor")
+			.forward(req, resp);
+			
 		} else if (uri.endsWith("year_a")) {
 			String str = req.getParameter("year");
 			int year_int = Integer.parseInt(str);

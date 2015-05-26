@@ -142,7 +142,7 @@ hr {
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-11">
-				<h3 style="color: black;">VendorName:${vendor}</h3>
+				<h3 style="color: rgb(5, 234, 130);">VendorName:${vendor}</h3>
 				<c:if test="${(fn:length(vlist) eq 0) }">
 					<h2>Sorry! No Data Found..</h2>
 				</c:if>

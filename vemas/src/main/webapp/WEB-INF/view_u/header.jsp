@@ -49,5 +49,6 @@ float: right;
 			 	</div>
 		</div>
 	</nav>
+	<hr>
 </body>
 </html>

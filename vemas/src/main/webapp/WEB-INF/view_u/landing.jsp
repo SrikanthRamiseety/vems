@@ -150,7 +150,7 @@ background-image: url("../images/97.jpg");
                         <div class="menu-item color">
                             <a href="billes.vms">
                                 <i class="fa fa-comment-o"></i>
-                                <p>Billes</p>
+                                <p>Uploading Bills</p>
                             </a>
                         </div>
                         
@@ -277,7 +277,7 @@ background-image: url("../images/97.jpg");
 	<div class="col-md-2"></div>
 	<div class="col-md-10">
 	  <c:if test="${role eq null }">
-	 <h1 style="color: red;"> Sorry! &nbsp;&nbsp;${name } your not authorization member  <br>
+	 <h1 style="color: red;"> Sorry!</h1><h1 style="color: blue;">${name }</h1> <h1 style="color: red;">your not authorization member to access <br> 
 	 Please Logout......</h1>
 	 </c:if>
 	

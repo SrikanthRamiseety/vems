@@ -97,6 +97,9 @@ table.collapse.in {
 h2 {
 	color: red;
 }
+#disply{
+background-image: url("../images/679.jpg");
+}
 </style>
 
 <script type="text/javascript">
@@ -131,9 +134,9 @@ h2 {
 						<tr>
 							<th>S.No</th>
 							<th>VendorCode</th>
+							<th>CompanyName</th>
 							<th>Type</th>
 							<th>Category</th>
-							<th>Company Name</th>
 							<th>Address</th>
 							<th>Contact #</th>
 							<th>Web Site</th>
@@ -147,9 +150,9 @@ h2 {
 							<tr class="clickable">
 								<td><c:out value="${i.getId()}"></c:out></td>
 								<td><c:out value="${i.getVendorCode()}"></c:out></td>
+								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorType()}"></c:out></td>
 								<td><c:out value="${i.getVendorCategory() }"></c:out></td>
-								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
 								<td><c:out
 										value="${i.getVendorMobileNumber()}, ${i.getVendorMobileNumber1()},  ${i.getVendorMobileNumber2()}"></c:out></td>
@@ -181,8 +184,10 @@ h2 {
 
 				</ul>
 
+		<a href="execlsheet">Execl Sheet</a>
 			</div>
 		</div>
+		
 	</c:if>
 	</div>
 	</div></div>

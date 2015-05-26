@@ -26,7 +26,7 @@
 		var size = $("#hidden").val();
 		var number = $("#next").val();
 
-		if (number == Math.round(size / 10) + 1) {
+		if (number == Math.round(size / 9)+1) {
 			$("#next").addClass("disabled");
 		}
 		$(".page").click(
@@ -115,9 +115,9 @@ h2 {
 						<tr>
 							<th>S.No</th>
 							<th>VendorCode</th>
+							<th>CompanyName</th>
 							<th>Type</th>
 							<th>Category</th>
-							<th>Company Name</th>
 							<th>Address</th>
 							<th>Contact #</th>
 							<th>Web Site</th>
@@ -131,9 +131,9 @@ h2 {
 							<tr class="clickable">
 								<td><c:out value="${i.getId()}"></c:out></td>
 								<td><c:out value="${i.getVendorCode()}"></c:out></td>
+								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorType()}"></c:out></td>
 								<td><c:out value="${i.getVendorCategory() }"></c:out></td>
-								<td><c:out value="${i.getVendorName() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
 								<td><c:out
 										value="${i.getVendorMobileNumber()}, ${i.getVendorMobileNumber1()},  ${i.getVendorMobileNumber2()}"></c:out></td>
@@ -164,12 +164,9 @@ h2 {
 							value="${(param.pagenumber)+1 }" name="next" id="next">next</button></li>
 
 				</ul>
-
+                                   <a href="execlsheet">Execl Sheet</a>
 			</div>
-			<a
-				href="excel"><img
-				border="0" hspace="2" class="link" alt="Excel"
-				src="/click-examples/assets/images/page_excel.png"><span>Excel</span></a>
+			 
 		</div>
 	</c:if>
 

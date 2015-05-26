@@ -17,7 +17,7 @@
 
 		}
 		var size1 = $("#hidden").val();
-		if (size1 <= 4) {
+		if (size1 <= 8) {
 			$("#previous").hide();
 			$("#next").hide();
 
@@ -25,7 +25,7 @@
 		var size = $("#hidden").val();
 		var number = $("#next").val();
 
-		if (number == Math.round(size / 2) + 1) {
+		if (number == Math.round(size / 7) + 1) {
 			$("#next").addClass("disabled");
 		}
 		$(".page").click(
@@ -85,9 +85,10 @@ table.collapse.in {
 h2 {
 	color: red;
 }
-#vendor-table{
-max-height: 400px;
-overflow: scroll;
+
+#vendor-table {
+	max-height: 400px;
+	overflow: scroll;
 }
 </style>
 
@@ -119,7 +120,7 @@ overflow: scroll;
 
 							<th>S.No</th>
 							<th>Company Name</th>
-						 
+
 							<th>Type</th>
 							<th>Category</th>
 							<th>Address</th>
@@ -132,26 +133,22 @@ overflow: scroll;
 
 						<c:forEach begin="${(param.pagenumber-1) * 8 }" items="${vender }"
 							end="${(param.pagenumber * 8 )-1 }" var="i">
-							<tr class="clickable"   
-								 >
+							<tr class="clickable">
 								<td><c:out value="${i.getId()}"></c:out></td>
 								<td><a href="vendor_view?vendor=${i.getVendorName() }">${i.getVendorName() }</a></td>
-								 
+
 								<td><c:out value="${i.getVendorType()}"></c:out></td>
 								<td><c:out value="${i.getVendorCategory() }"></c:out></td>
 								<td><c:out value="${i.getVendorAddress()}"></c:out></td>
 								<td><c:out
 										value="${i.getVendorMobileNumber()},${i.getVendorMobileNumber1()},${i.getVendorMobileNumber2()}"></c:out></td>
-								<td><a href="http://${i.getVendorWebsite()}"target="_blank">${i.getVendorWebsite()}</a></td>
+								<td><a href="http://${i.getVendorWebsite()}"
+									target="_blank">${i.getVendorWebsite()}</a></td>
 
 
 							</tr>
 
-							 
-
-							 
-
-
+ 
 						</c:forEach>
 
 					</tbody>
