@@ -85,7 +85,7 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li class="text-center"><img src="../images/srikanth.jpg"
+					<li class="text-center"><img src="../images/admin_1.jpg"
 						class="user-image img-responsive" />
 					<li>
 						<button id="date" class="btn btn-info admin_btn">

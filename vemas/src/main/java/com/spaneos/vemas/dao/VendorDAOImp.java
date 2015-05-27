@@ -409,7 +409,7 @@ public class VendorDAOImp implements VendorDaoInf {
 		bill.setImageName(name);
 				billes.add(bill);
 					
-System.out.println(billes);	
+ 
 }
 		
 		} catch ( Exception e) {

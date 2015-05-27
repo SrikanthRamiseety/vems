@@ -414,7 +414,7 @@ public class AdminServlet extends HttpServlet {
 
 			String month = req.getParameter("month");
 			int month_int = Integer.parseInt(month);
-			System.out.println("monthvalue=" + month_int);
+			 
 			List<Billes> bii_list = new ArrayList<Billes>();
 			List<Billes> blist = vendorServiceImp.getAllBilles();
 			for (Billes b : blist) {

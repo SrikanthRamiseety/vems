@@ -11,32 +11,32 @@
  
  
 
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/landingpage.css">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Font Awesome CSS -->
+        Font Awesome CSS
         <link href="../css/font-awesome.min.css" rel="stylesheet">
 		
-		<!-- Custom CSS -->
+		Custom CSS
         <link href="../css/animate.css" rel="stylesheet">
 
-        <!-- Custom CSS -->
+        Custom CSS
         <link href="../css/style.css" rel="stylesheet">
 
-        <!-- Custom Fonts -->
+        Custom Fonts
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 
-        <!-- Template js -->
+        Template js
         <script src="../js/jquery-2.1.1.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
         <script src="../js/jquery.appear.js"></script>
         <script src="../js/contact_me.js"></script>
         <script src="../js/jqBootstrapValidation.js"></script>
         <script src="../js/modernizr.custom.js"></script>
         <script src="../js/script.js"></script>
-
+ -->
 <style type="text/css">
 #search {
 	margin-left: 19%;
