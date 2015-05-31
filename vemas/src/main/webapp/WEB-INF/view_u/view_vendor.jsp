@@ -98,10 +98,23 @@ h2 {
 	color: red;
 }
 #disply{
-background-image: url("../images/679.jpg");
+background-image: url("../images/234.jpg");
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$("#doc").change(function(){
+	var type=	$("#doc").val();
+	alert("YOUR DATE IS CONVERT TO "+type)
+		$.post("doc?type="+type)
+		
+	});
+	
+});
 
+
+
+</script>
 <script type="text/javascript">
 	$(function() {
 		//	$(".tbl-row").hide();
@@ -171,6 +184,9 @@ background-image: url("../images/679.jpg");
 
 				</table>
 			</div>
+				<div class="row"> 
+			<div class="col-md-3"></div>
+			<div class="col-md-5">
 			<div id="pagination">
 
 
@@ -183,9 +199,24 @@ background-image: url("../images/679.jpg");
 							value="${(param.pagenumber)+1 }" name="next" id="next">next</button></li>
 
 				</ul>
-
-		<a href="execlsheet">Execl Sheet</a>
+				
+				
 			</div>
+			
+			</div>
+			<div class="col-md-4">
+				EXPORT TO
+                       <select id="doc">
+                       <option selected="selected">----Select The Type----</option>
+                       <option value="execlsheet">Excelsheet</option>
+                        
+                       <option value="csv">Csv</option>
+                       <option value="pdf">PDf</option>
+                       
+                       
+                       </select>             
+			 </div>
+		</div>
 		</div>
 		
 	</c:if>

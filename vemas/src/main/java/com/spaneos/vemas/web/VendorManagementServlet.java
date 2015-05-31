@@ -3,6 +3,7 @@ package com.spaneos.vemas.web;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,11 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
@@ -431,17 +437,25 @@ public class VendorManagementServlet extends HttpServlet {
 				request.getRequestDispatcher(PATH+"landing.jsp").forward(
 						request, response);
 			 
-		}else if(uri.endsWith("execlsheet")){
+		}else if(uri.endsWith("doc")){
+			String type=request.getParameter("type");
+			System.out.println(type);
+			if(type.equalsIgnoreCase("execlsheet")){
+				
+			
 			 
 			List<Vendor> list = vendorServiceImp.getAllVendors();
 			try{ 
 				
-				String filename="C:/data/vendor.xls" ; 
+				String filename="C:/data/vendor_user.xls" ; 
 				HSSFWorkbook hwb=new HSSFWorkbook(); 
 				HSSFSheet sheet = hwb.createSheet("sheet"); 
 				HSSFCellStyle style = hwb.createCellStyle();
 				HSSFFont font = hwb.createFont();// Create font
+				 
 				font.setBoldweight((short) Font.ROMAN_BASELINE);
+				style.setFont(font);
+				
 				HSSFRow rowhead= sheet.createRow((short)0);
 				 
 				rowhead.createCell((short) 0).setCellValue("VENDOR NAME"); 
@@ -453,13 +467,14 @@ public class VendorManagementServlet extends HttpServlet {
 				int j=0;
 			for(Vendor i:list){
 				  j++;
-				System.out.println(j);
+				 
 				  
 				 
 				 
 				 
 				HSSFRow row= sheet.createRow(j); 
 				row.createCell((short) 0).setCellValue(i.getVendorName()); 
+			 
 				row.createCell((short) 1).setCellValue(i.getVendorType()); 
 				row.createCell((short) 2).setCellValue(i.getVendorCategory()); 
 				row.createCell((short) 3).setCellValue(i.getVendorAddress()); 
@@ -473,7 +488,130 @@ public class VendorManagementServlet extends HttpServlet {
 				} catch( Exception ex ) { 
 				System.out.println(ex); 
 				}
-			request.getRequestDispatcher(PATH + "landingpageOfEmplyee.jsp")
+			}else if(type.equalsIgnoreCase("csv")){
+				final String COMMA_DELIMITER = ",";
+				String filename="C:/data_v/vendor_user.csv" ; 
+				  final String NEW_LINE_SEPARATOR = "\n";
+				 final String FILE_HEADER = "VENDOR NAME,VENDOR TYPE,VENDOR CATEGORY,VENDOR ADDRESS,VENDOR CONTACTS#,VENDOR WEB_SITE";
+				 List<Vendor> list = vendorServiceImp.getAllVendors();
+				 FileWriter fileWriter = null;
+
+				try {
+					  
+					             fileWriter = new FileWriter(filename);
+					 
+					  
+					 
+					             //Write the CSV file header
+					  
+					             fileWriter.append(FILE_HEADER.toString());
+					  
+					              
+					  
+					             //Add a new line separator after the header
+					  
+					             fileWriter.append(NEW_LINE_SEPARATOR);
+					  
+					              
+					 
+					             //Write a new student object list to the CSV file
+					 
+					            for(Vendor i:list){
+					            	fileWriter.append(i.getVendorName());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorType());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorCategory());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorAddress());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorMobileNumber());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorWebsite());
+					            	fileWriter.append(NEW_LINE_SEPARATOR);
+
+					            }
+					  
+					  
+					  
+					              
+					  
+					  
+					             System.out.println("CSV file was created successfully !!!");
+					  
+					              
+					  
+					         } catch (Exception e) {
+					  
+					             System.out.println("Error in CsvFileWriter !!!");
+					  
+					             e.printStackTrace();
+					  
+					         } finally {
+					 
+					              
+					  
+					             try {
+					  
+					                 fileWriter.flush();
+					 
+					                 fileWriter.close();
+					  
+					             } catch (IOException e) {
+					 
+					                 System.out.println("Error while flushing/closing fileWriter !!!");
+					 
+					                 e.printStackTrace();
+					  
+					             }
+
+			}
+			}else if(type.equalsIgnoreCase("pdf")){
+				 com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+				    try
+				    {
+				    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/data_p/Vendor_user.pdf"));
+				         document.open();
+				         
+				         com.itextpdf.text.Font redFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(0, 255, 0, 0));
+				         //Add ordered list
+				         Paragraph paragraphOne = new Paragraph("VENDOR LIST", redFont);
+				         document.add(paragraphOne);
+				         //Add ordered list
+				         List<Vendor> list = vendorServiceImp.getAllVendors();
+				         com.itextpdf.text.List orderedList = new com.itextpdf.text.List(com.itextpdf.text.List.ALIGN_MIDDLE);
+				         for(Vendor i:list){
+				        	 
+				         
+				         orderedList.add(new ListItem(i.getVendorName()));
+				         orderedList.add(new ListItem(i.getVendorType()));
+				         orderedList.add(new ListItem(i.getVendorCategory()));
+				         orderedList.add(new ListItem(i.getVendorMobileNumber()));
+				         orderedList.add(new ListItem(i.getVendorAddress()));
+				         orderedList.add(new ListItem(i.getVendorWebsite()));
+				         orderedList.add(new ListItem("..........................."));
+				         
+				         document.add(orderedList);
+				    }
+				         document.close();
+				         writer.close();
+				         document.close();
+				         writer.close();
+				    }catch (Exception e)
+				    {
+				        e.printStackTrace();
+				    }
+			}else if(type.equalsIgnoreCase("")){
+				
+			}
+				
+			
+			request.getRequestDispatcher("landingpageOfEmplyee")
 			.forward(request, response);
 			
 		}

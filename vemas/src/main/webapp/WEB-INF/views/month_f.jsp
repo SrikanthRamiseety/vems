@@ -10,20 +10,23 @@
 <script type="text/javascript">
 	$(function() {
 		$("#b").click(function() {
-			var month = $("#b").val();
-			alert(month)
-			$.post("admin/month_v?month=" + month, show);
+		
+			$.post("admin/month_v?month=1", show);
+
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
 
 			}
+				 
+
 		});
+	
 	});
 	$(function() {
 		$("#b1").click(function() {
-			var month = $("#b1").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=2", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -33,8 +36,8 @@
 	});
 	$(function() {
 		$("#b2").click(function() {
-			var month = $("#b2").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=3", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -44,8 +47,8 @@
 	});
 	$(function() {
 		$("#b3").click(function() {
-			var month = $("#b3").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=4", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -55,8 +58,8 @@
 	});
 	$(function() {
 		$("#b4").click(function() {
-			var month = $("#b4").val();
-			$.post("admin/month_v?month=" + month, show);
+		4
+			$.post("admin/month_v?month=5", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -66,8 +69,8 @@
 	});
 	$(function() {
 		$("#b5").click(function() {
-			var month = $("#b5").val();
-			$.post("admin/month_v?month=" + month, show);
+		 
+			$.post("admin/month_v?month=6", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -77,8 +80,8 @@
 	});
 	$(function() {
 		$("#b6").click(function() {
-			var month = $("#b6").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=7", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -88,8 +91,8 @@
 	});
 	$(function() {
 		$("#b7").click(function() {
-			var month = $("#b7").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=8", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -99,8 +102,7 @@
 	});
 	$(function() {
 		$("#b8").click(function() {
-			var month = $("#b8").val();
-			$.post("admin/month_v?month=" + month, show);
+ 			$.post("admin/month_v?month=9", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -110,8 +112,8 @@
 	});
 	$(function() {
 		$("#b9").click(function() {
-			var month = $("#b9").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=10", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -121,8 +123,8 @@
 	});
 	$(function() {
 		$("#b10").click(function() {
-			var month = $("#b10").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=11", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -132,8 +134,8 @@
 	});
 	$(function() {
 		$("#b11").click(function() {
-			var month = $("#b11").val();
-			$.post("admin/month_v?month=" + month, show);
+			 
+			$.post("admin/month_v?month=12", show);
 			function show(data) {
 				$("#disply").html("");
 				$("#disply").html(data);
@@ -158,6 +160,8 @@
 
 </script>
 <script>
+
+ 
 var d = new Date();
  if(d.getMonth()+1==6){
 	 $("#ju").show();
@@ -195,6 +199,7 @@ var d = new Date();
 	 $("#jy").show();
 	 $("#ju").show();
  }
+ 
 </script>
 <body>
 	<div class="panel-body" id="total">
@@ -206,7 +211,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b" class="btn btn-info" value="1">January</button>
+					<a  id="b">	January</a>
 					</center>
 					<br>
 
@@ -217,7 +222,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b1" class="btn btn-info" value="2">February</button>
+						<a id="b1">February</a>
 					</center>
 					<br>
 
@@ -228,7 +233,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b2" class="btn btn-info" value="3">March</button>
+						<a id="b2"  >March</a>
 					</center>
 					<br>
 
@@ -239,7 +244,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b3" class="btn btn-info" value="4">April</button>
+						<a id="b3">April</a>
 					</center>
 					<br>
 
@@ -254,7 +259,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b4" class="btn btn-info" value="5">May</button>
+						<a id="b4" >May</a>
 					</center>
 					<br>
 
@@ -265,7 +270,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b5" class="btn btn-info" value="6">June</button>
+						<a id="b5">June</a>
 					</center>
 					<br>
 
@@ -275,7 +280,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b6" class="btn btn-info" value="7">July</button>
+						<a id="b6" >July</a>
 					</center>
 					<br>
 
@@ -285,7 +290,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b7" class="btn btn-info" value="8">August</button>
+						<a id="b7"  >August</a>
 					</center>
 					<br>
 
@@ -299,7 +304,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b8" class="btn btn-info" value="9">September</button>
+						<a id="b8">September</a>
 					</center>
 					<br>
 
@@ -309,7 +314,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b9" class="btn btn-info" value="10">October</button>
+						<a id="b9">October</a>
 					</center>
 					<br>
 
@@ -319,7 +324,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b10" class="btn btn-info" value="11">November</button>
+						<a id="b10">November</a>
 					</center>
 					<br>
 
@@ -329,7 +334,7 @@ var d = new Date();
 				<fieldset>
 					<br>
 					<center>
-						<button id="b11" class="btn btn-info" value="12">December</button>
+						<a id="b11">December</a>
 					</center>
 					<br>
 

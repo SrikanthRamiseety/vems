@@ -25,6 +25,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
 		registry.addResourceHandler("/bootstrap/**").addResourceLocations("/bootstrap/");
 		registry.addResourceHandler("/upload/**").addResourceLocations("/upload/");
+		registry.addResourceHandler("/admin/**").addResourceLocations("/admin/");
 		 
 		 
 		 

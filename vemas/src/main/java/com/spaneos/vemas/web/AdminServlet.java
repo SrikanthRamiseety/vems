@@ -3,13 +3,13 @@ package com.spaneos.vemas.web;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -28,12 +28,18 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
 
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.CMYKColor;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.spaneos.vemas.pojo.Bank;
 import com.spaneos.vemas.pojo.Billes;
 import com.spaneos.vemas.pojo.Contact;
- 
 import com.spaneos.vemas.pojo.User;
 import com.spaneos.vemas.pojo.Vendor;
 import com.spaneos.vemas.pojo.VendorType;
@@ -46,8 +52,7 @@ import com.spaneos.vemas.service.VendorServiceImp;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private VendorServiceImp vendorServiceImp = VendorServiceImp.getInstance();
-	private  Logger log = Logger.getLogger(AdminServlet.class
-			.getName());
+	private Logger log = Logger.getLogger(AdminServlet.class.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -460,7 +465,12 @@ public class AdminServlet extends HttpServlet {
 			}
 			req.getRequestDispatcher("/WEB-INF/views/contactmanager.jsp")
 					.forward(req, resp);
-		} else if(uri.endsWith("execlsheet")){
+		} else if(uri.endsWith("doc")){
+			String type=req.getParameter("type");
+			System.out.println(type);
+			if(type.equalsIgnoreCase("execlsheet")){
+				
+			
 			 
 			List<Vendor> list = vendorServiceImp.getAllVendors();
 			try{ 
@@ -506,6 +516,243 @@ public class AdminServlet extends HttpServlet {
 				} catch( Exception ex ) { 
 				System.out.println(ex); 
 				}
+			}else if(type.equalsIgnoreCase("csv")){
+				final String COMMA_DELIMITER = ",";
+				String filename="C:/data_v/vendor_admin.csv" ; 
+				  final String NEW_LINE_SEPARATOR = "\n";
+				 final String FILE_HEADER = "VENDOR NAME,VENDOR TYPE,VENDOR CATEGORY,VENDOR ADDRESS,VENDOR CONTACTS#,VENDOR WEB_SITE";
+				 List<Vendor> list = vendorServiceImp.getAllVendors();
+				 FileWriter fileWriter = null;
+
+				try {
+					  
+					             fileWriter = new FileWriter(filename);
+					 
+					  
+					 
+					             //Write the CSV file header
+					  
+					             fileWriter.append(FILE_HEADER.toString());
+					  
+					              
+					  
+					             //Add a new line separator after the header
+					  
+					             fileWriter.append(NEW_LINE_SEPARATOR);
+					  
+					              
+					 
+					             //Write a new student object list to the CSV file
+					 
+					            for(Vendor i:list){
+					            	fileWriter.append(i.getVendorName());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorType());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorCategory());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorAddress());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorMobileNumber());
+					            	 fileWriter.append(COMMA_DELIMITER);
+
+					            	fileWriter.append(i.getVendorWebsite());
+					            	fileWriter.append(NEW_LINE_SEPARATOR);
+
+					            }
+					  
+					  
+					  
+					              
+					  
+					  
+					             System.out.println("CSV file was created successfully !!!");
+					  
+					              
+					  
+					         } catch (Exception e) {
+					  
+					             System.out.println("Error in CsvFileWriter !!!");
+					  
+					             e.printStackTrace();
+					  
+					         } finally {
+					 
+					              
+					  
+					             try {
+					  
+					                 fileWriter.flush();
+					 
+					                 fileWriter.close();
+					  
+					             } catch (IOException e) {
+					 
+					                 System.out.println("Error while flushing/closing fileWriter !!!");
+					 
+					                 e.printStackTrace();
+					  
+					             }
+
+			}
+			}else if(type.equalsIgnoreCase("pdf")){
+				 com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+				    try
+				    {
+				    	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/data_p/Vendor_admin_1.pdf"));
+				         document.open();
+				         
+				         com.itextpdf.text.Font redFont = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD, new CMYKColor(0, 255, 0, 0));
+				         //Add ordered list
+				         Paragraph paragraphOne = new Paragraph("VENDOR LIST", redFont);
+				         document.add(paragraphOne);
+				         //Add ordered list
+				         List<Vendor> list = vendorServiceImp.getAllVendors();
+				         /*com.itextpdf.text.List orderedList = new com.itextpdf.text.List(com.itextpdf.text.List.LIST);*/
+				         PdfPTable orderedList = new PdfPTable(6);
+				         for(Vendor i:list){
+				        	 
+				         
+				         orderedList.addCell(i.getVendorName());
+				         orderedList.addCell(i.getVendorType());
+				         orderedList.addCell(i.getVendorCategory());
+				         orderedList.addCell(i.getVendorMobileNumber());
+				         orderedList.addCell(i.getVendorAddress());
+				         orderedList.addCell(i.getVendorWebsite());
+				         
+				         
+				         document.add(orderedList);
+				    } 
+				          
+
+
+
+				          // Step 5
+				          
+				         document.close();
+				         writer.close();
+				         document.close();
+				         writer.close();
+				    }catch (Exception e)
+				    {
+				        e.printStackTrace();
+				    }
+				/* Document doc = new Document();
+				 
+				 
+				  DecimalFormat df = new DecimalFormat("0.00");
+				 
+				  try {
+				    
+				   //special font sizes
+				   com.itextpdf.text.Font bfBold12 = new com.itextpdf.text.Font(FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(0, 0, 0)); 
+				   com.itextpdf.text.Font bf12 = new com.itextpdf.text.Font(FontFamily.TIMES_ROMAN, 12); 
+				 
+				   //file path
+				    
+				     PdfWriter docWriter = PdfWriter.getInstance(doc, new FileOutputStream("C:/data_p/Vendor.pdf"));;
+				    
+				     doc.open();
+				   //document header attributes
+				   doc.addAuthor("betterThanZero");
+				   doc.addCreationDate();
+				   doc.addProducer();
+				   doc.addCreator("MySampleCode.com");
+				   doc.addTitle("Report with Column Headings");
+				   doc.setPageSize(PageSize.LETTER);
+				   
+				   //open document
+				 
+				   //create a paragraph
+				   Paragraph paragraph = new Paragraph("iText ® is a library that allows you to create and " +
+				     "manipulate PDF documents. It enables developers looking to enhance web and other " +
+				     "applications with dynamic PDF document generation and/or manipulation.");
+				    
+				    
+				   //specify column widths
+				   float[] columnWidths = {1.5f, 2f, 5f, 2f};
+				   //create PDF table with the given widths
+				   PdfPTable table = new PdfPTable(columnWidths);
+				   // set table width a percentage of the page width
+				   table.setWidthPercentage(90f);
+				 
+				   //insert column headings
+				   insertCell(table, "Order No", Element.ALIGN_RIGHT, 1, bfBold12);
+				   insertCell(table, "Account No", Element.ALIGN_LEFT, 1, bfBold12);
+				   insertCell(table, "Account Name", Element.ALIGN_LEFT, 1, bfBold12);
+				   insertCell(table, "Order Total", Element.ALIGN_RIGHT, 1, bfBold12);
+				   table.setHeaderRows(1);
+				 
+				   //insert an empty row
+				   insertCell(table, "", Element.ALIGN_LEFT, 4, bfBold12);
+				   //create section heading by cell merging
+				   insertCell(table, "New York Orders ...", Element.ALIGN_LEFT, 4, bfBold12);
+				   double orderTotal, total = 0;
+				    
+				   //just some random data to fill 
+				   for(int x=1; x<5; x++){
+				     
+				    insertCell(table, "10010" + x, Element.ALIGN_RIGHT, 1, bf12);
+				    insertCell(table, "ABC00" + x, Element.ALIGN_LEFT, 1, bf12);
+				    insertCell(table, "This is Customer Number ABC00" + x, Element.ALIGN_LEFT, 1, bf12);
+				     
+				    orderTotal = Double.valueOf(df.format(Math.random() * 1000));
+				    total = total + orderTotal;
+				    insertCell(table, df.format(orderTotal), Element.ALIGN_RIGHT, 1, bf12);
+				     
+				   }
+				   //merge the cells to create a footer for that section
+				   insertCell(table, "New York Total...", Element.ALIGN_RIGHT, 3, bfBold12);
+				   insertCell(table, df.format(total), Element.ALIGN_RIGHT, 1, bfBold12);
+				    
+				   //repeat the same as above to display another location
+				   insertCell(table, "", Element.ALIGN_LEFT, 4, bfBold12);
+				   insertCell(table, "California Orders ...", Element.ALIGN_LEFT, 4, bfBold12);
+				   orderTotal = 0;
+				    
+				   for(int x=1; x<7; x++){
+				     
+				    insertCell(table, "20020" + x, Element.ALIGN_RIGHT, 1, bf12);
+				    insertCell(table, "XYZ00" + x, Element.ALIGN_LEFT, 1, bf12);
+				    insertCell(table, "This is Customer Number XYZ00" + x, Element.ALIGN_LEFT, 1, bf12);
+				     
+				    orderTotal = Double.valueOf(df.format(Math.random() * 1000));
+				    total = total + orderTotal;
+				    insertCell(table, df.format(orderTotal), Element.ALIGN_RIGHT, 1, bf12);
+				     
+				   }
+				   insertCell(table, "California Total...", Element.ALIGN_RIGHT, 3, bfBold12);
+				   insertCell(table, df.format(total), Element.ALIGN_RIGHT, 1, bfBold12);
+				    
+				   //add the PDF table to the paragraph 
+				   paragraph.add(table);
+				   // add the paragraph to the document
+				   doc.add(paragraph);
+				   doc.close();
+				 
+				  }
+				  catch (DocumentException dex)
+				  {
+				   dex.printStackTrace();
+				  }
+				  catch (Exception ex)
+				  {
+				   ex.printStackTrace();
+				  }
+				 
+				  
+			
+				  */
+		
+			}else if(type.equalsIgnoreCase("")){
+				
+			}
+				
+			
 			req.getRequestDispatcher("landingpage_vendor")
 			.forward(req, resp);
 			
@@ -652,6 +899,22 @@ public class AdminServlet extends HttpServlet {
 		}
 
 	}
+	private void insertCell(PdfPTable table, String text, int align, int colspan, com.itextpdf.text.Font bfBold12){
+		   
+		  //create a new cell with the specified Text and Font
+		  PdfPCell cell = new PdfPCell(new Phrase(text.trim()));
+		  //set the cell alignment
+		  cell.setHorizontalAlignment(align);
+		  //set the cell column span in case you want to merge two or more cells
+		  cell.setColspan(colspan);
+		  //in case there is no text and you wan to create an empty row
+		  if(text.trim().equalsIgnoreCase("")){
+		   cell.setMinimumHeight(10f);
+		  }
+		  //add the call to the table
+		  table.addCell(cell);
+		   
+		 }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

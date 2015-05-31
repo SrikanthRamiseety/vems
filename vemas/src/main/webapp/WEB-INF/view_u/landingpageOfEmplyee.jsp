@@ -70,7 +70,7 @@ $(function(){
 </head>
 <body id="body">
 <div id="show">
-	<%@ include file="header.jsp"%>
+	 
 	<input type="text" id="name" name="name" style="display: none;"value="${pageContext.request.userPrincipal.name}"></input>
 	<%--  <c:if test="${role eq USER}">
 	 

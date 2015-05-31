@@ -35,16 +35,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/admin/*")
-				.access("hasRole('ROLE_ADMIN')").and().formLogin()
-				.loginPage("/login.jsp").permitAll().failureUrl("/login.jsp")
-				.loginProcessingUrl("/j_spring_security_check")
-				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/admin/landingpage_vendor", true).and()
-				.logout().logoutSuccessUrl("/").and().exceptionHandling()
-				.accessDeniedPage("/403").and().csrf();
-		http.csrf().disable();
+		
+		   http.authorizeRequests().antMatchers("/admin/*")
+		  .access("hasRole('ROLE_ADMIN')").and().formLogin()
+		  .loginPage("/login.jsp").permitAll().failureUrl("/login.jsp")
+		   .loginProcessingUrl("/j_spring_security_check")
+		   .usernameParameter("username").passwordParameter("password")
+		   .defaultSuccessUrl("/admin/landingpage_vendor", true).and()
+		  .logout().logoutSuccessUrl("/").and().exceptionHandling()
+		   .accessDeniedPage("/403").and().csrf(); http.csrf().disable();
+		 
+		/*http.authorizeRequests().antMatchers("/css/**").permitAll()
+				.antMatchers("/js/**").permitAll().antMatchers("/images/**")
+				.permitAll().antMatchers("/bootstrap/**").permitAll()
+				.antMatchers("/upload/**").permitAll().anyRequest()
 
+				.authenticated().and().formLogin().loginPage("/login.jsp")
+				.permitAll().failureUrl("/loginpage_l.jsp")
+				.loginProcessingUrl("/j_spring_security_check")
+				.usernameParameter("username")
+
+				 .and()
+
+				.logout().logoutSuccessUrl("/").and().csrf().disable();
+		http.csrf().disable();*/
 		/*
 		 * http.authorizeRequests().antMatchers("/user/* ")
 		 * .access("hasRole('ROLE_USER')").anyRequest()
@@ -57,7 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .accessDeniedPage("/403").and().csrf(); http.csrf().disable();
 		 */
 
-	 
 		/*
 		 * http.authorizeRequests().antMatchers("/css/**").permitAll()
 		 * .antMatchers("/js/**").permitAll().antMatchers("/images/**")
@@ -79,7 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 				.authenticated().and().formLogin().loginPage("/login.jsp")
 				.permitAll().failureUrl("/loginpage_l.jsp")
-				.loginProcessingUrl("/j_spring_security_check").usernameParameter("username")
+				.loginProcessingUrl("/j_spring_security_check")
+				.usernameParameter("username")
 
 				.defaultSuccessUrl("/user/landingpageOfEmplyee", true).and()
 

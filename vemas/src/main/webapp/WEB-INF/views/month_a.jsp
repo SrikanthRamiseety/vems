@@ -39,7 +39,7 @@ $(function(){
 }
 
 fieldset {
-	background-color:#456;
+	 
 	color: white;
 }
 

@@ -51,9 +51,10 @@ background-image: url("../images/97.jpg");
 </head>
 <body id="body">
 
-	<%@ include file="header.jsp"%>
+	 
 	 
 	 <c:if test="${role== 'USER'}">
+	 	<%@ include file="header.jsp"%>
 	 
 	        <div class="mainbody-section text-center" >
             <div class="container">
@@ -170,6 +171,7 @@ background-image: url("../images/97.jpg");
 	<%@ include file="footer.jsp"%>
 	</c:if>
 	 <c:if test="${role == 'ADMIN'}">
+	 	<%@ include file="header.jsp"%>
 	 <div class="mainbody-section text-center">
 		<div class="container">
 			<div class="row">
@@ -278,7 +280,8 @@ background-image: url("../images/97.jpg");
 	<div class="col-md-10">
 	  <c:if test="${role eq null }">
 	 <h1 style="color: red;"> Sorry!</h1><h1 style="color: blue;">${name }</h1> <h1 style="color: red;">your not authorization member to access <br> 
-	 Please Logout......</h1>
+	 Please go to loginpage......</h1>  <a style="color: blue;font-size: large;"
+							href="<c:url value="/logout" />"> LOGIN PAGE</a>
 	 </c:if>
 	
 	
